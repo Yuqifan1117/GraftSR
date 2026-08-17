@@ -1,0 +1,1 @@
+Implements the Z-Image diffusion transformer (DiT) with RoPE and adaptive modulation, a Qwen3-based text encoder, and image-to-LoRA weight generators for fine-tuning the DiT's attention and FFN layers.

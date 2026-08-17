@@ -1,0 +1,1 @@
+No build or install steps required beyond standard Python package import; the module relies on sibling packages `diffsynth.models.wan_video_dit` and `diffsynth.core.gradient`. The `WanMotionControllerModel.init()` method zeroes the final linear layer weights as a deliberate initialization convention.

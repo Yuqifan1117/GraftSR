@@ -1,0 +1,5 @@
+- All heavy sub-modules are invoked through `gradient_checkpoint_forward(..., use_gradient_checkpointing, use_gradient_checkpointing_offload, ...)` to enable optional activation checkpointing without branching logic inside the forward pass.
+- RoPE-style positional embeddings are computed as separate `(cos, sin)` pairs and passed explicitly to attention modules rather than being embedded inline, enabling cross-modal alignment between video and audio token sequences.
+- Conditional cross-attention blocks follow a uniform pattern: normalize the conditioning input, project q/k/v with separate linear layers, apply optional RoPE to q/k, run a shared `AttentionModule`, then project back with an output linear.
+- Loss outputs are returned as named dictionary entries (e.g. `vq/commitment_loss`, `vq/codebook_loss`, `kl_loss`) so callers can selectively weight different components.
+- Tensor shapes follow a consistent channel-first convention `[B, C, T]` for all 1-D audio tensors, with `einops.rearrange` used for explicit reshape operations instead of raw `.view` calls.

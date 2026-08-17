@@ -1,0 +1,1 @@
+Implements the audio-specific DiT backbone (MovaAudioDit), a residual-vector-quantized audio VAE (DacVAE), and a dual-tower cross-modal bridge that injects audio/visual hidden states into each other's DiT layers.

@@ -1,0 +1,4 @@
+- Neural-network components are implemented as `torch.nn.Module` subclasses storing configuration in `__init__` and performing computation in `forward`, following the standard PyTorch pattern used by `TemporalTimesteps`, `TimestepEmbeddings`, `RMSNorm`, and `AdaLayerNorm`.
+- Dynamic class resolution uses `importlib.import_module(...).__getattribute__(...)` to instantiate model classes and converters specified as dotted strings in configuration dictionaries.
+- VRAM-sensitive paths accept paired `*_device` / `*_dtype` parameters (e.g. `tile_device`/`tile_dtype`, `inference_device`/`inference_dtype`, `computation_device`/`computation_dtype`) so tensors can be moved between CPU/GPU and float32/bfloat16 without hardcoding.
+- Optional compatibility modes are toggled via boolean flags passed to constructors (e.g. `diffusers_compatible_format`, `use_additional_t_cond`, `flip_sin_to_cos`) rather than separate subclass hierarchies.

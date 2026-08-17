@@ -1,0 +1,1 @@
+PyTorch with `einops` for tensor reshaping; attention is implemented via `torch.nn.functional.scaled_dot_product_attention`. RoPE is hand-rolled rather than using a library. Tiled inference relies on `torch.nn.Unfold`/`Fold` for overlap-add stitching.

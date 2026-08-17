@@ -1,0 +1,1 @@
+PyTorch adapter modules that inject image identity and LoRA conditioning into the Flux diffusion model via a Perceiver-style projector, an IP-Adapter with SigLIP vision encoder, and a dedicated LoRA text encoder.

@@ -1,0 +1,1 @@
+Example scripts for running inference and training on the LTX-2 text-to-audio-video model, covering one-stage/two-stage/distilled pipelines, camera control, IC-LoRA variants, and full/Lora fine-tuning workflows.

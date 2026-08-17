@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: diffsynth_core/models/anima_joyai
+title: Anima & JoyAI Diffusion Transformers
+scope:
+    - diffsynth/models/anima_dit.py
+    - diffsynth/models/joyai_image_dit.py
+    - diffsynth/models/joyai_image_text_encoder.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/anima
+    - path: examples/joyai_image

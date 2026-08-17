@@ -1,0 +1,1 @@
+No build or install steps required beyond standard Python imports. The IP-Adapter depends on `transformers` providing a `SiglipVisionConfig` compatible with transformers 4.37.0.dev0; the LoRA encoder optionally uses `xformers` for accelerated attention when available.

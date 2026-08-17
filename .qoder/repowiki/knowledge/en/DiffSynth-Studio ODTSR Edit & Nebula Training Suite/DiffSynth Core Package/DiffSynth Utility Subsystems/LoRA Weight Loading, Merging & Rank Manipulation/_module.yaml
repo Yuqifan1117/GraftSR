@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: diffsynth_core/utils/lora_utils
+title: LoRA Weight Loading, Merging & Rank Manipulation
+scope:
+    - diffsynth/utils/lora/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/diffusion_training

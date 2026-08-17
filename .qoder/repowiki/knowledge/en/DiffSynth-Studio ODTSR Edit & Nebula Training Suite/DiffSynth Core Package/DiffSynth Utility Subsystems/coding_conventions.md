@@ -1,0 +1,3 @@
+- Each subpackage exposes its public API through a thin `__init__.py` that re-exports only the top-level symbols, keeping internal modules private.
+- State-dict converters follow a one-file-per-model convention, with each file implementing a single conversion function keyed to a specific checkpoint format.
+- I/O utilities return plain Python objects (PIL Images, numpy arrays, lists) rather than custom tensor types, leaving device/dtype management to callers.

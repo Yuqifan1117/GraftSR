@@ -1,0 +1,1 @@
+PyTorch (`torch.cuda`, `torch.npu`, `torch.utils.checkpoint`, `torch.autograd.graph`) with optional DeepSpeed integration (`deepspeed.checkpointing`) detected at import time via try/except. NPU support requires the `torch_npu` package, detected through `importlib.util.find_spec`.

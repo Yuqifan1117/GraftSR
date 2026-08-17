@@ -1,0 +1,5 @@
+- Each task has a dedicated one-file entry point (under `model_inference/`, `model_inference_low_vram/`, or `model_training/validate_*`) that constructs a `QwenImagePipeline` via `from_pretrained` with explicit `ModelConfig` entries per sub-model (transformer, text_encoder, vae, tokenizer).
+- Training modules subclass `DiffusionTrainingModule` and override `get_pipeline_inputs` / `forward` to return `(inputs_shared, inputs_posi, inputs_nega)` tuples, with task-specific losses selected through a `task_to_loss` dictionary.
+- LoRA customization is applied by replacing linear layers matching named patterns via `replace_linear_with_duallora`, with rank and alpha tuned per experiment rather than using a generic wrapper.
+- Experiment hyperparameters are externalized into `configs/*.yaml` files with explicit type casting (e.g. `!!float`) and loaded at script start, keeping Python code parameter-free.
+- Checkpoint saving filters trainable parameters by `requires_grad` and writes them as `net_{tag}_iter_{iter}.pth` under the configured work directory, also preserving `condition_type_embed.*` weights when present.

@@ -1,0 +1,1 @@
+PyTorch with `safetensors` for zero-copy tensor loading; uses `torch._scaled_mm` for FP8 e4m3fn/e4m3fnuz matmul; detects NPU availability via a shared `..device` helper; environment variable `DIFFSYNTH_DISK_MAP_BUFFER_SIZE` controls per-file handle flush threshold.

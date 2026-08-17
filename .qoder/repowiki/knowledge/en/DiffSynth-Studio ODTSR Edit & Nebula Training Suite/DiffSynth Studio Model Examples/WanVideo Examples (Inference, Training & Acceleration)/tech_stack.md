@@ -1,0 +1,1 @@
+PyTorch with bfloat16 precision, Hugging Face `diffsynth` library (`WanVideoPipeline`, `UnifiedDataset`, `DiffusionTrainingModule`), DeepSpeed ZeRO-2/3 via `accelerate` for multi-GPU training, and `modelscope` for dataset downloading. Sequence parallelism is enabled through `use_usp=True` in the pipeline constructor.

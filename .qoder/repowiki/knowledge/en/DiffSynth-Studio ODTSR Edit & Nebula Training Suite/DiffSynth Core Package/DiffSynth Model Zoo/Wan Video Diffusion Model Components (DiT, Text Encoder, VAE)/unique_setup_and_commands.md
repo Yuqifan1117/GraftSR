@@ -1,0 +1,1 @@
+Optional acceleration libraries are auto-detected at import: `flash_attn_interface`, `flash_attn`, and `sageattention` must be installed separately to enable their respective attention paths; otherwise the code falls back to `torch.nn.functional.scaled_dot_product_attention`. No build script is present — models are instantiated directly in Python.

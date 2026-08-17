@@ -1,0 +1,1 @@
+PyTorch with bfloat16 (and float8_e5m2 for low-VRAM paths), Hugging Face `ModelConfig` for submodule loading, `accelerate` for distributed training, torchaudio for audio I/O, and safetensors checkpoint format. Models are loaded from ModelScope/HF repos (`google/gemma-3-12b-it-qat-q4_0-unquantized` tokenizer, `DiffSynth-Studio/LTX-2-Repackage` or `Lightricks/LTX-2` checkpoints).

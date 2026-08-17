@@ -1,0 +1,1 @@
+Supporting modules for the Wan video diffusion model: a CLIP-style image/text encoder, a motion-aware attention adapter that injects MOT signals into DiT blocks, and a face/pose animate adapter that fuses motion features into transformer layers.

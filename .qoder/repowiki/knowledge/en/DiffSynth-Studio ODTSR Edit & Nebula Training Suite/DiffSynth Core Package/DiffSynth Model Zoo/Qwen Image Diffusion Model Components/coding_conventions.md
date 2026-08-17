@@ -1,0 +1,5 @@
+- Optional acceleration paths are gated by try/except imports (e.g. `flash_attn_interface`) with a boolean flag (`FLASH_ATTN_3_AVAILABLE`) and a deterministic fallback implementation.
+- Positional encoding classes expose both a regular `forward` and a `forward_sampling` variant, with cached frequency tensors stored in instance attributes keyed by shape tuples.
+- Streaming/inference-friendly components accept an optional `feat_cache` list and a mutable `feat_idx=[0]` index to append recent frames without recomputation.
+- Modulation of transformer blocks follows a consistent pattern: a conditioning vector is split into shift/scale/gate triplets and applied via `_modulate`, supporting both 2D batch and 3D DualLoRA slot layouts.
+- Custom normalization layers (`QwenImageRMS_norm`, `RMSNorm` from `general_modules`) scale by `dim**0.5` and carry learnable `gamma`/`bias` parameters rather than using PyTorch's default LayerNorm.

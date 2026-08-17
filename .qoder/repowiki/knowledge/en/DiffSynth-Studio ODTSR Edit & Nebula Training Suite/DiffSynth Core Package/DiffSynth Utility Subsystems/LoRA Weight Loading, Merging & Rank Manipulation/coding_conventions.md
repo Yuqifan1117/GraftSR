@@ -1,0 +1,5 @@
+- LoRA weight pairs are consistently keyed by `.lora_A.` and `.lora_B.` suffixes, with `.lora_down`/`.lora_up` retained only for backward compatibility and converted on load.
+- Model-specific loaders subclass `GeneralLoRALoader` and override `convert_state_dict` (and optionally `fuse_lora_to_base_model`) while delegating common parsing logic to the parent class.
+- Name remapping between formats is implemented as explicit string-to-string dictionaries (e.g. `diffusers_rename_dict`, `civitai_rename_dict`) rather than regex-based parsers.
+- State-dict transformations return a new dictionary instead of mutating the input, keeping functions pure and side-effect free except for warnings.
+- Alpha handling follows a consistent pattern: detect an `alpha` key, compute `alpha / rank`, warn about non-DiffSynth origin, and scale the down-weight accordingly.

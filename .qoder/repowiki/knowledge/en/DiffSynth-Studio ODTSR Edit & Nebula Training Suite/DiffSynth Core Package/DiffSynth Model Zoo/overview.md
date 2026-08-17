@@ -1,0 +1,1 @@
+Aggregates PyTorch implementations of diverse diffusion and autoregressive models (Flux, Wan, LTX-2, Qwen-Image, Z-Image, MoVA, Nexus-Gen, Step1x, Anima/JoyAI) plus shared building blocks and a unified VRAM-aware model loader.

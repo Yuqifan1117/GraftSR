@@ -1,0 +1,1 @@
+No build script or special setup is required — these are plain PyTorch modules importable as `from diffsynth.models.flux_dit import FluxDiT`, etc. The DiT forward is intentionally a no-op placeholder; actual usage goes through `pipelines.flux_image` which wires the components together.

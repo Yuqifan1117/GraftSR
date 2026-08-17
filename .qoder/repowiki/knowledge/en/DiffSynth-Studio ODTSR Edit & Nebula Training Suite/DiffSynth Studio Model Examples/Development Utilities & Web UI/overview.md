@@ -1,0 +1,1 @@
+Standalone Python utilities for the examples ecosystem: a Markdown path-fixing script, a multi-GPU example runner/test harness, and a Streamlit-based interactive WebUI that introspects diffsynth pipelines to generate images and videos.

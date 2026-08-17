@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: examples/ernie_image
+title: ERNIE-Image Inference & Training Examples
+scope:
+    - examples/ernie_image/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/diffusion_training
+    - path: diffsynth_core/models/flux_vae_models
+    - path: diffsynth_core/pipelines

@@ -1,0 +1,1 @@
+Provides low-memory video/image loading, audio read/write with torchcodec, PyAV-based video+audio muxing, and LTX2 single-frame encode/decode helpers for DiffSynth's media pipeline.

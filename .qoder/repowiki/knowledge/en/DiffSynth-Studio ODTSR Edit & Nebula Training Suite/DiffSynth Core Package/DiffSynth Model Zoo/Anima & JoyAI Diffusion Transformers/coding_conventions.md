@@ -1,0 +1,5 @@
+- Neural layers accept `device=None, dtype=None, operations=None` kwargs and construct all submodules through the injected `operations` namespace (Linear, LayerNorm, RMSNorm) to enable backend substitution.
+- AdaLN modulation is applied uniformly: a small MLP predicts shift/scale/gate vectors from timestep embeddings, which are broadcast as `(B, T, 1, 1, D)` tensors to modulate normalized activations before each sub-block.
+- Rotary positional embeddings are computed as separate cos/sin frequency tensors and applied via `apply_rotary_emb` rather than being stored as parameters, with per-dimension theta rescaling factors exposed as constructor arguments.
+- Gradient checkpointing is opt-in via `use_gradient_checkpointing` flags and routed through `..core.gradient.gradient_checkpoint_forward` around block loops instead of using PyTorch's native checkpoint API directly.
+- Attention always goes through the shared `attention_forward` helper with explicit `q/k/v/out_pattern` strings, keeping the internal attention kernel abstracted behind a uniform interface.

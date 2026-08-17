@@ -1,0 +1,1 @@
+Implements Scale-Selective Search, a wavelet-domain evolutionary optimizer that searches over low-frequency DWT coefficients to maximize an objective reward function on latent tensors.

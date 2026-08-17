@@ -1,0 +1,4 @@
+- Each wrapper class stores separate dtype/device pairs for four stages (`offload_*`, `onload_*`, `preparing_*`, `computation_*`) and transitions between them via explicit `offload()`/`onload()`/`preparing()` methods that update an integer `state` field.
+- Disk offloading is opt-in by passing `offload_dtype='disk'` together with a `DiskMap`; when enabled, parameters are never moved to another device but instead loaded lazily through `DiskMap[name]` on demand.
+- Parameter names are resolved through a `param_name` method that prepends a stored `self.name` prefix, and `DiskMap` supports an optional `state_dict_converter` to remap key names at initialization time.
+- VRAM checks use `check_free_vram` against `vram_limit` (GB) before promoting from onload to preparing/computation, with device detection delegated to `parse_device_type` and `get_device_name` from the parent `..device` package.

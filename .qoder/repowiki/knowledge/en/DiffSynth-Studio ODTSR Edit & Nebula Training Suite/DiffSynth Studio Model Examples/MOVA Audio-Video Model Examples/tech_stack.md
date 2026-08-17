@@ -1,0 +1,1 @@
+PyTorch with bfloat16 precision, DiffSynth's `MovaAudioVideoPipeline` and `UnifiedDataset`, HuggingFace safetensors from `openmoss/MOVA-*` and `DiffSynth-Studio/Wan-Series-Converted-Safetensors`, Accelerate for distributed training, and Torchaudio for audio loading.

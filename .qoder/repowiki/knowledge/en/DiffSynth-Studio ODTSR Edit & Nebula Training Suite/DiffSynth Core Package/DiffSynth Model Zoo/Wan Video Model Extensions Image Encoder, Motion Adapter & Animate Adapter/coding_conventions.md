@@ -1,0 +1,5 @@
+- Each module defines a top-level `torch.nn.Module` class whose constructor sets all hyperparameters as instance attributes and whose `forward` method documents input/output shapes in docstrings.
+- Pretrained models are constructed lazily using a meta-device context (`with torch.device('meta'):`) followed by `load_state_dict(..., assign=True)` to avoid allocating memory before weight loading.
+- Custom attention layers reuse the shared `flash_attention` function from `wan_video_dit` rather than calling `F.scaled_dot_product_attention` directly, ensuring consistent memory layout across the codebase.
+- RoPE frequencies are precomputed once per call via helper functions (`precompute_freqs_cis`, `compute_freqs_mot`) and passed explicitly to attention modules instead of being stored as parameters.
+- Adapter modules expose thin wrapper methods (`after_patch_embedding`, `after_transformer_block`, `encode_image`) that integrate into the parent DiT pipeline without modifying its core forward pass.

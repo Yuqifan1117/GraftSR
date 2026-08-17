@@ -1,0 +1,6 @@
+Three cooperating modules form an audio-to-video conditioning pipeline:
+- `wav2vec.py` defines `WanS2VAudioEncoder`, which wraps `transformers.Wav2Vec2ForCTC` (facebook/wav2vec2-large-xlsr-53) to extract audio hidden states, resamples them to 30 fps via linear interpolation, and produces batched audio embeddings through sliding-window bucketing (`get_audio_embed_bucket`, `get_audio_embed_bucket_fps`).
+- `wantodance.py` provides `WanToDanceRotaryEmbedding` (learned or fixed-frequency RoPE) and `WanToDanceMusicEncoderLayer`, a Transformer encoder layer with optional rotary embedding applied to queries/keys before `nn.MultiheadAttention`.
+- `wan_video_vace.py` defines `VaceWanAttentionBlock` (extends `DiTBlock` from `wan_video_dit`) and `VaceWanModel`, which projects multi-layer wav2vec2 features through a 3D conv patch embedding, stacks intermediate outputs as skip connections, and returns them as `hints` for the parent DiT via `gradient_checkpoint_forward`.
+
+Dependency direction: `wan_video_vace.py` depends on the parent `wan_video_dit` DiTBlock; `wantodance.py` is self-contained with only torch/einops; `wav2vec.py` depends on HuggingFace `transformers`. The three files together implement the VACE (Video-Audio Cross-attention Encoder) pathway that fuses audio into video generation.

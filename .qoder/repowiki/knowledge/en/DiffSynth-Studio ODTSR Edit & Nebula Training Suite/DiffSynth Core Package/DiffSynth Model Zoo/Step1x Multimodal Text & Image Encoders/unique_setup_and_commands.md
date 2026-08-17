@@ -1,0 +1,1 @@
+No build or test scripts are present. The text encoder depends on a pre-instantiated `QwenImageTextEncoder` and its `processor` passed at construction time; the DINOv3 encoder expects 224×224 RGB images normalized with mean [0.485, 0.456, 0.406] and std [0.229, 0.224, 0.225].

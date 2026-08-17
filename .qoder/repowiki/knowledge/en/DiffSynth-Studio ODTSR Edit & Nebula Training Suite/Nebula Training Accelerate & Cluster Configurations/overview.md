@@ -1,0 +1,1 @@
+Holds Hugging Face Accelerate YAML profiles for single- and multi-GPU/machine training runs plus a cluster resource manifest defining per-worker GPU, CPU, and memory quotas.

@@ -1,0 +1,1 @@
+Implements the Step1x multimodal pipeline: a DINOv3 image encoder, a Qwen-based text embedder that fuses captions with reference images, and a connector that refines token embeddings via AdaLN-modulated self/cross-attention blocks.

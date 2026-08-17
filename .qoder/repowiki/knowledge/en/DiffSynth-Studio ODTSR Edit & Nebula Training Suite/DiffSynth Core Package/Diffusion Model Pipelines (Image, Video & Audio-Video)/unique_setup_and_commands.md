@@ -1,0 +1,1 @@
+Model loading is driven by `ModelConfig` objects passed to `from_pretrained`; common file redirection is supported (e.g., Wan's `redirect_common_files` maps original safetensor names to DiffSynth-Studio equivalents). Some pipelines expose feature toggles such as `use_usp=True` for sequence parallelism (Wan) or `enable_npu_patch=True` (Z-Image).

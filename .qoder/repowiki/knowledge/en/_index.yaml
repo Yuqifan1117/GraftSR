@@ -1,0 +1,728 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: en-US
+branch: Q0DeR-MaG1C-BrAnCh-Fo2-NoN-GiT-Or-No-C0MmIt
+nodes_managed: true
+exported_at: "2026-08-04T06:12:22Z"
+modules:
+    "":
+        dir_name: DiffSynth-Studio ODTSR Edit & Nebula Training Suite
+        title: DiffSynth-Studio ODTSR Edit & Nebula Training Suite
+        scope:
+            - README.md
+            - README_zh.md
+            - .gitignore
+            - pyproject.toml
+            - setup.py
+            - requirements.txt
+            - LICENSE
+            - detect_texture_regions.py
+            - eval_texture.py
+            - nebulactl_launch_2_test_edit_mask.sh
+            - nebulactl_launch_2_train_edit_mask_musiq.sh
+            - nebulactl_launch_adaptive_inference.sh
+            - nebulactl_launch_lace_enhance.sh
+            - nebulactl_launch_pipeline_enhance.sh
+            - nebulactl_launch_script.sh
+            - nebulactl_launch_test_base.sh
+            - nebulactl_launch_test_edit.sh
+            - nebulactl_launch_test_edit_base.sh
+            - nebulactl_launch_test_edit_mask.sh
+            - nebulactl_launch_test_edit_mask_ablation.sh
+            - nebulactl_launch_test_edit_mask_debug.sh
+            - nebulactl_launch_test_edit_mask_debug_nodilate.sh
+            - nebulactl_launch_test_edit_mask_noreference.sh
+            - nebulactl_launch_test_edit_mask_refine.sh
+            - nebulactl_launch_test_edit_mask_resume.sh
+            - nebulactl_launch_test_qwen_edit_base.sh
+            - nebulactl_launch_test_ref.sh
+            - nebulactl_launch_train_base.sh
+            - nebulactl_launch_train_edit.sh
+            - nebulactl_launch_train_edit_debug.sh
+            - nebulactl_launch_train_edit_mask.sh
+            - nebulactl_launch_train_edit_mask_ablation_nodilate.sh
+            - nebulactl_launch_train_edit_mask_ablation_nofulllq.sh
+            - nebulactl_launch_train_edit_mask_ablation_nolqmask.sh
+            - nebulactl_launch_train_edit_mask_ablation_norefmask.sh
+            - nebulactl_launch_train_edit_mask_general.sh
+            - nebulactl_launch_train_edit_mask_musiq.sh
+            - nebulactl_launch_train_edit_mask_refinehead.sh
+            - nebulactl_launch_train_edit_mask_region.sh
+            - nebulactl_launch_train_edit_repair.sh
+            - nebulactl_launch_train_edit_resume.sh
+            - nebulactl_launch_train_ref.sh
+            - nebulactl_test.sh
+            - select_region_ablation_results.txt
+            - select_region_results.txt
+            - selected_bbox.sh
+            - selected_bbox.txt
+            - train_edit_mask.sh
+            - xdl_config_3dd928e3-ead3-42d0-b182-7699777bee3e.json
+            - xdl_config_446c28d2-e0ed-412c-bb1d-519d10649079.json
+            - xdl_config_53563ab9-c5af-4931-b66e-6a49a42a7ad2.json
+            - xdl_config_7a60d420-5839-432c-b27a-f14713e10974.json
+            - xdl_config_7f1c0e88-e721-4495-87af-f0545e7d94cc.json
+            - xdl_config_a92cc199-f56a-4a5a-81d1-11d0ac58436a.json
+            - xdl_config_b0261e47-b229-47e2-bd32-6169ff8f54ba.json
+            - xdl_config_ba042442-a701-4392-9de4-57150e56c4cc.json
+            - xdl_config_e2b90a8b-ee73-45f9-8e05-2605ee65cb0b.json
+            - xdl_config_f711fb48-d941-4928-8588-38dfe6b7ef57.json
+        source_files: []
+        children:
+            - diffsynth_core
+            - docs
+            - examples
+            - nebula_configs
+            - val_images
+            - vlm_tools
+        depends_on: []
+        related_to: []
+    diffsynth_core:
+        dir_name: DiffSynth Core Package
+        title: DiffSynth Core Package
+        scope:
+            - diffsynth/
+        source_files: []
+        children:
+            - diffsynth_core/configs
+            - diffsynth_core/core_engine
+            - diffsynth_core/diffusion_training
+            - diffsynth_core/extensions
+            - diffsynth_core/models
+            - diffsynth_core/pipelines
+            - diffsynth_core/utils
+        depends_on: []
+        related_to:
+            - path: docs
+    diffsynth_core/configs:
+        dir_name: Model & VRAM Configuration Registry
+        title: Model & VRAM Configuration Registry
+        scope:
+            - diffsynth/configs/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    diffsynth_core/core_engine:
+        dir_name: DiffSynth Core Engine
+        title: DiffSynth Core Engine
+        scope:
+            - diffsynth/core/
+        source_files: []
+        children:
+            - diffsynth_core/core_engine/data
+            - diffsynth_core/core_engine/device_and_gradient
+            - diffsynth_core/core_engine/loader
+            - diffsynth_core/core_engine/vram
+        depends_on: []
+        related_to: []
+    diffsynth_core/core_engine/data:
+        dir_name: Data Processing Pipeline & Unified Dataset
+        title: Data Processing Pipeline & Unified Dataset
+        scope:
+            - diffsynth/core/data/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/utils/data_utils
+    diffsynth_core/core_engine/device_and_gradient:
+        dir_name: Device Abstraction & Gradient Checkpointing
+        title: Device Abstraction & Gradient Checkpointing
+        scope:
+            - diffsynth/core/device/
+            - diffsynth/core/gradient/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/core_engine/loader
+    diffsynth_core/core_engine/loader:
+        dir_name: Model & State Dict Loader
+        title: Model & State Dict Loader
+        scope:
+            - diffsynth/core/loader/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/core_engine/device_and_gradient
+            - path: diffsynth_core/core_engine/vram
+            - path: diffsynth_core/models
+            - path: diffsynth_core/utils/state_dict_converters
+    diffsynth_core/core_engine/vram:
+        dir_name: VRAM-Aware Model Offloading & Lazy Parameter Loading
+        title: VRAM-Aware Model Offloading & Lazy Parameter Loading
+        scope:
+            - diffsynth/core/vram/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/core_engine/loader
+    diffsynth_core/diffusion_training:
+        dir_name: Diffusion Training Framework & Flow-Match Schedulers
+        title: Diffusion Training Framework & Flow-Match Schedulers
+        scope:
+            - diffsynth/diffusion/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/core_engine/data
+            - path: diffsynth_core/utils/lora_utils
+            - path: examples/anima
+            - path: examples/ernie_image
+            - path: examples/flux
+            - path: examples/ltx2
+            - path: examples/mova
+            - path: examples/qwen_image
+            - path: examples/wanvideo
+            - path: examples/z_image
+            - path: nebula_configs
+            - path: vlm_tools
+    diffsynth_core/extensions:
+        dir_name: Real-ESRGAN Extensions and Datasets
+        title: Real-ESRGAN Extensions and Datasets
+        scope:
+            - diffsynth/extensions/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    diffsynth_core/models:
+        dir_name: DiffSynth Model Zoo
+        title: DiffSynth Model Zoo
+        scope:
+            - diffsynth/models/
+        source_files: []
+        children:
+            - diffsynth_core/models/anima_joyai
+            - diffsynth_core/models/flux_adapters
+            - diffsynth_core/models/flux_controlnet_value
+            - diffsynth_core/models/flux_core
+            - diffsynth_core/models/flux_encoders
+            - diffsynth_core/models/flux_vae_models
+            - diffsynth_core/models/ltx2
+            - diffsynth_core/models/ltx2_utils
+            - diffsynth_core/models/mova_audio
+            - diffsynth_core/models/nexus_gen
+            - diffsynth_core/models/qwen_image
+            - diffsynth_core/models/qwen_image_extensions
+            - diffsynth_core/models/shared_utils
+            - diffsynth_core/models/step1x
+            - diffsynth_core/models/wan_video
+            - diffsynth_core/models/wan_video_motion
+            - diffsynth_core/models/wan_video_support
+            - diffsynth_core/models/wan_video_vace
+            - diffsynth_core/models/z_image
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/core_engine/loader
+    diffsynth_core/models/anima_joyai:
+        dir_name: Anima & JoyAI Diffusion Transformers
+        title: Anima & JoyAI Diffusion Transformers
+        scope:
+            - diffsynth/models/anima_dit.py
+            - diffsynth/models/joyai_image_dit.py
+            - diffsynth/models/joyai_image_text_encoder.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/anima
+            - path: examples/joyai_image
+    diffsynth_core/models/flux_adapters:
+        dir_name: Flux Model Adapters (InfiniteYou, IP-Adapter, LoRA Encoder)
+        title: Flux Model Adapters (InfiniteYou, IP-Adapter, LoRA Encoder)
+        scope:
+            - diffsynth/models/flux_infiniteyou.py
+            - diffsynth/models/flux_ipadapter.py
+            - diffsynth/models/flux_lora_encoder.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/flux
+    diffsynth_core/models/flux_controlnet_value:
+        dir_name: Flux ControlNet, Value Control & LoRA Patcher
+        title: Flux ControlNet, Value Control & LoRA Patcher
+        scope:
+            - diffsynth/models/flux_controlnet.py
+            - diffsynth/models/flux_value_control.py
+            - diffsynth/models/flux_lora_patcher.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/flux
+    diffsynth_core/models/flux_core:
+        dir_name: Flux Model Components (DiT, VAE, CLIP Text Encoder)
+        title: Flux Model Components (DiT, VAE, CLIP Text Encoder)
+        scope:
+            - diffsynth/models/flux_dit.py
+            - diffsynth/models/flux_vae.py
+            - diffsynth/models/flux_text_encoder_clip.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    diffsynth_core/models/flux_encoders:
+        dir_name: Flux Text Encoders & DiT Backbone
+        title: Flux Text Encoders & DiT Backbone
+        scope:
+            - diffsynth/models/flux_text_encoder_t5.py
+            - diffsynth/models/flux2_dit.py
+            - diffsynth/models/flux2_text_encoder.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/flux
+            - path: examples/flux2
+    diffsynth_core/models/flux_vae_models:
+        dir_name: Flux VAE & Ernie-Image DiT Models
+        title: Flux VAE & Ernie-Image DiT Models
+        scope:
+            - diffsynth/models/flux2_vae.py
+            - diffsynth/models/ernie_image_dit.py
+            - diffsynth/models/ernie_image_text_encoder.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/ernie_image
+    diffsynth_core/models/ltx2:
+        dir_name: LTX-2 Diffusion Model Components (DiT, Text Encoder, Video VAE)
+        title: LTX-2 Diffusion Model Components (DiT, Text Encoder, Video VAE)
+        scope:
+            - diffsynth/models/ltx2_dit.py
+            - diffsynth/models/ltx2_text_encoder.py
+            - diffsynth/models/ltx2_video_vae.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/ltx2
+    diffsynth_core/models/ltx2_utils:
+        dir_name: LTX2 Audio-Video Latent Utilities & Upsampler
+        title: LTX2 Audio-Video Latent Utilities & Upsampler
+        scope:
+            - diffsynth/models/ltx2_common.py
+            - diffsynth/models/ltx2_upsampler.py
+            - diffsynth/models/ltx2_audio_vae.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/ltx2
+    diffsynth_core/models/mova_audio:
+        dir_name: MoVA Audio Diffusion & VAE Components
+        title: MoVA Audio Diffusion & VAE Components
+        scope:
+            - diffsynth/models/mova_audio_dit.py
+            - diffsynth/models/mova_audio_vae.py
+            - diffsynth/models/mova_dual_tower_bridge.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/mova
+    diffsynth_core/models/nexus_gen:
+        dir_name: Nexus-Gen Autoregressive Vision-Language Model
+        title: Nexus-Gen Autoregressive Vision-Language Model
+        scope:
+            - diffsynth/models/nexus_gen.py
+            - diffsynth/models/nexus_gen_ar_model.py
+            - diffsynth/models/nexus_gen_projector.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    diffsynth_core/models/qwen_image:
+        dir_name: Qwen Image Diffusion Model Components
+        title: Qwen Image Diffusion Model Components
+        scope:
+            - diffsynth/models/qwen_image_dit.py
+            - diffsynth/models/qwen_image_text_encoder.py
+            - diffsynth/models/qwen_image_vae.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/qwen_image
+            - path: vlm_tools
+    diffsynth_core/models/qwen_image_extensions:
+        dir_name: Qwen-Image ControlNet, Image-to-LoRA, and SigLIP2 Encoders
+        title: Qwen-Image ControlNet, Image-to-LoRA, and SigLIP2 Encoders
+        scope:
+            - diffsynth/models/qwen_image_controlnet.py
+            - diffsynth/models/qwen_image_image2lora.py
+            - diffsynth/models/siglip2_image_encoder.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/qwen_image
+    diffsynth_core/models/shared_utils:
+        dir_name: Shared Model Utilities, Loader & Tiling
+        title: Shared Model Utilities, Loader & Tiling
+        scope:
+            - diffsynth/models/general_modules.py
+            - diffsynth/models/model_loader.py
+            - diffsynth/models/tiler.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    diffsynth_core/models/step1x:
+        dir_name: Step1x Multimodal Text & Image Encoders
+        title: Step1x Multimodal Text & Image Encoders
+        scope:
+            - diffsynth/models/step1x_connector.py
+            - diffsynth/models/step1x_text_encoder.py
+            - diffsynth/models/dinov3_image_encoder.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    diffsynth_core/models/wan_video:
+        dir_name: Wan Video Diffusion Model Components (DiT, Text Encoder, VAE)
+        title: Wan Video Diffusion Model Components (DiT, Text Encoder, VAE)
+        scope:
+            - diffsynth/models/wan_video_dit.py
+            - diffsynth/models/wan_video_text_encoder.py
+            - diffsynth/models/wan_video_vae.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/wanvideo
+    diffsynth_core/models/wan_video_motion:
+        dir_name: Wan Video Motion & Camera Control
+        title: Wan Video Motion & Camera Control
+        scope:
+            - diffsynth/models/wan_video_dit_s2v.py
+            - diffsynth/models/wan_video_motion_controller.py
+            - diffsynth/models/wan_video_camera_controller.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/wanvideo
+    diffsynth_core/models/wan_video_support:
+        dir_name: Wan Video Model Extensions Image Encoder, Motion Adapter & Animate Adapter
+        title: 'Wan Video Model Extensions: Image Encoder, Motion Adapter & Animate Adapter'
+        scope:
+            - diffsynth/models/wan_video_image_encoder.py
+            - diffsynth/models/wan_video_mot.py
+            - diffsynth/models/wan_video_animate_adapter.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/wanvideo
+    diffsynth_core/models/wan_video_vace:
+        dir_name: Wan Video VACE Audio-Video Fusion Components
+        title: Wan Video VACE Audio-Video Fusion Components
+        scope:
+            - diffsynth/models/wan_video_vace.py
+            - diffsynth/models/wantodance.py
+            - diffsynth/models/wav2vec.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: examples/wanvideo
+    diffsynth_core/models/z_image:
+        dir_name: Z-Image DiT Model, Text Encoder & Image-to-LoRA Components
+        title: Z-Image DiT Model, Text Encoder & Image-to-LoRA Components
+        scope:
+            - diffsynth/models/z_image_dit.py
+            - diffsynth/models/z_image_text_encoder.py
+            - diffsynth/models/z_image_image2lora.py
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    diffsynth_core/pipelines:
+        dir_name: Diffusion Model Pipelines (Image, Video & Audio-Video)
+        title: Diffusion Model Pipelines (Image, Video & Audio-Video)
+        scope:
+            - diffsynth/pipelines/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/utils/controlnet_utils
+            - path: examples/anima
+            - path: examples/dev_tools
+            - path: examples/ernie_image
+            - path: examples/flux
+            - path: examples/flux2
+            - path: examples/ltx2
+            - path: examples/mova
+            - path: examples/qwen_image
+            - path: examples/wanvideo
+            - path: examples/z_image
+    diffsynth_core/utils:
+        dir_name: DiffSynth Utility Subsystems
+        title: DiffSynth Utility Subsystems
+        scope:
+            - diffsynth/utils/
+        source_files: []
+        children:
+            - diffsynth_core/utils/controlnet_utils
+            - diffsynth_core/utils/data_utils
+            - diffsynth_core/utils/lora_utils
+            - diffsynth_core/utils/ses_utils
+            - diffsynth_core/utils/state_dict_converters
+        depends_on: []
+        related_to: []
+    diffsynth_core/utils/controlnet_utils:
+        dir_name: ControlNet Input & Image Annotator Utilities
+        title: ControlNet Input & Image Annotator Utilities
+        scope:
+            - diffsynth/utils/controlnet/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/pipelines
+    diffsynth_core/utils/data_utils:
+        dir_name: Media I_O and Audio_Video Utilities
+        title: Media I/O and Audio/Video Utilities
+        scope:
+            - diffsynth/utils/data/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/core_engine/data
+            - path: val_images
+    diffsynth_core/utils/lora_utils:
+        dir_name: LoRA Weight Loading, Merging & Rank Manipulation
+        title: LoRA Weight Loading, Merging & Rank Manipulation
+        scope:
+            - diffsynth/utils/lora/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+    diffsynth_core/utils/ses_utils:
+        dir_name: Scale-Selective Search (SES) Latent Optimization
+        title: Scale-Selective Search (SES) Latent Optimization
+        scope:
+            - diffsynth/utils/ses/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    diffsynth_core/utils/state_dict_converters:
+        dir_name: State Dictionary Converters for Model Checkpoint Formats
+        title: State Dictionary Converters for Model Checkpoint Formats
+        scope:
+            - diffsynth/utils/state_dict_converters/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/core_engine/loader
+    docs:
+        dir_name: Sphinx Documentation Site (English & Chinese)
+        title: Sphinx Documentation Site (English & Chinese)
+        scope:
+            - docs/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core
+    examples:
+        dir_name: DiffSynth Studio Model Examples
+        title: DiffSynth Studio Model Examples
+        scope:
+            - examples/
+        source_files: []
+        children:
+            - examples/anima
+            - examples/dev_tools
+            - examples/ernie_image
+            - examples/flux
+            - examples/flux2
+            - examples/joyai_image
+            - examples/ltx2
+            - examples/mova
+            - examples/qwen_image
+            - examples/wanvideo
+            - examples/z_image
+        depends_on: []
+        related_to: []
+    examples/anima:
+        dir_name: Anima Image Generation Examples
+        title: Anima Image Generation Examples
+        scope:
+            - examples/anima/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/models/anima_joyai
+            - path: diffsynth_core/pipelines
+    examples/dev_tools:
+        dir_name: Development Utilities & Web UI
+        title: Development Utilities & Web UI
+        scope:
+            - examples/dev_tools/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/pipelines
+            - path: nebula_configs
+    examples/ernie_image:
+        dir_name: ERNIE-Image Inference & Training Examples
+        title: ERNIE-Image Inference & Training Examples
+        scope:
+            - examples/ernie_image/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/models/flux_vae_models
+            - path: diffsynth_core/pipelines
+    examples/flux:
+        dir_name: FLUX Model Inference & Training Examples
+        title: FLUX Model Inference & Training Examples
+        scope:
+            - examples/flux/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/models/flux_adapters
+            - path: diffsynth_core/models/flux_controlnet_value
+            - path: diffsynth_core/models/flux_encoders
+            - path: diffsynth_core/pipelines
+    examples/flux2:
+        dir_name: FLUX.2 Examples (Inference, Low-VRAM Inference & Training)
+        title: FLUX.2 Examples (Inference, Low-VRAM Inference & Training)
+        scope:
+            - examples/flux2/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/models/flux_encoders
+            - path: diffsynth_core/pipelines
+    examples/joyai_image:
+        dir_name: JoyAI-Image Edit Inference & Training Examples
+        title: JoyAI-Image Edit Inference & Training Examples
+        scope:
+            - examples/joyai_image/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/models/anima_joyai
+    examples/ltx2:
+        dir_name: LTX-2 Audio-Video Model Examples (Inference, Low-VRAM, Training)
+        title: LTX-2 Audio-Video Model Examples (Inference, Low-VRAM, Training)
+        scope:
+            - examples/ltx2/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/models/ltx2
+            - path: diffsynth_core/models/ltx2_utils
+            - path: diffsynth_core/pipelines
+    examples/mova:
+        dir_name: MOVA Audio-Video Model Examples
+        title: MOVA Audio-Video Model Examples
+        scope:
+            - examples/mova/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/models/mova_audio
+            - path: diffsynth_core/pipelines
+    examples/qwen_image:
+        dir_name: Qwen-Image Example Suite (Inference, Training & GAN Fine-tuning)
+        title: Qwen-Image Example Suite (Inference, Training & GAN Fine-tuning)
+        scope:
+            - examples/qwen_image/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/models/qwen_image
+            - path: diffsynth_core/models/qwen_image_extensions
+            - path: diffsynth_core/pipelines
+    examples/wanvideo:
+        dir_name: WanVideo Examples (Inference, Training & Acceleration)
+        title: WanVideo Examples (Inference, Training & Acceleration)
+        scope:
+            - examples/wanvideo/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/models/wan_video
+            - path: diffsynth_core/models/wan_video_motion
+            - path: diffsynth_core/models/wan_video_support
+            - path: diffsynth_core/models/wan_video_vace
+            - path: diffsynth_core/pipelines
+    examples/z_image:
+        dir_name: Z-Image Model Examples (Inference, Training & Scripts)
+        title: Z-Image Model Examples (Inference, Training & Scripts)
+        scope:
+            - examples/z_image/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/pipelines
+    nebula_configs:
+        dir_name: Nebula Training Accelerate & Cluster Configurations
+        title: Nebula Training Accelerate & Cluster Configurations
+        scope:
+            - nebula_configs/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: examples/dev_tools
+    val_images:
+        dir_name: Image Validation Samples & Detection Outputs
+        title: Image Validation Samples & Detection Outputs
+        scope:
+            - val_images/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/utils/data_utils
+    vlm_tools:
+        dir_name: Vision-Language Model Annotation & Dataset Pipeline
+        title: Vision-Language Model Annotation & Dataset Pipeline
+        scope:
+            - vlm/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: diffsynth_core/diffusion_training
+            - path: diffsynth_core/models/qwen_image

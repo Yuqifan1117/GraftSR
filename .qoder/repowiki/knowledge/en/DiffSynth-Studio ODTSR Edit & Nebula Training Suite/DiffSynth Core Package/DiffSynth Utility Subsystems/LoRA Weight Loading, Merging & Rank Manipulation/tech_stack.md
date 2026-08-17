@@ -1,0 +1,1 @@
+Pure PyTorch — uses `torch.mm` for matrix multiplication, `torch.concat` for stacking, and `torch.pca_lowrank` for low-rank decomposition. No external LoRA libraries are imported.

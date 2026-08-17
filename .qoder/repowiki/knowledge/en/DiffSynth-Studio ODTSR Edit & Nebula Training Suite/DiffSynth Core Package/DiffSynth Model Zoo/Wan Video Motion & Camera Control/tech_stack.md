@@ -1,0 +1,1 @@
+PyTorch with `einops.rearrange` for tensor reshaping, 3D rotary positional encoding (`precompute_freqs_cis_3d`), causal 1D convolutions for temporal modeling, and optional `xfuser` sequence-parallel all-gather hooks in `after_transformer_block`. Uses `gradient_checkpoint_forward` from `..core.gradient` for memory-efficient training.

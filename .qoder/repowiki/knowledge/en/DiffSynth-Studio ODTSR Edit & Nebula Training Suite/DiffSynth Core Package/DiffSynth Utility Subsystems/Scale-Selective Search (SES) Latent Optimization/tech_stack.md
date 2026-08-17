@@ -1,0 +1,1 @@
+PyTorch for tensor operations, PyWavelets (`pywt.wavedec2`/`waverec2`) for 2D discrete wavelet decomposition with 'db1' wavelet and symmetric padding, NumPy for array stacking, and `tqdm` for progress tracking.

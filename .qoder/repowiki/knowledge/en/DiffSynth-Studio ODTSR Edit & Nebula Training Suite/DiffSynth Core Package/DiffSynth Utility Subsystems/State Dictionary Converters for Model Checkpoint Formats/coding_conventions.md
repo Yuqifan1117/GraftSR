@@ -1,0 +1,5 @@
+- Each converter is a top-level function named `<Model><Source>StateDictConverter` (or `<Model>FromDiffusers`) that accepts a single `state_dict` argument and returns a new dict without mutating the input.
+- Key remapping is expressed as explicit Python dicts (`rename_dict`, `suffix_rename_dict`, `attn_rename_dict`) mapping old dotted paths to new ones, rather than regex or programmatic rules.
+- Block-structured models are handled by iterating over known prefixes like `model.diffusion_model.`, `double_blocks`, `single_blocks`, or `transformer_blocks` and reconstructing target names by prefix substitution.
+- Tensor shape changes required by architecture differences (e.g. concatenating q/k/v projections, reshaping position embeddings, splitting final linear layers) are performed inline with `torch.concat` or `.reshape()` inside the same loop that renames keys.
+- Converters selectively skip irrelevant keys by checking prefixes (e.g. `vace`, `pose_patch_embedding`, `audio_embeddings_connector`) before writing them into the output dict.

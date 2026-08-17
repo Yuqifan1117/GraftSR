@@ -1,0 +1,1 @@
+PyTorch with bfloat16 precision, PIL for image I/O, Hugging Face `black-forest-labs/FLUX.2-*` model IDs loaded via safetensors, Accelerate + DeepSpeed ZeRO-2 for multi-GPU full-parameter training, and optional float8_e4m3fn / disk offloading for low-VRAM inference. LoRA targets are specified as comma-separated module names on the `dit` backbone.

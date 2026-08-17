@@ -1,0 +1,1 @@
+PyTorch (`torch.nn.Module`, `Unfold`/`Fold`, `nn.Linear`, `SiLU`, `RMSNorm`-style variance normalization), `einops` for tensor rearrangement/repeat, and dynamic import via Python's `importlib` for model class resolution.

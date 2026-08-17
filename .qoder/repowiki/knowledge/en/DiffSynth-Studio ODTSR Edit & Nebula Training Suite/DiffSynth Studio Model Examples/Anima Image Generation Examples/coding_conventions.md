@@ -1,0 +1,4 @@
+- Model components are declared as lists of `ModelConfig(model_id=..., origin_file_pattern=...)` passed to `AnimaImagePipeline.from_pretrained`, separating base model, text encoder, and VAE weights.
+- Training tasks are selected by a string key mapped to both a loss factory and a launcher function (e.g. `sft:data_process`, `direct_distill:train`), keeping data processing and training logic unified.
+- Scripts use `torch.bfloat16` as the default `torch_dtype` for both inference and training pipelines to reduce memory usage.
+- Shell scripts follow a two-step pattern: first download the example dataset with `modelscope download`, then launch training via `accelerate launch` with all hyperparameters specified as CLI flags.

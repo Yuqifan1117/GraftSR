@@ -1,0 +1,5 @@
+- Each script is a standalone executable invoked directly (no `__main__.py`); entry points are either top-level function calls (`fix_path(...)`) or an `if __name__ == "__main__":` block (`unit_test.py`).
+- File traversal and discovery use recursive helpers that check `os.path.isdir` and filter by extension (e.g., `.md` in `fix_path.py`, `.py`/`.sh` in `unit_test.py`).
+- External command execution goes through `os.system` with explicit `CUDA_VISIBLE_DEVICES` assignment for GPU isolation, and stdout/stderr are redirected into per-task `log.txt` files.
+- Streamlit UI construction follows a uniform pattern: a `draw_*` function returns a widget value, wrapped in an `st.container(border=True)` with a markdown label, and supports a `disabled` flag propagated through nested containers.
+- Dynamic introspection relies on `inspect.signature` and `pkgutil.iter_modules` to derive UI elements from type annotations rather than hard-coded forms.

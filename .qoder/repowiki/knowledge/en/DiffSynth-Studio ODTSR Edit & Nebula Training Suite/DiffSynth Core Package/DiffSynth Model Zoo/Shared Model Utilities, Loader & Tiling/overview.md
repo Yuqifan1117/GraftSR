@@ -1,0 +1,1 @@
+Provides reusable PyTorch building blocks (timestep embeddings, normalization layers), a model loading pipeline with VRAM-aware module wrapping, and an overlap-tile inference utility for processing large tensors in chunks.

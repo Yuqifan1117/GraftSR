@@ -1,0 +1,1 @@
+Training is launched through `launch_training_task(accelerator, dataset, DiffusionTrainingModule, ModelLogger, ...)` or `launch_data_process_task`; arguments are built from the `add_general_config` parser chain in `parsers.py`. DeepSpeed gradient checkpointing is auto-detected from `accelerator.state.deepspeed_plugin.deepspeed_config` under the `activation_checkpointing` key.

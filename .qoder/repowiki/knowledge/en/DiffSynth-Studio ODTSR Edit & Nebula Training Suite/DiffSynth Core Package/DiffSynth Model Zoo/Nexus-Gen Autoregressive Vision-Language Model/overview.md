@@ -1,0 +1,1 @@
+Implements the Nexus-Gen autoregressive vision-language model built on Qwen2.5-VL, providing image editing/generation via token-level embedding prediction with a custom processor, decoder layers, and an image embedding merger/adapter.

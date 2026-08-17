@@ -1,0 +1,1 @@
+Install dependencies from docs/requirements.txt, then run `make html` or `make latexpdf` inside docs/en or docs/zh (Makefile delegates to `sphinx-build -M`). For live development use `sphinx-autobuild`. Read the Docs builds are configured via each language's .readthedocs.yaml.

@@ -1,0 +1,1 @@
+Provides three Qwen-Image extensions: a block-wise ControlNet adapter, an image-to-LoRA matrix generator for fine-tuning, and wrapped SigLIP/SigLIP2 vision encoders that produce image embeddings.

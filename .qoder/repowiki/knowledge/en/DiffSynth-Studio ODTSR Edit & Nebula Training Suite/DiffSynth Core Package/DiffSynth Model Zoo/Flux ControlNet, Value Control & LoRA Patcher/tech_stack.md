@@ -1,0 +1,1 @@
+PyTorch with `einops` for tensor rearrangement; uses `hashlib` for state-dict fingerprinting; relies on `TemporalTimesteps` from `general_modules` for sinusoidal position encoding; LoRA loaders support both Diffusers-style (`transformer.*.lora_*`) and Civitai-style (`lora_unet_*`) checkpoint formats.

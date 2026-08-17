@@ -1,0 +1,1 @@
+PyTorch with `einops` for tensor rearrangement; attention backends selectable via `torch.nn.functional.scaled_dot_product_attention`, xformers, torch_npu, and torch_xla (XLA pallas kernel); the text encoder lazily imports `transformers.Ministral3Model` at runtime.

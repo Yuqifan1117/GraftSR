@@ -1,0 +1,5 @@
+- Each model variant gets its own dedicated script file named after the variant (e.g. `FLUX.2-dev.py`, `FLUX.2-klein-9B.py`) rather than sharing a single parameterized script.
+- Model loading always goes through `Flux2ImagePipeline.from_pretrained` with a `model_configs` list of `ModelConfig` objects specifying `model_id` and `origin_file_pattern` per subcomponent (text_encoder, transformer, vae, tokenizer).
+- Inference scripts define a `vram_config` dict with `offload_dtype/device`, `onload_dtype/device`, `preparing_dtype/device`, and `computation_dtype/device` keys to control memory placement, and pass it via `**vram_config` to each `ModelConfig`.
+- Training scripts subclass `DiffusionTrainingModule`, override `get_pipeline_inputs` to return `(inputs_shared, inputs_posi, inputs_nega)` tuples, and select loss functions through a `task_to_loss` dictionary keyed by task strings like `sft` and `direct_distill`.
+- Shell launchers follow a two-step pattern: first a `data_process` task to precompute cached features, then a `train` task that consumes the cache, both invoked via `accelerate launch` with identical hyperparameters except `dataset_repeat`.

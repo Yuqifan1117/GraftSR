@@ -1,0 +1,5 @@
+- Conditioning modules expose a `forward` that converts a scalar or low-dimensional signal into a high-dimensional modulation vector (e.g., `WanMotionControllerModel` maps `motion_bucket_id` → `dim*6` via sinusoidal embedding then MLP).
+- Temporal/causal processing uses `CausalConv1d` with padding `(kernel_size-1, 0)` and replicates mode to enforce strict left-to-right causality along the time dimension.
+- 3D spatial-temporal RoPE is applied by concatenating grid sizes for multiple resolutions (reference, motion post/2x/4x) and precomputing frequencies via `rope_precompute` before transformer blocks.
+- Optional features are gated by boolean flags passed at construction (e.g., `enable_adain`, `add_last_motion`, `drop_mode`, `require_vae_embedding`) rather than runtime branching.
+- Transformer block injection follows a discovery pattern: `torch_dfs` walks `self.blocks` to find `DiTBlock` instances, then registers CrossAttention adapters at specified `inject_layer` indices.

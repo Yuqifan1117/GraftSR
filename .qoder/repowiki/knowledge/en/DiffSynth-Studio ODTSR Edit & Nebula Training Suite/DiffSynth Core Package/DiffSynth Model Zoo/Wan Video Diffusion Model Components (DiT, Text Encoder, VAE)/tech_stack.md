@@ -1,0 +1,1 @@
+PyTorch with `einops` for tensor rearrangement; attention backends are chosen at import time via optional `flash_attn_interface` (v3), `flash_attn` (v2), and `sageattention`; text tokenization uses `transformers.AutoTokenizer` with `ftfy`/`regex` preprocessing; gradient checkpointing is provided by a custom `core.gradient.gradient_checkpoint_forward` utility.

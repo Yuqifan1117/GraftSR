@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/wan_video
+title: Wan Video Diffusion Model Components (DiT, Text Encoder, VAE)
+scope:
+    - diffsynth/models/wan_video_dit.py
+    - diffsynth/models/wan_video_text_encoder.py
+    - diffsynth/models/wan_video_vae.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/wanvideo

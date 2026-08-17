@@ -1,0 +1,6 @@
+- Variable-length sequences are padded to multiples of `SEQ_MULTI_OF=32` using `pad_sequence` with `batch_first=True`, and corresponding boolean pad masks are constructed alongside position IDs.
+- Adaptive modulation follows an ADALN pattern: a linear maps a scalar condition into four chunks (scale_msa, gate_msa, scale_mlp, gate_mlp), where gates are tanh-scaled and scales are shifted by +1 before being applied element-wise.
+- Per-token noise/clean modulation is selected via the `select_per_token` helper that branches on a `noise_mask` tensor, allowing mixed noisy and clean tokens within a single batch item.
+- RoPE frequencies are precomputed once in `RopeEmbedder.precompute_freqs_cis` on CPU and cached as `self.freqs_cis`, then indexed per token with an NPU-compatible branch via `torch.index_select`.
+- LoRA weight generators produce dictionary entries keyed by the exact target submodule path (e.g. `layers.{i}.attention.to_q.lora_A.default.weight`) so they can be merged directly into the DiT's `state_dict`.
+- Each transformer block exposes `_no_split_modules` and `_repeated_blocks` class attributes listing `ZImageTransformerBlock` to support efficient sharding and checkpointing.

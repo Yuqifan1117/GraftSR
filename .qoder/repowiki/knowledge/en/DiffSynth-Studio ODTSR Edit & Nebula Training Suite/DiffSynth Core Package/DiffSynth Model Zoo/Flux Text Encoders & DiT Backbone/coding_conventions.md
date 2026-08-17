@@ -1,0 +1,4 @@
+- Encoder subclasses wrap a `transformers` model by subclassing it, constructing a fully-specified config dict in `__init__`, calling `super().__init__(config)`, and overriding `forward` to thin-wrap the parent forward.
+- Attention modules follow a processor pattern: they declare `_default_processor_cls` and `_available_processors`, accept an optional `processor` argument, and delegate computation to `self.processor(self, ...)` whose signature is introspected via `inspect.signature` to filter kwargs.
+- Modulation parameters are produced as tuples of (shift, scale, gate) triplets from `Flux2Modulation` and applied as `(1 + scale) * norm(x) + shift` followed by residual addition scaled by `gate`.
+- Rotary embeddings are generated via `get_1d_rotary_pos_embed` with `use_real=True` and `repeat_interleave_real=True`, then applied through `apply_rotary_emb` with `sequence_dim=1` for the token sequence axis.

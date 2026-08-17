@@ -1,0 +1,6 @@
+- Latent geometry is expressed through `NamedTuple` shape classes (`VideoLatentShape`, `AudioLatentShape`, `SpatioTemporalScaleFactors`) with `to_torch_shape`, `from_torch_shape`, and `mask_shape` helpers rather than raw tuples.
+- Patchification follows a `Protocol` interface (`Patchifier`) with `patchify`, `unpatchify`, `patch_size`, and `get_patch_grid_bounds` so video and audio patchifiers are interchangeable.
+- Normalization layers are selected via the `NormType` enum and constructed through `build_normalization_layer`, allowing GroupNorm and per-pixel RMS norm to be swapped without changing downstream code.
+- Causal vs non-causal convolutions are chosen at construction time via a `CausalityAxis` enum passed to `make_conv2d` / `ResnetBlock`, keeping causality a configuration parameter rather than a separate class hierarchy.
+- Encoder/decoder architectures are assembled by factory functions (`build_downsampling_path`, `build_upsampling_path`, `build_mid_block`) that return `ModuleList` structures instead of hard-coded forward methods.
+- Per-channel normalization of latents is centralized in a `PerChannelStatistics` module exposing `normalize`/`un_normalize` methods, reused by both the audio VAE and the video upsampler wrapper.

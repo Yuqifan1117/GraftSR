@@ -1,0 +1,1 @@
+Pure PyTorch (`torch.nn`) with `einops` for tensor rearrangement in the LoRA encoder; `transformers.SiglipVisionModel` for the IP-Adapter vision backbone; optional `xformers.ops.memory_efficient_attention` as a fast-path in the Attention module's `xformers_forward` branch.

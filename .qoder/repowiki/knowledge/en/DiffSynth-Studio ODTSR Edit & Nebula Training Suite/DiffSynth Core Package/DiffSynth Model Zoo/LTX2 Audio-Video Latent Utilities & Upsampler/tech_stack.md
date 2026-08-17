@@ -1,0 +1,1 @@
+PyTorch with `einops` for tensor rearrangements, `torchaudio` for mel-spectrogram computation, and `torch.nn.functional.rms_norm`. The audio VAE uses torchaudio's MelSpectrogram with Slaney normalization and Hann windowing.

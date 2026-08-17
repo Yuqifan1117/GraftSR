@@ -1,0 +1,1 @@
+Example scripts and shell configurations for running FLUX.1 image generation pipelines and training (full fine-tuning, LoRA, distillation) using the DiffSynth-Studio framework.

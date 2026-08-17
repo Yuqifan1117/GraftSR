@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: examples/z_image
+title: Z-Image Model Examples (Inference, Training & Scripts)
+scope:
+    - examples/z_image/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/diffusion_training
+    - path: diffsynth_core/pipelines

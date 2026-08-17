@@ -1,0 +1,4 @@
+- Every adapter class exposes a `@staticmethod state_dict_converter()` that returns a converter instance implementing `from_diffusers` and/or `from_civitai` methods for loading weights from different source formats.
+- Cross-attention adapters accept an `ipadapter_kwargs` dictionary carrying `ip_k`, `ip_v`, and `scale`, which they inject into attention via a dedicated `interact_with_ipadapter` helper rather than modifying the core attention computation.
+- Adapters use explicit `torch.nn.Linear(..., bias=False)` for projection layers and pair them with `LayerNorm` or `RMSNorm` before the linear transform, keeping normalization inside the module rather than relying on external pre-norm.
+- Tensor reshaping for multi-head attention follows a consistent pattern: view `(b, f, n*d)` → transpose to `(b, n, f, d)` → apply attention → transpose back and reshape to `(b, f, n*d)`.

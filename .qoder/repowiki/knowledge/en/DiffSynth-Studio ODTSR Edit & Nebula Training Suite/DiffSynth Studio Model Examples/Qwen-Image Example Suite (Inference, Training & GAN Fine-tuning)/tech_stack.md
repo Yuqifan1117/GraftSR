@@ -1,0 +1,1 @@
+PyTorch with bfloat16 mixed precision, Hugging Face `diffsynth` library (`QwenImagePipeline`, `ModelConfig`, `UnifiedDataset`, `DiffusionTrainingModule`), Accelerate + DeepSpeed ZeRO-2/ZeRO-3 for distributed training, optional float8_e4m3fn offloading for low-VRAM inference, and YAML-driven experiment configuration.

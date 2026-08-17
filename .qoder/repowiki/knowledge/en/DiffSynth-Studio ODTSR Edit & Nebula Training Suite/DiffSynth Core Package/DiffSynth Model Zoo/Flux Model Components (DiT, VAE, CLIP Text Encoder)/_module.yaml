@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: diffsynth_core/models/flux_core
+title: Flux Model Components (DiT, VAE, CLIP Text Encoder)
+scope:
+    - diffsynth/models/flux_dit.py
+    - diffsynth/models/flux_vae.py
+    - diffsynth/models/flux_text_encoder_clip.py
+source_files: []
+depends_on: []
+related_to: []

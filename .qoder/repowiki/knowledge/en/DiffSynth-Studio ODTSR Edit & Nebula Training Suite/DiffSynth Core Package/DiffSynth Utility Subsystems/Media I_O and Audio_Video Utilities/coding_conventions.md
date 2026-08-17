@@ -1,0 +1,4 @@
+- Audio functions accept and return tensors in `[C, T]` or `[B, C, T]` shape, with channel dimension first, and provide explicit `backend` parameters defaulting to `"torchcodec"`.
+- I/O functions wrap file operations in try/finally or context managers to guarantee container/file closure even on exceptions.
+- Newer media I/O uses PyAV (`av`) directly for encoding/muxing, while legacy code falls back to `imageio` + `subprocess` calls to `ffmpeg`.
+- Shape/format normalization helpers (e.g., `convert_to_stereo`, `_write_audio`) enforce tensor dtype ranges by clipping to [-1, 1] and converting to int16 before passing to encoders.

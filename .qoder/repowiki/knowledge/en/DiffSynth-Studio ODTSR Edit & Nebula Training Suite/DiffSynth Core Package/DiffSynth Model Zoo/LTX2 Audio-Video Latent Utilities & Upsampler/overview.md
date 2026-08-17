@@ -1,0 +1,1 @@
+Shared LTX2 latent shape types, normalization primitives, patchifier protocol, and the audio VAE encoder/processor plus a spatiotemporal latent upsampler for video.

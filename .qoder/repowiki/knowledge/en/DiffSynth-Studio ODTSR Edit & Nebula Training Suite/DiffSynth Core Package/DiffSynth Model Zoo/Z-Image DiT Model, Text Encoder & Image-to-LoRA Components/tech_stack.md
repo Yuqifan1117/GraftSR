@@ -1,0 +1,1 @@
+PyTorch with `torch.nn` modules, `transformers.Qwen3Model`/`Qwen3Config` for the text encoder, and `torch.nn.utils.rnn.pad_sequence` for variable-length batching. Uses NPU-aware device selection (`IS_NPU_AVAILABLE`) and gradient checkpointing via `gradient_checkpoint_forward`.

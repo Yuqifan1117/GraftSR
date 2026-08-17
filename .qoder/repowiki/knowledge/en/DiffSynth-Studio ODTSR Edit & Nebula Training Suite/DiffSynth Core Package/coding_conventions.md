@@ -1,0 +1,3 @@
+- Each sub-package exposes its public API through a thin `__init__.py` that re-exports symbols from sibling modules rather than defining them inline.
+- Model classes are registered declaratively in `configs/model_configs.py` and `configs/vram_management_module_maps.py` so the loader and VRAM manager can resolve weights and memory wrapping without hard-coded imports.
+- VRAM-aware offloading is applied uniformly via the `core.vram` wrapper classes around model layers, with module-to-layer mappings defined centrally in `vram_management_module_maps.py`.

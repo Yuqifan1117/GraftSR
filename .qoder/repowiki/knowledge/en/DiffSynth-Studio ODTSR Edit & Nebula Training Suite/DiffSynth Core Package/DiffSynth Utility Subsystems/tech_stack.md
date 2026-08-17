@@ -1,0 +1,1 @@
+NumPy/Pillow for image ops, imageio + ffmpeg subprocess for video/audio I/O, torchcodec for audio, wavelet transforms for SES search, and xfuser's USP primitives for sequence parallelism in DiT/VACE models.

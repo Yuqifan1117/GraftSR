@@ -1,0 +1,4 @@
+- Each model component is declared as a `ModelConfig(model_id=..., origin_file_pattern=..., **vram_config)` entry passed to `MovaAudioVideoPipeline.from_pretrained`, keeping model weights decoupled from code.
+- VRAM management is expressed through a shared `vram_config` dict specifying offload/onload/preparing/computation dtype and device pairs, reused across all inference scripts.
+- Training scripts split the diffusion process into two runs by setting `max_timestep_boundary` and `min_timestep_boundary` to target either the high-noise or low-noise DIT branch separately.
+- Shell scripts follow a fixed pattern: download dataset first, then `accelerate launch examples/mova/model_training/train.py` with explicit `--dataset_base_path`, `--dataset_metadata_path`, `--data_file_keys`, `--extra_inputs`, and `--model_id_with_origin_paths` arguments.

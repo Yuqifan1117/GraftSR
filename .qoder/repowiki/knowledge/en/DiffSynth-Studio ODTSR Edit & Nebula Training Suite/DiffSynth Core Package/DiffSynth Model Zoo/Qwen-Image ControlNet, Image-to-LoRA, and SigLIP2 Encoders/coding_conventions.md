@@ -1,0 +1,4 @@
+- Each model subclass overrides `forward(image_or_tensor, torch_dtype=..., device=...)` and explicitly moves inputs to the requested dtype/device before calling the underlying backbone.
+- Weight initialization is performed via dedicated methods (`init_weights`, `initialize_weights`, `init_weight`) that zero-initialize projection outputs to start training from identity behavior.
+- LoRA-related modules use a pair of parallel MLP branches (`proj_a`, `proj_b`) that reshape their outputs into rank×dim matrices rather than storing explicit weight tensors.
+- Configuration is baked as constructor arguments with sensible defaults (e.g. `num_layers=60`, `rank=4`, `compress_dim=128`) so classes can be instantiated without external config files.

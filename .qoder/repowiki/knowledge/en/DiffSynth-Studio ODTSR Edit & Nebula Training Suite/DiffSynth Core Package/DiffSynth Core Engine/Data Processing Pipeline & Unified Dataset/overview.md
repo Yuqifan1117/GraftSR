@@ -1,0 +1,1 @@
+Provides a composable operator-based data processing pipeline and a unified PyTorch dataset that loads images, videos, audio, and cached tensors through configurable transformation chains.

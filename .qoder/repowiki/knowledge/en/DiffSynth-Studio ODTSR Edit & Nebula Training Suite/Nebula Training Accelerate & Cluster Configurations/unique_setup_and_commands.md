@@ -1,0 +1,1 @@
+Select an appropriate `accelerate-<N>.yaml` profile matching the desired process count and pass it via `accelerate launch --config_file nebula_configs/accelerate-<N>.yaml ...`; `cluster.json` is consumed by the Nebula scheduler to allocate worker resources.

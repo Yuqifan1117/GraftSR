@@ -1,0 +1,1 @@
+Top-level DiffSynth package that re-exports the core engine and wires together model definitions, pipelines, training framework, utilities, extensions, and configuration registries into a single importable library.

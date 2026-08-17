@@ -1,0 +1,1 @@
+Pretrained CLIP/XLM-RoBERTa weights are auto-downloaded on first use via `sora.DOWNLOAD_TO_CACHE('models/clip/<name>.pth')` and `sora.DOWNLOAD_TO_CACHE('models/xlm_roberta/xlm_roberta_large.pth')`. The image encoder expects inputs normalized with mean `[0.48145466, 0.4578275, 0.40821073]` and std `[0.26862954, 0.26130258, 0.27577711]` (or `[0.5, 0.5, 0.5]` for siglip variants).

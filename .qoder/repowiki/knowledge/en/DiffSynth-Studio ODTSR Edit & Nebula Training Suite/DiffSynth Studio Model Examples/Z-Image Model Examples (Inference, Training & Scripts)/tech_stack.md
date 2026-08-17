@@ -1,0 +1,1 @@
+PyTorch with bfloat16 precision, Accelerate for distributed training (DeepSpeed ZeRO-2/ZeRO-3), HuggingFace safetensors model loading via `ModelConfig`, and diffsynth's `ZImagePipeline` / `UnifiedDataset` / `DiffusionTrainingModule` abstractions.

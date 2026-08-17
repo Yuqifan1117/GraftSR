@@ -1,0 +1,65 @@
+schema_version: 1
+module_path: ""
+title: DiffSynth-Studio ODTSR Edit & Nebula Training Suite
+scope:
+    - README.md
+    - README_zh.md
+    - .gitignore
+    - pyproject.toml
+    - setup.py
+    - requirements.txt
+    - LICENSE
+    - detect_texture_regions.py
+    - eval_texture.py
+    - nebulactl_launch_2_test_edit_mask.sh
+    - nebulactl_launch_2_train_edit_mask_musiq.sh
+    - nebulactl_launch_adaptive_inference.sh
+    - nebulactl_launch_lace_enhance.sh
+    - nebulactl_launch_pipeline_enhance.sh
+    - nebulactl_launch_script.sh
+    - nebulactl_launch_test_base.sh
+    - nebulactl_launch_test_edit.sh
+    - nebulactl_launch_test_edit_base.sh
+    - nebulactl_launch_test_edit_mask.sh
+    - nebulactl_launch_test_edit_mask_ablation.sh
+    - nebulactl_launch_test_edit_mask_debug.sh
+    - nebulactl_launch_test_edit_mask_debug_nodilate.sh
+    - nebulactl_launch_test_edit_mask_noreference.sh
+    - nebulactl_launch_test_edit_mask_refine.sh
+    - nebulactl_launch_test_edit_mask_resume.sh
+    - nebulactl_launch_test_qwen_edit_base.sh
+    - nebulactl_launch_test_ref.sh
+    - nebulactl_launch_train_base.sh
+    - nebulactl_launch_train_edit.sh
+    - nebulactl_launch_train_edit_debug.sh
+    - nebulactl_launch_train_edit_mask.sh
+    - nebulactl_launch_train_edit_mask_ablation_nodilate.sh
+    - nebulactl_launch_train_edit_mask_ablation_nofulllq.sh
+    - nebulactl_launch_train_edit_mask_ablation_nolqmask.sh
+    - nebulactl_launch_train_edit_mask_ablation_norefmask.sh
+    - nebulactl_launch_train_edit_mask_general.sh
+    - nebulactl_launch_train_edit_mask_musiq.sh
+    - nebulactl_launch_train_edit_mask_refinehead.sh
+    - nebulactl_launch_train_edit_mask_region.sh
+    - nebulactl_launch_train_edit_repair.sh
+    - nebulactl_launch_train_edit_resume.sh
+    - nebulactl_launch_train_ref.sh
+    - nebulactl_test.sh
+    - select_region_ablation_results.txt
+    - select_region_results.txt
+    - selected_bbox.sh
+    - selected_bbox.txt
+    - train_edit_mask.sh
+    - xdl_config_3dd928e3-ead3-42d0-b182-7699777bee3e.json
+    - xdl_config_446c28d2-e0ed-412c-bb1d-519d10649079.json
+    - xdl_config_53563ab9-c5af-4931-b66e-6a49a42a7ad2.json
+    - xdl_config_7a60d420-5839-432c-b27a-f14713e10974.json
+    - xdl_config_7f1c0e88-e721-4495-87af-f0545e7d94cc.json
+    - xdl_config_a92cc199-f56a-4a5a-81d1-11d0ac58436a.json
+    - xdl_config_b0261e47-b229-47e2-bd32-6169ff8f54ba.json
+    - xdl_config_ba042442-a701-4392-9de4-57150e56c4cc.json
+    - xdl_config_e2b90a8b-ee73-45f9-8e05-2605ee65cb0b.json
+    - xdl_config_f711fb48-d941-4928-8588-38dfe6b7ef57.json
+source_files: []
+depends_on: []
+related_to: []

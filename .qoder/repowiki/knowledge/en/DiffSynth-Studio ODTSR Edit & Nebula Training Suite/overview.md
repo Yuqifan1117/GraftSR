@@ -1,0 +1,1 @@
+Root of the DiffSynth-Studio project that bundles the diffsynth core package, model examples, bilingual docs, VLM annotation tools, Nebula cluster configs, and validation images into a single installable Python distribution with shared launch scripts for training, inference, and evaluation.

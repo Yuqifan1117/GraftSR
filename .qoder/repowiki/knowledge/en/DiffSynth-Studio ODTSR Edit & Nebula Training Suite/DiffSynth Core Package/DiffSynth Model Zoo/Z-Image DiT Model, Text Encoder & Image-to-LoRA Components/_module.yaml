@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: diffsynth_core/models/z_image
+title: Z-Image DiT Model, Text Encoder & Image-to-LoRA Components
+scope:
+    - diffsynth/models/z_image_dit.py
+    - diffsynth/models/z_image_text_encoder.py
+    - diffsynth/models/z_image_image2lora.py
+source_files: []
+depends_on: []
+related_to: []

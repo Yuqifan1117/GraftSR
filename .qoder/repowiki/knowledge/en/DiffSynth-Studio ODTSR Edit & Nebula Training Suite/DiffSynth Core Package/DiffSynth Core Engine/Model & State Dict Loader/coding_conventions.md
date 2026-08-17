@@ -1,0 +1,4 @@
+- State-dict loaders accept either a single file path string or a list of paths and recursively merge results when given a list.
+- Device and dtype are passed as separate paired fields (`*_device` / `*_dtype`) in configuration dicts, enabling independent control over offload, onload, preparing, and computation stages.
+- Optional heavy dependencies (DeepSpeed, HuggingFace Hub) are imported lazily inside functions rather than at module top, keeping the loader importable without those packages installed.
+- Hashing utilities normalize nested state dicts into a sorted, shape-aware string representation before computing MD5 digests.

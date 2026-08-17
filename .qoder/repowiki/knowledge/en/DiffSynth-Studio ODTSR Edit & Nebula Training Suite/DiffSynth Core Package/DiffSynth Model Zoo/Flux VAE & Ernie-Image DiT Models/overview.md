@@ -1,0 +1,1 @@
+Implements the Flux VAE backbone with attention/resnet/upsample/downsample building blocks, plus an Ernie-Image DiT transformer and a Ministral3-based text encoder used by DiffSynth-Studio.

@@ -1,0 +1,4 @@
+- All executable entry points are shell scripts under the root named `nebulactl_launch_*.sh` that source shared base scripts rather than duplicating argument parsing.
+- Model and pipeline code is imported exclusively from the `diffsynth` package namespace; example scripts never import internal implementation modules directly.
+- Cluster configuration is centralized in `nebula_configs/accelerate-*.yaml` plus `cluster.json`, and every training script references these files instead of hardcoding GPU/CPU/memory settings.
+- Validation and test assets live under `val_images/` and are referenced by relative paths from the repository root across eval and launch scripts.

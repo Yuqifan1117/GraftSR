@@ -1,0 +1,1 @@
+PyTorch for tensor operations and model definitions; safetensors for weight storage; DeepSpeed optional for gradient checkpointing acceleration; ModelScope/HuggingFace for remote model resolution.

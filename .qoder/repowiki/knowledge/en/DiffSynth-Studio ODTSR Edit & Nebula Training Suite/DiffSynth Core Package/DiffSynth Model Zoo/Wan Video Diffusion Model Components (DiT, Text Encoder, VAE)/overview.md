@@ -1,0 +1,1 @@
+Implements the Wan video diffusion pipeline: a 3D DiT backbone with RoPE and optional music/ref-image injection, a T5-style text encoder with HuggingFace tokenizer, and a causal 3D VAE for video latent encoding/decoding.

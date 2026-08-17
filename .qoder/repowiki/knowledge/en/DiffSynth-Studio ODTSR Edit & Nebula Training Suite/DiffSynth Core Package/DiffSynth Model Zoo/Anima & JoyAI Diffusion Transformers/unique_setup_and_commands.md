@@ -1,0 +1,1 @@
+No build or install script is required beyond standard `pip install torch transformers`; the Qwen3-VL text encoder lazily imports `transformers` at construction time, so the dependency is resolved on first use.

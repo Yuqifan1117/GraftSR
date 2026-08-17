@@ -1,0 +1,1 @@
+`webui.py` is launched as a Streamlit app (`streamlit run examples/dev_tools/webui.py`). `unit_test.py` expects a multi-GPU environment (default `NUM_GPUS=7`) and writes outputs under `data/<script_path>/`; it must be run from the repository root so relative paths like `examples/...` resolve correctly. `fix_path.py` operates on `doc/zh` and `doc/en` directories.

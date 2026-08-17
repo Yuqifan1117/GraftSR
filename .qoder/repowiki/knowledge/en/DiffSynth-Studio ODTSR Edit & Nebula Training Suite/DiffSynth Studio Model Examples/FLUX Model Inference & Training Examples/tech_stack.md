@@ -1,0 +1,1 @@
+PyTorch with bfloat16 dtype; DiffSynth-Studio's `FluxImagePipeline` and `UnifiedDataset`; Accelerate + DeepSpeed (ZeRO stage 2) for distributed training; float8_e4m3fn offloading for low-VRAM inference; HuggingFace model IDs with safetensor file patterns via `ModelConfig`.

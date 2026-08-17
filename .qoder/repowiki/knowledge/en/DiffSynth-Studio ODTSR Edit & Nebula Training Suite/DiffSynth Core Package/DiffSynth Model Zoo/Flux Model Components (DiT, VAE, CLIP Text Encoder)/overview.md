@@ -1,0 +1,1 @@
+PyTorch implementations of the three core Flux model components: a DiT backbone with joint/single transformer blocks and RoPE, a paired encoder/decoder VAE with tiled inference, and a CLIP-style text encoder producing pooled and sequence embeddings.

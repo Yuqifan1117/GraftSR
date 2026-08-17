@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: diffsynth_core/models/qwen_image
+title: Qwen Image Diffusion Model Components
+scope:
+    - diffsynth/models/qwen_image_dit.py
+    - diffsynth/models/qwen_image_text_encoder.py
+    - diffsynth/models/qwen_image_vae.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/qwen_image
+    - path: vlm_tools

@@ -1,0 +1,1 @@
+PyTorch with `transformers` 4.57.1 — T5EncoderModel for Flux-1 text encoding, Mistral3ForConditionalGeneration (multimodal) for Flux-2 text encoding. Uses PyTorch 2.0+ `torch.nn.functional.scaled_dot_product_attention` via the custom `attention_forward` backend. RMSNorm and SiLU activations throughout; bfloat16 dtype configured in both encoder configs.

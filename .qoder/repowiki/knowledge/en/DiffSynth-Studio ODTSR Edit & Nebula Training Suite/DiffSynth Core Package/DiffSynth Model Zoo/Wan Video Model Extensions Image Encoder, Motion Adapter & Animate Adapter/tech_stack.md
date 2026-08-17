@@ -1,0 +1,1 @@
+PyTorch with `torch.nn.functional.scaled_dot_product_attention` and a custom `flash_attention` from `wan_video_dit`; RoPE frequency encoding; `einops` for tensor reshaping; HuggingFace tokenizers via `sora.data.HuggingfaceTokenizer`; pretrained checkpoints fetched through `sora.DOWNLOAD_TO_CACHE`.

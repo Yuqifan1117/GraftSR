@@ -1,0 +1,1 @@
+Both encoders are constructed with hard-coded configuration dicts that pin `transformers_version: 4.57.1`; instantiation requires the corresponding `transformers` release to be installed so that `T5Config` and `Mistral3Config` resolve correctly.

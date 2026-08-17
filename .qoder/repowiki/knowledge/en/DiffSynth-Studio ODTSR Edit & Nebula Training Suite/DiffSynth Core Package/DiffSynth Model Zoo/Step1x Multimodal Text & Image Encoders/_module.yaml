@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: diffsynth_core/models/step1x
+title: Step1x Multimodal Text & Image Encoders
+scope:
+    - diffsynth/models/step1x_connector.py
+    - diffsynth/models/step1x_text_encoder.py
+    - diffsynth/models/dinov3_image_encoder.py
+source_files: []
+depends_on: []
+related_to: []

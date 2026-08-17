@@ -1,0 +1,1 @@
+No build or test commands; requires pre-downloaded annotator model weights under `models/Annotators` (used by `from_pretrained` calls for Midas, HED, Lineart, etc.). Device type is auto-detected via `get_device_type()` from `diffsynth.core.device.npu_compatible_device`.

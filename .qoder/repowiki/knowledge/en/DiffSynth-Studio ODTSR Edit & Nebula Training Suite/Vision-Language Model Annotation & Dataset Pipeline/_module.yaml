@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: vlm_tools
+title: Vision-Language Model Annotation & Dataset Pipeline
+scope:
+    - vlm/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/diffusion_training
+    - path: diffsynth_core/models/qwen_image

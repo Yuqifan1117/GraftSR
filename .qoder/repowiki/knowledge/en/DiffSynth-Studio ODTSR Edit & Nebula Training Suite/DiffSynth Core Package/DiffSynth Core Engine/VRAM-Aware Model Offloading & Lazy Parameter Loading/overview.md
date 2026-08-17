@@ -1,0 +1,1 @@
+Provides VRAM-aware wrapper modules and a disk-backed state dict loader that lazily load model parameters from safetensors or torch checkpoints to minimize GPU memory usage during inference.

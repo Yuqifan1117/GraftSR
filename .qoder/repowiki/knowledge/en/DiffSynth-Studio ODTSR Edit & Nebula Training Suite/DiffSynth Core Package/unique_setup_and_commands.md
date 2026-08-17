@@ -1,0 +1,1 @@
+No unified parent-level command; each sub-package is imported independently via `import diffsynth` (which exposes core primitives) or `from diffsynth.models import ...`, `from diffsynth.pipelines import ...`, etc.

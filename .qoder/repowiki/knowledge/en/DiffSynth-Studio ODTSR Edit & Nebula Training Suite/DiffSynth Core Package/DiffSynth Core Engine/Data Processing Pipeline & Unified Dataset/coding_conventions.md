@@ -1,0 +1,5 @@
+- Each data transformation is implemented as a subclass of `DataProcessingOperator` with a single `__call__(self, data)` method, making operators composable and testable in isolation.
+- Operators are chained using the `>>` operator (`__rshift__`), allowing pipelines to be expressed as readable expressions like `A >> B >> C` rather than nested function calls.
+- Routing operators (`RouteByExtensionName`, `RouteByType`) accept an `operator_map` list of `(selector, operator)` tuples, with a `None` selector acting as a fallback branch.
+- I/O operators accept file paths as strings and return parsed objects (PIL Images, frame lists, tensors), keeping path resolution separate via `ToAbsolutePath`.
+- Video and audio loaders inherit from `FrameSamplerByRateMixin` to share frame-count calculation, time-to-frame mapping, and time-division constraints instead of reimplementing sampling logic.

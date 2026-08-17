@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/flux_controlnet_value
+title: Flux ControlNet, Value Control & LoRA Patcher
+scope:
+    - diffsynth/models/flux_controlnet.py
+    - diffsynth/models/flux_value_control.py
+    - diffsynth/models/flux_lora_patcher.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/flux

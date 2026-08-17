@@ -1,0 +1,1 @@
+PyTorch with einops for tensor rearrangements; HuggingFace `transformers` Gemma3 (`Gemma3ForConditionalGeneration`, `AutoTokenizer`) for the text encoder; custom RoPE implementations supporting both interleaved and split variants; gradient checkpointing via `..core.gradient_checkpoint_forward`.

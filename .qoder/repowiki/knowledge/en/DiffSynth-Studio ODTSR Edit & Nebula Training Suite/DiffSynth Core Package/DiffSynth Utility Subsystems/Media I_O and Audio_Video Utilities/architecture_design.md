@@ -1,0 +1,7 @@
+The module is organized as a small package under `diffsynth/utils/data/` with three focused sub-modules plus a shared `__init__.py`:
+- `__init__.py` exposes legacy-style loaders: `LowMemoryVideo`, `LowMemoryImageFolder`, `VideoData` (unified wrapper over either source), frame search/crop utilities, and ffmpeg-backed `save_video`, `merge_video_audio`, and `save_video_with_audio`. These rely on `imageio`, `PIL`, `subprocess`, and `tqdm`.
+- `audio.py` is a pure-PyTorch + torchaudio/torchcodec layer offering mono/stereo conversion, resampling, and `read_audio`/`save_audio` with a pluggable `backend` parameter (currently only `torchcodec`).
+- `audio_video.py` builds on `audio.py` to write combined video+audio streams via PyAV (`av`), handling libx264 video encoding, AAC audio encoding, sample-rate negotiation, and audio resampling through `_prepare_audio_stream`, `_write_audio`, and `_resample_audio`.
+- `media_io_ltx2.py` is a thin LTX2-specific adapter that reuses `write_video_audio` from `audio_video` and provides single-frame encode/decode plus an in-memory round-trip preprocessing step (`ltx2_preprocess`) using `BytesIO`.
+
+Dependency direction is one-way: `audio_video.py` imports from `audio.py`; `media_io_ltx2.py` imports from `audio_video.py`; `__init__.py` is independent. There is no cross-import between the legacy `__init__.py` utilities and the newer PyAV/torchcodec modules.

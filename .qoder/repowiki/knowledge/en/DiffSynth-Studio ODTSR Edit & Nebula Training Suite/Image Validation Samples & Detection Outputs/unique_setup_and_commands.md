@@ -1,0 +1,1 @@
+No setup required — this directory is consumed as-is by validation scripts that match image names to their corresponding `*_detected_bboxes.txt` and visualization outputs using the shared filename prefix.

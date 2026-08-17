@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: examples/anima
+title: Anima Image Generation Examples
+scope:
+    - examples/anima/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/diffusion_training
+    - path: diffsynth_core/models/anima_joyai
+    - path: diffsynth_core/pipelines

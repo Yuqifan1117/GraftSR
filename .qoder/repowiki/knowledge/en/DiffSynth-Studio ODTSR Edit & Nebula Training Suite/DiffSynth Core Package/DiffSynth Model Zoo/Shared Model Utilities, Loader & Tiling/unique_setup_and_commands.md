@@ -1,0 +1,1 @@
+No build or test commands; models are loaded at runtime through `ModelPool.auto_load_model(path, vram_config)`, which requires the model directory to contain a hash-matching entry in the global `MODEL_CONFIGS` registry.

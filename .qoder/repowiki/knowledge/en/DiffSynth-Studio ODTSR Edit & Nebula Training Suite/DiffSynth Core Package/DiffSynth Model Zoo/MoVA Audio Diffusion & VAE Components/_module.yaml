@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/mova_audio
+title: MoVA Audio Diffusion & VAE Components
+scope:
+    - diffsynth/models/mova_audio_dit.py
+    - diffsynth/models/mova_audio_vae.py
+    - diffsynth/models/mova_dual_tower_bridge.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/mova

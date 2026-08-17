@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: diffsynth_core/core_engine/loader
+title: Model & State Dict Loader
+scope:
+    - diffsynth/core/loader/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/core_engine/device_and_gradient
+    - path: diffsynth_core/core_engine/vram
+    - path: diffsynth_core/models
+    - path: diffsynth_core/utils/state_dict_converters

@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: examples/flux
+title: FLUX Model Inference & Training Examples
+scope:
+    - examples/flux/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/diffusion_training
+    - path: diffsynth_core/models/flux_adapters
+    - path: diffsynth_core/models/flux_controlnet_value
+    - path: diffsynth_core/models/flux_encoders
+    - path: diffsynth_core/pipelines

@@ -1,0 +1,5 @@
+- Each model family is split into separate files per component (DiT, text encoder, VAE, adapters) rather than monolithic modules.
+- Timestep conditioning follows a uniform pattern: `get_timestep_embedding` → `TemporalTimesteps`/`TimestepEmbeddings` → optional `DiffusersCompatibleTimestepProj` projection.
+- AdaLN modulation uses the shared `AdaLayerNorm` with single/dual modes producing scale-shift-gate chunks from a projected embedding.
+- VRAM-sensitive models opt into offloading by declaring a `VRAM_MANAGEMENT_MODULE_MAPS` entry mapping original classes to `AutoWrappedModule` wrappers.
+- Text encoders return both pooled and sequence embeddings, and image encoders produce fixed-size or patch-token embeddings consumed as cross-attention conditioning.

@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/wan_video_support
+title: 'Wan Video Model Extensions: Image Encoder, Motion Adapter & Animate Adapter'
+scope:
+    - diffsynth/models/wan_video_image_encoder.py
+    - diffsynth/models/wan_video_mot.py
+    - diffsynth/models/wan_video_animate_adapter.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/wanvideo

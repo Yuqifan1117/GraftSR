@@ -1,0 +1,1 @@
+Python dataclasses for typed configuration; PIL Images throughout; `controlnet_aux` library for downstream detectors (CannyDetector, MidasDetector, HEDdetector, LineartDetector, LineartAnimeDetector, OpenposeDetector, NormalBaeDetector); lazy imports to avoid loading heavy dependencies unless used.

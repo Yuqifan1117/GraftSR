@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/flux_adapters
+title: Flux Model Adapters (InfiniteYou, IP-Adapter, LoRA Encoder)
+scope:
+    - diffsynth/models/flux_infiniteyou.py
+    - diffsynth/models/flux_ipadapter.py
+    - diffsynth/models/flux_lora_encoder.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/flux

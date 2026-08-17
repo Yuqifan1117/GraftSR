@@ -1,0 +1,1 @@
+Python 3.10+ with PyTorch >=2.0, Transformers, Accelerate, PEFT, Datasets, ModelScope, and OpenCV; optional NPU backends via torch-npu; Nebula cluster job submission via `nebulactl`; documentation built with Sphinx; VLM annotation powered by Qwen vision-language models and DashScope API.

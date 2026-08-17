@@ -1,0 +1,5 @@
+- Each degradation variant is implemented as a `@torch.no_grad()` method on the `RealESRGAN_degradation` class, returning `(gt_tensor, lq_tensor)` pairs with tensors normalized to [0,1] float32.
+- Randomized augmentation parameters are drawn from configuration dictionaries accessed via `self.opt.get(...)` with default fallback values, keeping all stochastic behavior data-driven.
+- Image I/O goes through helper functions (`safe_open_image`, `safe_open_prompt`, `preproc_with_pixels`) that retry on failure and enforce minimum size / pixel-budget constraints before processing.
+- Prompt text is stored alongside images by replacing the image extension with `.txt` via `get_prompt_given_img_path`, and fixed semantic prefixes (`*_PROMPT_PREFIX` constants) are prepended to guide model conditioning.
+- Neural network building blocks follow a uniform pattern: small modules like `DoubleConv`, `TripleConv`, `ResnetBlock` inherit from `nn.Module`, use `LeakyReLU(negative_slope=0.2, inplace=True)`, and expose a single `forward` method.

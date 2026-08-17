@@ -1,0 +1,1 @@
+No build or test scripts are present in this scope; modules are imported directly as Python packages. The audio VAE depends on `torchaudio` being installed to compute mel spectrograms.

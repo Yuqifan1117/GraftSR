@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: diffsynth_core/models/nexus_gen
+title: Nexus-Gen Autoregressive Vision-Language Model
+scope:
+    - diffsynth/models/nexus_gen.py
+    - diffsynth/models/nexus_gen_ar_model.py
+    - diffsynth/models/nexus_gen_projector.py
+source_files: []
+depends_on: []
+related_to: []

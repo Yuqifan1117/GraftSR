@@ -1,0 +1,1 @@
+PyTorch with `einops` for tensor reshaping, `torch.jit.script` for the `snake` activation, `torch.compile(fullgraph=True)` on `apply_rotary_pos_emb`, and `torch.autocast` inside `RotaryEmbedding.forward` to force float32 frequency computation. Weight normalization is applied via `torch.nn.utils.weight_norm` and can be fused out at inference time through `remove_weight_norm`.

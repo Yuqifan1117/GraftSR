@@ -1,0 +1,1 @@
+Implements a Flux-based ControlNet with multi-mode conditioning, scalar value encoders for continuous control signals, and Diffusers/Civitai-compatible LoRA loading/merging for the same architecture.

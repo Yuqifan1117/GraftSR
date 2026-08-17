@@ -1,0 +1,1 @@
+Implements the Anima DiT video diffusion backbone and the JoyAI image/text DiT with a Qwen3-VL text encoder, providing AdaLN-modulated transformer blocks, RoPE positional embeddings, and multimodal double-stream attention for diffusion modeling.

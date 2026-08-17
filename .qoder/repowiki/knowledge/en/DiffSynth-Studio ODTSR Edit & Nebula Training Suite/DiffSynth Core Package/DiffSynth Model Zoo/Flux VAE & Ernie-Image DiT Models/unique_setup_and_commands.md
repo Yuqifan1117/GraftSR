@@ -1,0 +1,1 @@
+No build or test scripts are present in this scope. The text encoder requires the `transformers` package to be installed because it performs a lazy `from transformers import Ministral3Config, Ministral3Model` inside `__init__`; calling the encoder without transformers raises an ImportError.

@@ -1,0 +1,1 @@
+Provides the foundational building blocks of DiffSynth — attention, data pipelines, device abstraction, gradient checkpointing, model loading, and VRAM-aware offloading — re-exported through a single core package.

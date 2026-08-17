@@ -1,0 +1,4 @@
+- Every model exposes paired inference scripts under both `model_inference/` and `model_inference_low_vram/` with identical filenames to toggle VRAM offloading.
+- Training workflows are split into `full/` and `lora/` shell scripts plus corresponding `validate_full/` and `validate_lora/` Python validators, all driven by a shared `train.py`.
+- Specialized training modes (NPU, fp8, low-vram, split, differential, trajectory_imitation) are isolated under `model_training/special/<mode>/` rather than mixed into the main directories.
+- Distributed training configuration is externalized as YAML files (`accelerate_config.yaml`, `accelerate_config_zero2offload.yaml`, `accelerate_config_zero3.yaml`) referenced by the shell wrappers.

@@ -1,0 +1,5 @@
+- Rotary positional embeddings are computed centrally via `precompute_freqs_cis` with a pluggable `freq_grid_generator` (numpy vs pytorch path selected by `double_precision_rope` flag) and applied through `apply_rotary_emb` dispatching on `LTXRopeType`.
+- AdaLN conditioning is expressed as per-block parameter tables indexed by timestep slices, with `adaln_embedding_coefficient` computing the number of scale/shift/gate parameters based on whether cross-attention AdaLN is enabled.
+- Transformer inputs are assembled into frozen dataclasses (`TransformerArgs`, `PerturbationConfig`, `BatchedPerturbationConfig`) rather than passed as raw tensors, centralizing preprocessing in dedicated `*Preprocessor` classes.
+- 3D convolutions go through `make_conv_nd` factory which selects between `nn.Conv2d`, `nn.Conv3d`, `CausalConv3d`, or `DualConv3d` based on a dims tuple, keeping convolution choice uniform across the VAE.
+- Padding and masking use additive log-space bias convention: binary masks are converted to `(mask - 1).to(dtype) * torch.finfo(dtype).max` so masked positions receive the dtype's minimum representable value.

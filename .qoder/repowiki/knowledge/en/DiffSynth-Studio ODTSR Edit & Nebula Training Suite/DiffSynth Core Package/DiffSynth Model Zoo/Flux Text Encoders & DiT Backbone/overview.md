@@ -1,0 +1,1 @@
+Implements the text encoders (T5 for Flux-1, Mistral3 for Flux-2) and the Flux-2 DiT backbone with double/single-stream transformer blocks, RoPE, timestep/guidance embeddings, and SwiGLU feed-forward layers.

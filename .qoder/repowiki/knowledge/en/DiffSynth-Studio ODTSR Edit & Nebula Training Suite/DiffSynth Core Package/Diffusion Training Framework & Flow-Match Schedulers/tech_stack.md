@@ -1,0 +1,1 @@
+PyTorch with `accelerate.Accelerator` for distributed training, PEFT's `LoraConfig` + `inject_adapter_in_model` for LoRA, optional DeepSpeed activation checkpointing, `einops` for tensor reshaping, and safetensors serialization via `accelerator.save(..., safe_serialization=True)`.

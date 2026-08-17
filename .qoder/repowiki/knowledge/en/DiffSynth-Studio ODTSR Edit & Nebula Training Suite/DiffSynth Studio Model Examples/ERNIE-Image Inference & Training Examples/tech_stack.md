@@ -1,0 +1,1 @@
+PyTorch with bfloat16 precision, DiffSynth's `ErnieImagePipeline` and `DiffusionTrainingModule`, Hugging Face model loading via `ModelConfig` pointing to `PaddlePaddle/ERNIE-Image` repositories, Accelerate for distributed training, and DeepSpeed ZeRO Stage 3 (configured in `accelerate_config_zero3.yaml`).

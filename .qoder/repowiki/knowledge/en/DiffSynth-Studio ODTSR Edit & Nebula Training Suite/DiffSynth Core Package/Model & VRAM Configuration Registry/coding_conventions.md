@@ -1,0 +1,5 @@
+- Each model variant is declared as a dict with the fixed keys `model_hash`, `model_name`, `model_class`, and optionally `state_dict_converter` and `extra_kwargs`, grouped into series-specific lists.
+- Series lists are concatenated at the bottom of `model_configs.py` into a single `MODEL_CONFIGS` constant that serves as the canonical registry.
+- VRAM wrapping rules are expressed as string-based type mappings from source module/class paths to target wrapper classes under `diffsynth.core.vram.layers`, keyed by the full path of the parent model class.
+- Version-sensitive module maps are isolated behind updater functions registered in `VERSION_CHECKER_MAPS` rather than being baked into the static dictionaries.
+- Only the top-level constants (`MODEL_CONFIGS`, `VRAM_MANAGEMENT_MODULE_MAPS`, `VERSION_CHECKER_MAPS`) are re-exported through `__init__.py`, keeping internal series lists private.

@@ -1,0 +1,4 @@
+- Each model class is a standalone `torch.nn.Module` subclass with a detailed docstring describing constructor parameters rather than inheriting from a common base.
+- Optional backend features (attention processor, gradient checkpointing, offload) are exposed as explicit boolean flags passed into `forward()` and dispatched via helper functions like `gradient_checkpoint_forward`.
+- Configuration-heavy components use a dictionary of hyperparameters (e.g. `text_config` in the text encoder, `ACT2CLS` mapping in the VAE) instead of keyword-only constructors.
+- Heavy third-party imports (`transformers`, optional flash-attention backends) are performed lazily inside methods or guarded by availability checks so the module can be imported without those dependencies.

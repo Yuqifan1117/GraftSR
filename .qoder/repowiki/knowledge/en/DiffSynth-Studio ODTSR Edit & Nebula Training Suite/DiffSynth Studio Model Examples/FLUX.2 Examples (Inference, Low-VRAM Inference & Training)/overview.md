@@ -1,0 +1,1 @@
+Example scripts and shell configurations for running FLUX.2 image generation inference and fine-tuning (full-parameter and LoRA) using DiffSynth's Flux2ImagePipeline.

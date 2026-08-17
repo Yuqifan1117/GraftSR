@@ -1,0 +1,1 @@
+Implements the LTX-2 diffusion model stack: a PixArt-Alpha-inspired DiT transformer with audio-video cross-attention, a Gemma3-based text encoder with 1D connectors, and a causal 3D video VAE with tiled inference.

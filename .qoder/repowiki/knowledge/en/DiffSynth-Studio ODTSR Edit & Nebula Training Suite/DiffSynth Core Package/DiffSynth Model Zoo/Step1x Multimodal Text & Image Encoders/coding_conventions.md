@@ -1,0 +1,5 @@
+- Modules accept `device` and `dtype` via a shared `factory_kwargs = {'device': device, 'dtype': dtype}` dict that is forwarded to every `nn.Linear`/`nn.Parameter` call.
+- AdaLN-style modulation is applied by projecting a conditioning vector `c` through a two-branch MLP (`act_layer()` + `nn.Linear(hidden_size, 2*hidden_size)`) and splitting with `.chunk(2, dim=1)` into gate_msa and gate_mlp, then multiplying residual branches via `apply_gate`.
+- Attention heads are shaped using `einops.rearrange` with explicit `K=3` (for qkv) or `K=2` (for kv) patterns rather than manual view/transpose chains.
+- Normalization layers are selected through string dispatchers (`get_norm_layer` for 'layer'/'rms', `get_activation_layer` for 'gelu'/'silu'/'relu') instead of direct class instantiation.
+- Parameters that should start near zero (e.g., AdaLN modulation weights, the connector's `scale_factor`) are explicitly zero-initialized after construction.

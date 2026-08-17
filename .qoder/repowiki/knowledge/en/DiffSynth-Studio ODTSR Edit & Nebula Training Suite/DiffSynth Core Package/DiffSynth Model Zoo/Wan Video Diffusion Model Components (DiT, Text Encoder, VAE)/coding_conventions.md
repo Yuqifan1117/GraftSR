@@ -1,0 +1,5 @@
+- Each model file defines a single top-level `nn.Module` class (`WanModel`, `WanTextEncoder`, `VideoVAE_`) as the public entry point, with helper functions and sub-modules kept module-scoped rather than exported.
+- Optional third-party dependencies are imported inside try/except blocks and exposed as module-level boolean flags (e.g. `FLASH_ATTN_3_AVAILABLE`, `SAGE_ATTN_AVAILABLE`) that gate runtime dispatch.
+- Chunked/incremental inference is handled by passing mutable `feat_cache` and `feat_idx=[0]` lists through forward passes, with causal convolutions checking `check_is_instance(layer, CausalConv3d)` to decide whether to use cached history.
+- Normalization layers expose a `use_torch_norm` flag (RMSNorm) or rely on `F.rms_norm` / `T5LayerNorm` implementations, allowing switching between custom and native PyTorch norm kernels.
+- Modulation for DiT blocks is implemented via learnable parameters added to timestep embeddings and split with `.chunk(6, dim=...)` into shift/scale/gate vectors consumed by a `GateModule` residual pattern.

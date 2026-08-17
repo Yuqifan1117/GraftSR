@@ -1,0 +1,5 @@
+- Models are loaded through `JoyAIImagePipeline.from_pretrained` with a list of `ModelConfig` objects specifying `model_id="jd-opensource/JoyAI-Image-Edit"` and an `origin_file_pattern` pointing to transformer, undecoder, and VAE files.
+- Training scripts follow a two-phase pattern: a data-processing phase (`--task sft:data_process`) that caches inputs, followed by a training phase (`--task sft:train`) that consumes the cached dataset.
+- All inference scripts accept `prompt`, `edit_image`, `height=1024`, `width=1024`, `seed`, `num_inference_steps`, and `cfg_scale` as pipeline arguments and save outputs as PNG images.
+- Shell scripts use `accelerate launch` with explicit `--dataset_base_path`, `--dataset_metadata_path`, `--data_file_keys "image,edit_image"`, and `--extra_inputs "edit_image"` flags consistently across full and LoRA configurations.
+- Checkpoint saving uses `--remove_prefix_in_ckpt "pipe.dit."` to strip the pipeline prefix when storing model state dicts.

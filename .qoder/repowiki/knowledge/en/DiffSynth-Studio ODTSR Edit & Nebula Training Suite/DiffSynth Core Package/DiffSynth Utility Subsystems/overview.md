@@ -1,0 +1,1 @@
+Aggregates DiffSynth's cross-cutting utility packages — ControlNet annotators, media I/O, LoRA weight handling, SES latent optimization, per-model state-dict converters, and xfuser context-parallel helpers — each exposed via a thin __init__.py re-export.

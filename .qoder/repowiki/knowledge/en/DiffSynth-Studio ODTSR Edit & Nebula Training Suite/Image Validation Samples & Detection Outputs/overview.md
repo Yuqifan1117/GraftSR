@@ -1,0 +1,1 @@
+A collection of high-quality and low-quality test images along with their corresponding bounding-box annotations, visualized detections, masks, and enhanced or cropped variants used to validate the image processing pipeline.

@@ -1,0 +1,1 @@
+Audio-conditioned video diffusion components that extract wav2vec2 audio features, encode them with a music transformer, and inject them as cross-attention hints into Wan DiT blocks via the VACE adapter.

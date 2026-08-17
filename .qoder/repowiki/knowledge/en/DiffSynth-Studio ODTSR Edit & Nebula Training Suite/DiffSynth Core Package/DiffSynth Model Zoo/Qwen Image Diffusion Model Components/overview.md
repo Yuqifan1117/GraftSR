@@ -1,0 +1,1 @@
+Implements the QwenImage diffusion model with a DiT backbone, a Qwen2.5-VL text encoder, and a 3D causal VAE for image/video latent encoding and decoding.

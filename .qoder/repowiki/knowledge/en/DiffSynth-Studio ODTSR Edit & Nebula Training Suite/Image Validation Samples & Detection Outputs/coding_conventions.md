@@ -1,0 +1,3 @@
+- Each image's artifacts share a common base filename prefix (e.g. `921059926060_lq_*`, `645940262316_hq1_*`), so bounding boxes, masks, and visualizations are grouped by that prefix.
+- Bounding-box annotation files use one line per box with four integer coordinates (x1,y1,x2,y2) and no header row.
+- Derived outputs are named with descriptive suffixes such as `_detected_bboxes.txt`, `_detected_regions_vis.png`, `_mask.png`, `_enhance.png`, and `_ref_crop*` appended to the original image base name.

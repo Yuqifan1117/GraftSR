@@ -1,0 +1,1 @@
+PyTorch-based diffusion modeling with Accelerate/DeepSpeed integration for training, optional NPU compatibility layer (`core/device/npu_compatible_device.py`), and xfuser context-parallel helpers for distributed inference.

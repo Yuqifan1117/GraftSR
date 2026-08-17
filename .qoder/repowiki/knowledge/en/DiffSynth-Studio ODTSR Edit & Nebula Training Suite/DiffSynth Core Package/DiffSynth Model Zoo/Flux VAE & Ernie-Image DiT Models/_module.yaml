@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/flux_vae_models
+title: Flux VAE & Ernie-Image DiT Models
+scope:
+    - diffsynth/models/flux2_vae.py
+    - diffsynth/models/ernie_image_dit.py
+    - diffsynth/models/ernie_image_text_encoder.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/ernie_image

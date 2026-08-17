@@ -1,0 +1,1 @@
+PyTorch tensors as the canonical audio/video data format; `torchcodec` (AudioDecoder/AudioEncoder) for audio I/O; PyAV (`av`) for libx264 video and AAC audio muxing; `imageio` + `PIL` for legacy image/video frames; `ffmpeg` invoked via `subprocess` in the legacy merge utility.

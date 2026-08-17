@@ -1,0 +1,1 @@
+PyTorch with bfloat16 precision, Hugging Face `transformers` tokenizers (Qwen/Qwen3-0.6B and stabilityai/stable-diffusion-3.5-large), Accelerate for distributed training, DiffSynth Studio's `AnimaImagePipeline` and `UnifiedDataset`, and ModelScope for dataset download.

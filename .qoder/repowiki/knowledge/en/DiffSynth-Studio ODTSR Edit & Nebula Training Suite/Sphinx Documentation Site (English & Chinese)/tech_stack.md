@@ -1,0 +1,1 @@
+Sphinx >= 5.3.0 with sphinx_rtd_theme, Myst parser for Markdown, autodoc/autosummary for API generation, sphinx-copybutton, sphinxcontrib-mermaid for diagrams, and Read the Docs (via .readthedocs.yaml).

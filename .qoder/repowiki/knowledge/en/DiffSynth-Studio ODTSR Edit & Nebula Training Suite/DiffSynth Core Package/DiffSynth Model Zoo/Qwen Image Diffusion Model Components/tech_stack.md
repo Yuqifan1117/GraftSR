@@ -1,0 +1,1 @@
+PyTorch with `einops` for tensor rearrangement, optional `flash-attn` (v3) for accelerated attention with an FP8 fallback path, and `transformers` 4.54.0 loading `Qwen2_5_VLModel` for the text encoder. The VAE uses custom 3D causal convolutions and RMSNorm rather than standard nn.Conv3d.

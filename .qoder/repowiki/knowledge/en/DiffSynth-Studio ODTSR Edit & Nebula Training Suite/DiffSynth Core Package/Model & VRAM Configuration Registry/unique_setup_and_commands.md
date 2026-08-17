@@ -1,0 +1,1 @@
+No build or install steps — the module is imported directly. Adding a new model variant means appending a dict to the appropriate `*_series` list in `model_configs.py` and optionally adding a corresponding entry to `VRAM_MANAGEMENT_MODULE_MAPS` for VRAM wrapping.

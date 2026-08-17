@@ -1,0 +1,5 @@
+- Each model variant gets its own named Python script following the pattern `Z-Image[-Turbo|Omni-Base|i2L][-Fun-Controlnet-*][.<steps>].py` placed side-by-side in both `model_inference/` and `model_inference_low_vram/`.
+- Model loading is always done through `ZImagePipeline.from_pretrained` with a list of `ModelConfig(model_id=..., origin_file_pattern=...)` entries separating transformer, text_encoder, vae, and tokenizer components.
+- Training tasks are registered as string keys in a `task_to_loss` dictionary mapping task names (e.g. `sft`, `direct_distill`, `trajectory_imitation`) to loss constructors, and a parallel `launcher_map` dispatches `launch_data_process_task` vs `launch_training_task`.
+- Shell scripts under `model_training/*/` are thin wrappers around `accelerate launch train.py` with arguments sourced from the sibling `accelerate_config*.yaml` files.
+- Validation scripts mirror inference scripts but additionally call `pipe.load_lora(...)` on a trained checkpoint before generating an image.

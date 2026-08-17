@@ -1,0 +1,1 @@
+Example scripts for running inference and training (full fine-tuning and LoRA) of the Anima image generation model using DiffSynth Studio's pipeline.

@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: examples
+title: DiffSynth Studio Model Examples
+scope:
+    - examples/
+source_files: []
+depends_on: []
+related_to: []

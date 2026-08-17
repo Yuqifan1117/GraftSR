@@ -1,0 +1,1 @@
+No build or install steps required beyond the standard project dependencies; usage is `from diffsynth.utils.ses import ses_search`.

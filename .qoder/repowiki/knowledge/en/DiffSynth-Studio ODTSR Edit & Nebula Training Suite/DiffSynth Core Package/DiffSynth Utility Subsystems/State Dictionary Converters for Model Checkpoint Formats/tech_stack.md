@@ -1,0 +1,1 @@
+Pure PyTorch — uses `torch.concat` and tensor `.reshape()` for weight manipulation; no external dependencies beyond torch.

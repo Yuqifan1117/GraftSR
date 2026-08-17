@@ -1,0 +1,1 @@
+End-to-end pipeline for annotating e-commerce product images with Qwen vision-language models, producing deduplicated reference images, semantic grounding, captions, and train/test datasets.

@@ -1,0 +1,1 @@
+Audio encoding requires the `transformers` library and downloads the pretrained `facebook/wav2vec2-large-xlsr-53` model on first use. Audio sampling rate must match the processor's expected rate (default 16 kHz), and audio features are resampled to 30 fps to align with video frames.

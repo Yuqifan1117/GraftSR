@@ -1,0 +1,1 @@
+Loads DiffSynth model weights from safetensors or PyTorch bin files, resolves remote model downloads via ModelScope/HuggingFace, and instantiates models with optional VRAM/disk offloading.

@@ -1,0 +1,1 @@
+Example scripts for running ERNIE-Image text-to-image inference (standard and low-VRAM variants, including Turbo) and training via full fine-tuning or LoRA using DiffSynth's pipeline and Accelerate.

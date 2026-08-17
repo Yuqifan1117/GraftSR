@@ -1,0 +1,1 @@
+Provides the training harness, pipeline unit graph, flow-matching schedulers, loss functions, and argument parsers for fine-tuning diffusion models with Accelerate/DeepSpeed support.

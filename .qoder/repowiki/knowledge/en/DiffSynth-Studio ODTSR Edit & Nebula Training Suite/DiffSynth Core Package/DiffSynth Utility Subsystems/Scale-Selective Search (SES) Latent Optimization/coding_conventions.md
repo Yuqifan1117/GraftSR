@@ -1,0 +1,3 @@
+- Tensor I/O is handled by explicitly moving data between CPU/GPU and float32 within helper functions (e.g., `.cpu().float()` in `split_dwt` and `reconstruct_dwt`), while the main API preserves the input device and dtype of `base_latents`.
+- Batched image processing uses per-sample loops over `z_tensor_cpu.shape[0]` with results accumulated in Python lists before being stacked back into a single tensor via `torch.from_numpy(np.stack(...))`.
+- Progress reporting is done through a `tqdm` progress bar initialized with the total evaluation budget and updated incrementally after each sample evaluation.

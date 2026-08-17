@@ -1,0 +1,1 @@
+Implements motion conditioning, camera pose control, and audio-injected DiT blocks for the Wan video diffusion model, extending the base DiT with causal motion encoders, frame packing, and Plücker camera embeddings.

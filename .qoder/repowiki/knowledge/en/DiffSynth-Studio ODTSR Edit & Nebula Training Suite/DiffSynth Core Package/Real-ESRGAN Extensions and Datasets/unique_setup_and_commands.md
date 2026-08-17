@@ -1,0 +1,1 @@
+Requires `ffmpeg` installed on PATH for the video-screenshot degradation pipeline (H.264/H.265 encoding/decoding via subprocess). Requires `basicsr` for degradation kernels and `pillow_heif` for HEIF image loading (security limits disabled at import time). Training configs are loaded from YAML files passed as `deg_file_path` to `RealESRGAN_degradation.__init__`.

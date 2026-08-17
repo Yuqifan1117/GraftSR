@@ -1,0 +1,1 @@
+The text encoder requires a local Gemma3 tokenizer directory loaded via `AutoTokenizer.from_pretrained(tokenizer_path, local_files_only=True)`, and uses `model_max_length` for truncation. The VAE enforces tile sizes divisible by 32 and minimum 64 pixels, with overlap also required to be a multiple of 32.

@@ -1,0 +1,5 @@
+- Each language subtree (en/, zh/) is an exact mirror of the other, so every content file has parallel counterparts under the same relative path.
+- Documentation pages are written in Markdown (.md) with reStructuredText used only for Sphinx structural files (index.rst, conf.py, Makefile).
+- API Reference pages under API_Reference/core/ follow a one-file-per-module convention (attention.md, data.md, gradient.md, loader.md, vram.md) linked from index.rst toctrees.
+- Model detail pages under Model_Details/ each document a single model variant with a consistent filename pattern (e.g., FLUX.md, Wan.md, Qwen-Image.md) and are enumerated in the toctree.
+- Version information is not hardcoded but read dynamically from ../../diffsynth/version.py via a get_version() helper in conf.py.

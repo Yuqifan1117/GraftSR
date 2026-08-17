@@ -1,0 +1,1 @@
+Provides the ControlNetInput dataclass and a unified Annotator wrapper that dispatches to controlnet_aux processors (Canny, Depth, HED, Lineart, OpenPose, NormalBae, Tile) for generating conditioning images.

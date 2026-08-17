@@ -1,0 +1,1 @@
+PyTorch with Hugging Face Transformers 4.49.0 (`Qwen2_5_VLConfig`, `Qwen2_5_VLPreTrainedModel`, `Qwen2_5_VisionTransformerPretrainedModel`, `ProcessorMixin`). Uses `qwen_vl_utils.smart_resize` for image resizing and implements a custom multimodal rotary positional embedding (mRoPE) with `[16, 24, 24]` sections. The model config targets bfloat16 dtype and a vocab size of 152064.

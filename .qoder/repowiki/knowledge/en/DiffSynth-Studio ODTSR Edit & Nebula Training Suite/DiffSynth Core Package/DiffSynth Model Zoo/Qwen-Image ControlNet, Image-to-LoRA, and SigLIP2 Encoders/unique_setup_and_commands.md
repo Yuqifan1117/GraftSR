@@ -1,0 +1,1 @@
+No build script; models are instantiated directly. The SigLIP2 encoder requires `transformers>=4.56` (hardcoded versions 4.56.1 / 4.57.1 in configs). LoRA generation targets the exact Qwen-Image parameter naming convention `transformer_blocks.{block_id}.{module}.lora_[AB].default.weight`.

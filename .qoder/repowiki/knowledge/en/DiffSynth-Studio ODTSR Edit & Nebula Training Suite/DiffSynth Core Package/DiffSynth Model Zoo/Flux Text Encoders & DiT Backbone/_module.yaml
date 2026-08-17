@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: diffsynth_core/models/flux_encoders
+title: Flux Text Encoders & DiT Backbone
+scope:
+    - diffsynth/models/flux_text_encoder_t5.py
+    - diffsynth/models/flux2_dit.py
+    - diffsynth/models/flux2_text_encoder.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/flux
+    - path: examples/flux2

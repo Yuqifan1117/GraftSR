@@ -1,0 +1,1 @@
+Bilingual Sphinx-based documentation site for DiffSynth-Studio, covering API reference, model details, training guides, developer integration, and research tutorials in both English and Chinese.

@@ -1,0 +1,20 @@
+schema_version: 1
+module_path: diffsynth_core/diffusion_training
+title: Diffusion Training Framework & Flow-Match Schedulers
+scope:
+    - diffsynth/diffusion/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/core_engine/data
+    - path: diffsynth_core/utils/lora_utils
+    - path: examples/anima
+    - path: examples/ernie_image
+    - path: examples/flux
+    - path: examples/ltx2
+    - path: examples/mova
+    - path: examples/qwen_image
+    - path: examples/wanvideo
+    - path: examples/z_image
+    - path: nebula_configs
+    - path: vlm_tools

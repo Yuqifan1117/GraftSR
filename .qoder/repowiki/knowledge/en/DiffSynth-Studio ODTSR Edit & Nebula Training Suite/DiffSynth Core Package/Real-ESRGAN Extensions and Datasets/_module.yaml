@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: diffsynth_core/extensions
+title: Real-ESRGAN Extensions and Datasets
+scope:
+    - diffsynth/extensions/
+source_files: []
+depends_on: []
+related_to: []

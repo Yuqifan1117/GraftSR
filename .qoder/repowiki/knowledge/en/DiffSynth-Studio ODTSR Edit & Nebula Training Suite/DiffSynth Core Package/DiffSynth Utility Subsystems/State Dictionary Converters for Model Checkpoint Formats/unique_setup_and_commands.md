@@ -1,0 +1,1 @@
+No build or setup steps; each converter is a standalone function importable from its module file.

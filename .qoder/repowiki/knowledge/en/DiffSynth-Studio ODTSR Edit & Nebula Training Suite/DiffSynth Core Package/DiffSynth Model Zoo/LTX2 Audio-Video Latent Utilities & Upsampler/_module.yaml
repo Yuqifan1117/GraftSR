@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/ltx2_utils
+title: LTX2 Audio-Video Latent Utilities & Upsampler
+scope:
+    - diffsynth/models/ltx2_common.py
+    - diffsynth/models/ltx2_upsampler.py
+    - diffsynth/models/ltx2_audio_vae.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/ltx2

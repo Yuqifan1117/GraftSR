@@ -1,0 +1,1 @@
+The model expects a pretrained checkpoint under `DiffSynth-Studio/Nexus-GenV2` (referenced via `_name_or_path`) and requires `transformers==4.49.0` plus `qwen_vl_utils`. Weights can be loaded from Civitai or Diffusers formats through the `state_dict_converter().from_civitai()` / `from_diffusers()` helpers attached to each module class.

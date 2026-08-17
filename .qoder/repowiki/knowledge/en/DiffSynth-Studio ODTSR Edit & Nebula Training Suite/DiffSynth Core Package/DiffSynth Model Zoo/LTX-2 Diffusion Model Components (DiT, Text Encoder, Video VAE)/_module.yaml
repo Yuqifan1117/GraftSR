@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/ltx2
+title: LTX-2 Diffusion Model Components (DiT, Text Encoder, Video VAE)
+scope:
+    - diffsynth/models/ltx2_dit.py
+    - diffsynth/models/ltx2_text_encoder.py
+    - diffsynth/models/ltx2_video_vae.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/ltx2

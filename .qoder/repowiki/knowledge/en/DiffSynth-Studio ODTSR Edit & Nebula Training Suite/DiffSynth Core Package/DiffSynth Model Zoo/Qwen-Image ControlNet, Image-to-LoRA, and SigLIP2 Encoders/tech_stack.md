@@ -1,0 +1,1 @@
+PyTorch `nn.Module` hierarchy; HuggingFace `transformers` SigLIP/SigLIP2 vision models with `sdpa` attention implementation; uses `torch.bfloat16` dtype defaults and NPU device detection through `diffsynth.core.device.npu_compatible_device`.

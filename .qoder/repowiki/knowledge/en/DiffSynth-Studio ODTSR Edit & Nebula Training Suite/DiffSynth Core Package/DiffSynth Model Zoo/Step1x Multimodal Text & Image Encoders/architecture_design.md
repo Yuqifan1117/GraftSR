@@ -1,0 +1,6 @@
+Three cooperating modules form a sequential encoding pipeline:
+- `dinov3_image_encoder.py` subclasses `transformers.DINOv3ViTModel` and wraps it with a `DINOv3ViTImageProcessorFast`, returning a pooled CLS embedding from the last layer.
+- `step1x_text_encoder.py` defines `Step1xEditEmbedder`, which builds a chat template around a Qwen25VL-7B `QwenImageTextEncoder`, splits long prompts into quoted segments, replaces tokens around a special marker (151653), and returns hidden states plus an attention mask.
+- `step1x_connector.py` provides the `Qwen2Connector` that takes the text encoder's output, applies a learnable scale factor to the mean-pooled sequence, projects it through a `SingleTokenRefiner` (stack of `IndividualTokenRefinerBlock`s with AdaLN modulation), and outputs both refined per-token embeddings and a global projection.
+
+Internal building blocks in the connector are layered as reusable primitives (`MLP`, `RMSNorm`, `TimestepEmbedder`, `TextProjection`, `CrossAttnBlock`) composed into `IndividualTokenRefinerBlock` → `IndividualTokenRefiner` → `SingleTokenRefiner` → `Qwen2Connector`. All modules accept `device`/`dtype` factory kwargs and rely on `torch.nn.functional.scaled_dot_product_attention` for attention computation.

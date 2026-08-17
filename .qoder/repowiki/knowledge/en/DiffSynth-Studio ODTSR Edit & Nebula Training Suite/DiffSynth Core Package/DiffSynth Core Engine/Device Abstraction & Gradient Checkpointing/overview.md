@@ -1,0 +1,1 @@
+Provides a unified device abstraction layer over CUDA/NPU/CPU and a gradient checkpointing utility that delegates to DeepSpeed when available or falls back to PyTorch's built-in checkpointing.

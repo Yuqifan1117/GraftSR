@@ -1,0 +1,1 @@
+Pure Python data registries consumed by DiffSynth's model loader and VRAM manager; relies on HuggingFace `transformers` version detection via the `packaging` library for conditional module-map updates.

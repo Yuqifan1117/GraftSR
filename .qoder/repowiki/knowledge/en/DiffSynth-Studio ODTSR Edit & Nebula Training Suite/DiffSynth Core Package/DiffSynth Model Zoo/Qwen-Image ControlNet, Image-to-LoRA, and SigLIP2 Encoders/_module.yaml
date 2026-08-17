@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/qwen_image_extensions
+title: Qwen-Image ControlNet, Image-to-LoRA, and SigLIP2 Encoders
+scope:
+    - diffsynth/models/qwen_image_controlnet.py
+    - diffsynth/models/qwen_image_image2lora.py
+    - diffsynth/models/siglip2_image_encoder.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/qwen_image

@@ -1,0 +1,4 @@
+- Each subsystem is organized as a subpackage with an `__init__.py` that re-exports public symbols, enabling flat imports from `diffsynth.core`.
+- Device-dependent code goes through the `device` abstraction rather than hardcoding CUDA/NPU/CPU paths.
+- Model loading separates weight resolution (`loader`) from memory management (`vram`), allowing offloading to be toggled independently.
+- Gradient checkpointing delegates to DeepSpeed when available and falls back to PyTorch's built-in implementation.

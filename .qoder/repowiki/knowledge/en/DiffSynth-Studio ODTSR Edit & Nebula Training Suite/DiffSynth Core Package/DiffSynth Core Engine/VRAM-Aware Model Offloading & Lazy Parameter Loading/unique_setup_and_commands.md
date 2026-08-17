@@ -1,0 +1,1 @@
+Set `DIFFSYNTH_DISK_MAP_BUFFER_SIZE` (bytes) to tune how many parameters are accumulated before `DiskMap` closes and reopens its underlying file handles. Non-safetensors checkpoint files are supported but emit a warning and fall back to `torch.load(..., weights_only=True)`.

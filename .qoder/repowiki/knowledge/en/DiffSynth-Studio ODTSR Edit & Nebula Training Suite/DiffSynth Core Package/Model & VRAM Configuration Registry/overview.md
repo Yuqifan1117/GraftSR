@@ -1,0 +1,1 @@
+Central registry of model definitions and VRAM management module maps that declaratively map DiffSynth model classes to their weights, state-dict converters, and GPU memory wrapping strategies.

@@ -1,0 +1,1 @@
+Models are registered in a central `MODEL_CONFIGS` list keyed by `model_hash`; new model families must add an entry so `ModelPool.auto_load_model` can auto-detect them from a checkpoint path without hardcoding class names.

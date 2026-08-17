@@ -1,0 +1,8 @@
+The repository is organized as a flat workspace where each child module lives in its own top-level directory and is wired together through shared Python packaging and shell orchestration:
+- `diffsynth/` is the installable library (declared in `pyproject.toml` and `setup.py`) that re-exports models, pipelines, diffusion runners, and utilities consumed by every other child.
+- `examples/` contains per-model runnable scripts that import from `diffsynth` to demonstrate inference and LoRA/full training workflows.
+- `vlm/` provides the Qwen-based annotation pipeline whose output feeds the training data used by the Nebula-accelerated training jobs.
+- `nebula_configs/` holds Accelerate YAML profiles and a `cluster.json` manifest that all `nebulactl_launch_*.sh` scripts reference to submit multi-GPU/multi-node training or test runs on the Nebula cluster.
+- `val_images/` supplies fixed test samples consumed by both `eval_texture.py` and the mask-editing test scripts.
+- Top-level `nebulactl_launch_*.sh` and `train_edit_mask.sh` / `test_edit_mask.sh` are the entry points that bootstrap either local execution or Nebula cluster submission, sharing common base scripts (`nebulactl_launch_test_base.sh`, `nebulactl_launch_train_base.sh`).
+- `detect_texture_regions.py` and `eval_texture.py` sit at the root as standalone utilities that operate on `val_images/` and can be invoked directly or via the launch wrappers.

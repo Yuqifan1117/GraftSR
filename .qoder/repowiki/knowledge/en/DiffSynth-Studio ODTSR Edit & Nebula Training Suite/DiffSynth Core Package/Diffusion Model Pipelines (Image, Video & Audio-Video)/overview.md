@@ -1,0 +1,1 @@
+High-level inference pipelines that orchestrate text/image/audio encoders, DiT/VAE models, schedulers and optional ControlNet/IP-Adapter modules for FLUX, Wan, LTX-2, Z-Image, JoyAI, Qwen, Anima, Ernie and Mova generation tasks.

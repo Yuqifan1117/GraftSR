@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: examples/flux2
+title: FLUX.2 Examples (Inference, Low-VRAM Inference & Training)
+scope:
+    - examples/flux2/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/models/flux_encoders
+    - path: diffsynth_core/pipelines

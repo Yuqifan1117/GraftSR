@@ -1,0 +1,4 @@
+- Heavy third-party processor classes are imported inside conditional branches rather than at module top, so unused annotator types do not incur import overhead.
+- Public API is kept minimal: `__init__.py` re-exports only the two concrete classes (`ControlNetInput`, `Annotator`) and no internal helpers.
+- Configuration objects use `@dataclass` with explicit default values for all fields, making them easy to instantiate partially.
+- Device handling goes through `get_device_type()` from the shared NPU-compatible device module instead of hardcoding CUDA/CPU strings.

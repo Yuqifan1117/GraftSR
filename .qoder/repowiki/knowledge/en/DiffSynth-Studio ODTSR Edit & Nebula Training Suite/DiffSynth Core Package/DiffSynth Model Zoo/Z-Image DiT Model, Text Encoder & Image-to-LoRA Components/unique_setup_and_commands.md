@@ -1,0 +1,1 @@
+No build script or special setup; models are instantiated directly in Python. The text encoder requires `transformers>=4.51.0` (config specifies `transformers_version`). LoRA initialization uses `initialize_weights()` which zeros `lora_b` and scales `lora_a`/projection weights before loading back into state dict.

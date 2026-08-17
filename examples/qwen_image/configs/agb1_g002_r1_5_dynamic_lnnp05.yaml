@@ -1,0 +1,39 @@
+exp_tag: qwen_one_step_gan
+
+pretrained_ckpt_path_gen: ~
+pretrained_ckpt_path_dis: ~
+
+learning_rate: !!float 5e-5
+learning_rate_dis: !!float 5e-6
+lr_scheduler_type: none # none, cosine, linear
+lr_scheduler_eta_min_g: !!float 5e-6
+lr_scheduler_eta_min_d: !!float 5e-7
+accumulate_grad_batches: 1
+max_epochs: 5
+use_gradient_checkpointing: True
+viz_iters: 10
+save_ckpt_iters: 1000
+relaxed_mean_size: 100
+use_dual_condition_flag: False
+
+gen_start_point: 750
+rgb_w: 1.0
+lpips_w: 1.0
+new_vae_w: 1.0
+pixel_loss_type: mse  # mse, l1, charbonnier
+gan_type: vanilla
+gan_loss_weight: 0.02
+real_label_val: 1.0
+fake_label_val: 0.0
+d_iters: 1 # rec: 1~5
+r1_regularization: 5.0
+r2_regularization: 0.0
+variance: 0.005
+lq_no_noise_prob: 0.5
+ref_no_noise_prob: 1.0
+lq_dropout_prob: 0.0
+
+test_cfg: 1.0
+test_align_method: "wavelet"
+test_metrics: "psnr,ssim,lpips,niqe"
+test_crop_border: 0

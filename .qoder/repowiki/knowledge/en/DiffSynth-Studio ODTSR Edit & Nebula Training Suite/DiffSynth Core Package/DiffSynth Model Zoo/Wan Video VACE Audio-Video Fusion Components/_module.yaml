@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/wan_video_vace
+title: Wan Video VACE Audio-Video Fusion Components
+scope:
+    - diffsynth/models/wan_video_vace.py
+    - diffsynth/models/wantodance.py
+    - diffsynth/models/wav2vec.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/wanvideo

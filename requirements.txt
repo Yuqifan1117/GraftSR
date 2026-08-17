@@ -1,0 +1,42 @@
+# DiffSynth-Studio + ODTSR 完整依赖
+# 用于 nebulactl 提交任务到云服务器安装
+
+# ===== DiffSynth 核心依赖 =====
+torch>=2.0.0
+torchvision
+transformers>=4.57.3,<5.0.0
+imageio
+imageio[ffmpeg]
+safetensors
+einops
+sentencepiece
+protobuf
+modelscope
+ftfy
+pandas
+accelerate
+peft
+datasets
+
+# ===== ODTSR 超分额外依赖 =====
+# 退化管线核心
+basicsr
+opencv-python==4.7.0.72
+cupy-cuda12x
+
+# 训练相关
+lpips
+lightning
+pyiqa
+clean-fid
+matplotlib
+numpy<2.0.0
+
+# 推理/数据
+gradio
+pillow_heif
+pynvml
+qwen_vl_utils
+
+# 在线推理
+dashscope

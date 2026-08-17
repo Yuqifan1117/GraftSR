@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: diffsynth_core/utils/ses_utils
+title: Scale-Selective Search (SES) Latent Optimization
+scope:
+    - diffsynth/utils/ses/
+source_files: []
+depends_on: []
+related_to: []

@@ -1,0 +1,1 @@
+Example scripts and shell configurations for running Z-Image text-to-image inference and training (full fine-tuning, LoRA, differential training, trajectory imitation, NPU) via the diffsynth pipeline.

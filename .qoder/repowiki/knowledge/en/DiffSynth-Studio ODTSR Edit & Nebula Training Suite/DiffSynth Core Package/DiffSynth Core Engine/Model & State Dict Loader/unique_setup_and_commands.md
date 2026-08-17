@@ -1,0 +1,1 @@
+Download behavior is controlled by environment variables: `DIFFSYNTH_DOWNLOAD_SOURCE=modelscope|huggingface`, `DIFFSYNTH_SKIP_DOWNLOAD=true|false`, and `DIFFSYNTH_MODEL_BASE_PATH` to override the local model root (default `./models`).

@@ -1,0 +1,1 @@
+Requires external `ffmpeg` binary on PATH for `merge_video_audio` in `__init__.py`. The `torchcodec` backend requires the `torchcodec` package installed separately. PyAV (`av`) must be built against FFmpeg libraries for `audio_video.py` and `media_io_ltx2.py` to work.

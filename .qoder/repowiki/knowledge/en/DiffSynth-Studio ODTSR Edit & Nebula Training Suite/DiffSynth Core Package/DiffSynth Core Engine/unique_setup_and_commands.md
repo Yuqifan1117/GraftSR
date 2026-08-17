@@ -1,0 +1,1 @@
+No top-level command; the package is imported as `from diffsynth.core import *` to expose all subsystems.

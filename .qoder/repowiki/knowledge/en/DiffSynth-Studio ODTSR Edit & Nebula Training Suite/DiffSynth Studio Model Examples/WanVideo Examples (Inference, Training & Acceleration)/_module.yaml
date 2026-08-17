@@ -1,0 +1,14 @@
+schema_version: 1
+module_path: examples/wanvideo
+title: WanVideo Examples (Inference, Training & Acceleration)
+scope:
+    - examples/wanvideo/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/diffusion_training
+    - path: diffsynth_core/models/wan_video
+    - path: diffsynth_core/models/wan_video_motion
+    - path: diffsynth_core/models/wan_video_support
+    - path: diffsynth_core/models/wan_video_vace
+    - path: diffsynth_core/pipelines

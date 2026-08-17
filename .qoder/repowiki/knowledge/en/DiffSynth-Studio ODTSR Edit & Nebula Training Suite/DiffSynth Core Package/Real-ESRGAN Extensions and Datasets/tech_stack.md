@@ -1,0 +1,1 @@
+PyTorch with torchvision (includes a compatibility shim for torchvision ≥ 0.15), OpenCV, numpy, PIL/Pillow (with pillow_heif enabled), basicsr utilities (`DiffJPEG`, `USMSharp`, `img2tensor`, `random_mixed_kernels`, `circular_lowpass_kernel`), ffmpeg subprocess calls for H.264/H.265 codec simulation, and YAML config parsing via `ordered_yaml` with `OrderedDict` support.

@@ -1,0 +1,1 @@
+Pure Python with no external dependencies beyond the project's own `diffsynth` package; Streamlit for the web UI, `torch` for device/dtype handling, `PIL` for image I/O, `multiprocessing` for GPU-parallel task dispatch, and `tqdm` for progress bars.

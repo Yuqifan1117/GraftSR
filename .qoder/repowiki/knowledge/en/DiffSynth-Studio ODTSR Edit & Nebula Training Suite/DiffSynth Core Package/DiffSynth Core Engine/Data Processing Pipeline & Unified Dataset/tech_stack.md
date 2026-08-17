@@ -1,0 +1,1 @@
+PyTorch (`torch.utils.data.Dataset`, `torch.load`), torchvision for image transforms, PIL/Pillow for image handling, imageio.v3 and torchaudio for video/audio I/O, librosa for audio loading, pandas for CSV metadata parsing, and JSON/JSONL for structured metadata.

@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: diffsynth_core/utils/controlnet_utils
+title: ControlNet Input & Image Annotator Utilities
+scope:
+    - diffsynth/utils/controlnet/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/pipelines

@@ -1,0 +1,1 @@
+Example scripts for running inference, low-VRAM inference, and full/LORA training of the MOVA image-to-audio-video model using DiffSynth's MovaAudioVideoPipeline.

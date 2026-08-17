@@ -1,0 +1,1 @@
+`pip install .` (or `pip install -e .` for development) installs the `diffsynth` package using `pyproject.toml`; `requirements.txt` is the canonical dependency list used by Nebula cloud deployments; training/test jobs are launched through the `nebulactl_launch_*.sh` family which wrap `accelerate` and submit to the Nebula cluster defined in `nebula_configs/cluster.json`.

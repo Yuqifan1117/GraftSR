@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: diffsynth_core/models/wan_video_motion
+title: Wan Video Motion & Camera Control
+scope:
+    - diffsynth/models/wan_video_dit_s2v.py
+    - diffsynth/models/wan_video_motion_controller.py
+    - diffsynth/models/wan_video_camera_controller.py
+source_files: []
+depends_on: []
+related_to:
+    - path: examples/wanvideo

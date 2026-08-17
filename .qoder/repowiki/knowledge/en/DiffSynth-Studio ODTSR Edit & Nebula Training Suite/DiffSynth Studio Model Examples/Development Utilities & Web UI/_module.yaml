@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: examples/dev_tools
+title: Development Utilities & Web UI
+scope:
+    - examples/dev_tools/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/pipelines
+    - path: nebula_configs

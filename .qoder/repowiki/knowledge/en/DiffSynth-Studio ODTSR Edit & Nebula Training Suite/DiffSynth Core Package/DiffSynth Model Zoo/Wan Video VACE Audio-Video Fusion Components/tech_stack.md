@@ -1,0 +1,1 @@
+PyTorch with einops for tensor rearrangement; Hugging Face `transformers` Wav2Vec2ForCTC (facebook/wav2vec2-large-xlsr-53) for audio feature extraction; rotary positional embeddings implemented manually via `apply_rotary_emb`; gradient checkpointing via `core.gradient.gradient_checkpoint_forward`.

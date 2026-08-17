@@ -1,0 +1,4 @@
+- Optional heavy dependencies (DeepSpeed, torch_npu) are imported lazily inside try/except or `importlib.util.find_spec` checks, with module-level `_HAS_*` flags controlling feature branches.
+- Public APIs are exposed exclusively through each package's `__init__.py`, which re-exports only the intended symbols from the implementation module.
+- Device-specific behavior is dispatched by selecting the appropriate `torch.*` namespace (cuda/npu/cpu) via `getattr(torch, device_name)` rather than branching on every call site.
+- Boolean configuration flags (`use_gradient_checkpointing`, `use_gradient_checkpointing_offload`) drive execution paths inside functions instead of requiring separate entry points.

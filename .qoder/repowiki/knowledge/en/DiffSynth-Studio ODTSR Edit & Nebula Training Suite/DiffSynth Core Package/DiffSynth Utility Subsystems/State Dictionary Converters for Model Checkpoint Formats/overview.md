@@ -1,0 +1,1 @@
+Per-model state-dict conversion utilities that remap HuggingFace Diffusers, NexusGen, and other checkpoint key layouts into DiffSynth's internal model parameter naming conventions.

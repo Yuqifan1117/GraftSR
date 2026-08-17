@@ -1,0 +1,1 @@
+No build or special setup steps. Availability of CUDA vs NPU is auto-detected at module load via `torch.cuda.is_available()` and `torch.npu.is_available()`. DeepSpeed must be installed separately for its checkpoint path to activate; otherwise the function falls back to PyTorch's native checkpointing.

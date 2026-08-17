@@ -1,0 +1,1 @@
+Example scripts demonstrating inference, full/LoRA training, validation, and distributed acceleration for Wan text-to-video, image-to-video, and related video generation models via DiffSynth Studio.

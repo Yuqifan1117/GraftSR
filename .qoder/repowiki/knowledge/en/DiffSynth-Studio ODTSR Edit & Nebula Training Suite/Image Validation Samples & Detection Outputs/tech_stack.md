@@ -1,0 +1,1 @@
+Plain raster images (JPEG, PNG) and plain-text coordinate files; no framework or build system involved.

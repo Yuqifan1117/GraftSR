@@ -1,0 +1,1 @@
+PyTorch with bfloat16 precision, DiffSynth pipeline framework, ModelScope for dataset snapshot downloads, Accelerate + DeepSpeed ZeRO-3 for multi-GPU full-parameter training, and LoRA adapters for parameter-efficient fine-tuning.

@@ -1,0 +1,1 @@
+Provides Real-ESRGAN-style image degradation pipelines, paired training datasets with prompt handling, and a ZMLiveRepair U-Net model for video/image enhancement as DiffSynth extensions.

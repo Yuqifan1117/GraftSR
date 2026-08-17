@@ -1,0 +1,4 @@
+- State-dict conversion follows a uniform pattern: each major class exposes a nested `StateDictConverter` with `from_diffusers` and `from_civitai` methods that return the adapted state dict (and optionally extra constructor kwargs).
+- Key renaming between Diffusers and internal naming is expressed as explicit string-to-string dictionaries (e.g. `rename_dict`, `diffusers_rename_dict`, `civitai_rename_dict`) rather than programmatic transforms.
+- Optional conditional branches are gated by instance attributes set at `__init__` time (e.g. `disable_guidance_embedder`, `controlnet_mode_embedder`, `num_mode`) so the same forward path adapts to different configuration variants.
+- Tensor device/dtype casting inside forward passes is done inline via `.to(dtype=..., device=...)` calls on intermediate tensors rather than relying on global device contexts.

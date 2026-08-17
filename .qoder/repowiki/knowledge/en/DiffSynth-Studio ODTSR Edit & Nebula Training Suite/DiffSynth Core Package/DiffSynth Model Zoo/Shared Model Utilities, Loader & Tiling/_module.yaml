@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: diffsynth_core/models/shared_utils
+title: Shared Model Utilities, Loader & Tiling
+scope:
+    - diffsynth/models/general_modules.py
+    - diffsynth/models/model_loader.py
+    - diffsynth/models/tiler.py
+source_files: []
+depends_on: []
+related_to: []

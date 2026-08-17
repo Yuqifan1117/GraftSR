@@ -1,0 +1,5 @@
+- Each `PipelineUnit` declares its I/O contract via `input_params`, `output_params`, and optional `input_params_posi`/`input_params_nega` tuples/dicts so `PipelineUnitGraph` can build dependency edges automatically.
+- Task variants are encoded as string suffixes on the `task` argument (e.g. `:data_process`, `:train`) and dispatched with `task.endswith(...)` checks rather than separate entry points.
+- Checkpoint saving goes through `ModelLogger.on_step_end/on_epoch_end/on_training_end`, which always calls `accelerator.unwrap_model(model).export_trainable_state_dict(...)` before serializing, ensuring only trainable parameters are saved.
+- VRAM/offload behavior is configured via a dict returned by `parse_vram_config(fp8=..., offload=..., device=...)` and passed as `ModelConfig(**vram_config)` fields such as `offload_dtype`, `computation_device`, etc.
+- LoRA target modules are either parsed from a comma-separated string or auto-discovered through `auto_detect_lora_target_modules` using pluggable `linear_detector`/`block_list_detector` predicates.

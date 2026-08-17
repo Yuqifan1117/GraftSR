@@ -1,0 +1,50 @@
+exp_tag: qwen_one_step_gan_edit_repair_regionloss_lqmask_maskdilate_scratch_bz32_5e-5_0623
+
+pretrained_ckpt_path_gen: ~
+pretrained_ckpt_path_dis: ~
+
+learning_rate: !!float 5e-5
+learning_rate_dis: !!float 5e-6
+lr_scheduler_type: none # none, cosine, linear
+lr_scheduler_eta_min_g: !!float 5e-6
+lr_scheduler_eta_min_d: !!float 5e-7
+accumulate_grad_batches: 1
+max_epochs: 1
+use_gradient_checkpointing: True
+viz_iters: 50
+save_ckpt_iters: 1000
+relaxed_mean_size: 100
+use_dual_condition_flag: False
+
+gen_start_point: 750
+lq_cond_start_point: 750
+rgb_w: 1.0
+lpips_w: 1.0
+new_vae_w: 1.0
+pixel_loss_type: mse  # mse, l1, charbonnier
+gan_type: vanilla
+gan_loss_weight: 0.02
+real_label_val: 1.0
+fake_label_val: 0.0
+d_iters: 1 # rec: 1~5
+r1_regularization: 5.0
+r2_regularization: 0.0
+variance: 0.005
+lq_no_noise_prob: 0.5
+lq_dropout_prob: 0.0
+dists_w: 1.0
+
+# === GeneratorEdit 特有参数 ===
+lora_rank: 128
+lora_target_modules: "to_q,to_k,to_v,add_q_proj,add_k_proj,add_v_proj,to_out.0,to_add_out,img_mlp.net.0.proj,img_mlp.net.2,img_mod.1,txt_mlp.net.2,txt_mod.1"
+# lora_target_modules: "to_q,to_k,to_v,add_q_proj,add_k_proj,add_v_proj,to_out.0,to_add_out,img_mlp.net.2,img_mod.1,txt_mlp.net.2,txt_mod.1"
+zero_cond_t: true  # 必须为 true，使用原生 zero_cond_t 机制
+
+# === SAM Mask 噪声调制参数 ===
+mask_low_noise_ratio: 0.1    # mask=0 区域的噪声比例（0.0=完全不加噪, 1.0=无调制）
+mask_dropout_prob: 0.1     # 训练时丢弃 mask 的概率
+
+test_cfg: 1.0
+test_align_method: "wavelet"
+test_metrics: "psnr,ssim,lpips,niqe"
+test_crop_border: 0

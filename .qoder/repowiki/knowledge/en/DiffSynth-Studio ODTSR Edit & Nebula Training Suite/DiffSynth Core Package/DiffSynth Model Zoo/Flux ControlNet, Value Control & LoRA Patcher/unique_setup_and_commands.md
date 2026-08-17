@@ -1,0 +1,1 @@
+No build script; models are instantiated directly in Python. `FluxControlNet.quantize()` performs in-place replacement of `Linear`/`RMSNorm`/`Embedding` layers with quantized wrappers via a context manager `init_weights_on_device` that patches `torch.nn.Module.register_parameter` and `torch.empty/zeros/ones/full` constructors.

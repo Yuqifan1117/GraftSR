@@ -1,0 +1,1 @@
+Example scripts and configurations for running inference, LoRA/full fine-tuning, and GAN-based super-resolution/editing on the Qwen-Image diffusion model via DiffSynth pipelines.

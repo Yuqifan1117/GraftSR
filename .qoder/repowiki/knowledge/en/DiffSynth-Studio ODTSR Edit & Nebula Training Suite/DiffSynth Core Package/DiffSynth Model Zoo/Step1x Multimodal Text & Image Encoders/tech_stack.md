@@ -1,0 +1,1 @@
+PyTorch with `einops` for tensor reshaping; uses Hugging Face `transformers` DINOv3 ViT and a custom Qwen25VL-7B image-text encoder; attention is computed via `torch.nn.functional.scaled_dot_product_attention` (SDPA).

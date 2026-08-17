@@ -1,0 +1,1 @@
+PyTorch for tensor I/O, `safetensors` for safe binary loading, `modelscope.snapshot_download` and `huggingface_hub.snapshot_download` for remote model retrieval, and optional DeepSpeed ZeRO Stage 3 integration via `transformers.integrations`.

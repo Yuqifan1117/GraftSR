@@ -1,0 +1,1 @@
+Utilities for loading LoRA state dicts into DiffSynth models, merging multiple LoRAs, resetting their rank via PCA low-rank decomposition, and converting between Flux/Diffusers/Civitai naming conventions.

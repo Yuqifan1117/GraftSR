@@ -1,0 +1,1 @@
+PyTorch `nn.Module` for all components; HuggingFace tokenizers used by text encoders (T5, Mistral3, Qwen2.5-VL, Qwen3, Gemma3); wav2vec2 for audio feature extraction in MoVA/VACE; shared VRAM management via `diffsynth.core.vram.AutoWrappedModule` and disk-mapped weight loading.

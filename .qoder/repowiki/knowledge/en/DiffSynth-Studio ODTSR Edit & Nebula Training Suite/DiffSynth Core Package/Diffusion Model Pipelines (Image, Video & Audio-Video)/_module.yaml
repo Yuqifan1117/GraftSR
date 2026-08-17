@@ -1,0 +1,19 @@
+schema_version: 1
+module_path: diffsynth_core/pipelines
+title: Diffusion Model Pipelines (Image, Video & Audio-Video)
+scope:
+    - diffsynth/pipelines/
+source_files: []
+depends_on: []
+related_to:
+    - path: diffsynth_core/utils/controlnet_utils
+    - path: examples/anima
+    - path: examples/dev_tools
+    - path: examples/ernie_image
+    - path: examples/flux
+    - path: examples/flux2
+    - path: examples/ltx2
+    - path: examples/mova
+    - path: examples/qwen_image
+    - path: examples/wanvideo
+    - path: examples/z_image

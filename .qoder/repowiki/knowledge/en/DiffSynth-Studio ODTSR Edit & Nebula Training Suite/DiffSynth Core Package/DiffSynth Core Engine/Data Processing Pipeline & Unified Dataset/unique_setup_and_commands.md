@@ -1,0 +1,1 @@
+No build or special setup required; the module is pure Python. Optional dependency `librosa` is imported lazily inside `LoadAudio.__call__` so it need not be installed unless audio loading is used.

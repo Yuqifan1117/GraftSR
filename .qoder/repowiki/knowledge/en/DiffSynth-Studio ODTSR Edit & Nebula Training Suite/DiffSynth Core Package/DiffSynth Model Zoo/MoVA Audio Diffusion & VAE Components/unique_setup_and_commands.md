@@ -1,0 +1,1 @@
+The VAE exposes `remove_weight_norm()` to fuse weight-norm parameters before inference for speed. Gradient checkpointing is toggled through the `use_gradient_checkpointing` / `use_gradient_checkpointing_offload` flags passed to `gradient_checkpoint_forward` in both the DiT forward and the bridge's conditional control path.

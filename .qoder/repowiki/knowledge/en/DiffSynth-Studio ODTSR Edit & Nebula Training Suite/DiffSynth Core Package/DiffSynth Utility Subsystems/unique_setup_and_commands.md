@@ -1,0 +1,1 @@
+No unified entry point; each subpackage is imported independently (`from diffsynth.utils.controlnet import Annotator`, `from diffsynth.utils.lora import merge_lora`, etc.). State-dict converters are selected by calling the appropriate module function directly rather than through a central registry.

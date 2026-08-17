@@ -1,0 +1,1 @@
+Flash attention acceleration requires `flash_attn_interface` to be importable at module load time; when unavailable the code silently falls back to `torch.nn.functional.scaled_dot_product_attention`. The text encoder hardcodes `transformers_version: 4.54.0` in its config, so version mismatch will break instantiation.

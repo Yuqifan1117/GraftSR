@@ -1,0 +1,5 @@
+- Tensor shape transformations use `einops.rearrange`/`repeat`/`broadcat` helpers rather than manual reshape/transpose chains.
+- Optional tensors are checked with a local `exists(val)` helper instead of `is not None` comparisons throughout `wantodance.py`.
+- Positional encodings are exposed as separate `nn.Module` classes (`WanToDanceRotaryEmbedding`) with a `rotate_queries_or_keys` method so they can be toggled per layer via a `rotary` attribute.
+- Gradient checkpointing is invoked through the shared `gradient_checkpoint_forward` wrapper rather than calling `torch.utils.checkpoint` directly.
+- Sliding-window audio feature extraction follows a consistent pattern: compute stride and bounds, clamp indices with `[0 if c < 0 else ...]` / `[N - 1 if c >= N else ...]`, and pad out-of-range windows with zeros.

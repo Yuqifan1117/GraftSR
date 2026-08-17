@@ -1,0 +1,3 @@
+- Each Accelerate profile follows the same schema with only `num_processes` (and optionally `num_machines`) varying across files, keeping all other fields constant.
+- Profile filenames encode the process scale as a suffix (`accelerate-1.yaml` through `accelerate-64.yaml`), making the intended parallelism immediately visible.
+- All profiles use `distributed_type: MULTI_GPU`, `mixed_precision: 'bf16'`, `rdzv_backend: static`, and `same_network: true` as defaults.

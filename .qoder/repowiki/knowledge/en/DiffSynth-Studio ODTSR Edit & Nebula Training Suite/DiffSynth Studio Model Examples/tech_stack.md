@@ -1,0 +1,1 @@
+Python examples built on DiffSynth/DiffSynth-Studio pipelines, Accelerate for distributed training, DeepSpeed ZeRO-3 configurations (accelerate_config_zero*.yaml), and Streamlit for the unified WebUI in dev_tools.

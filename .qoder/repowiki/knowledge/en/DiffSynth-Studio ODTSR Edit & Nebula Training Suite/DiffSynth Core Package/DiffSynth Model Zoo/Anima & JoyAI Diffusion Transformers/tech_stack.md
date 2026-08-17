@@ -1,0 +1,1 @@
+PyTorch with einops for tensor reshaping; attention backed by `diffsynth.core.attention.attention_forward` (pluggable backend); RoPE positional encodings implemented manually; text encoding via HuggingFace `transformers.Qwen3VLForConditionalGeneration` (Qwen3-VL) with mRoPE configuration.

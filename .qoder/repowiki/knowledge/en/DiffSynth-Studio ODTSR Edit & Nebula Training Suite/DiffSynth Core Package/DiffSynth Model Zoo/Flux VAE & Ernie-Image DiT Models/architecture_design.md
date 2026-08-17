@@ -1,0 +1,6 @@
+Three independent model files form this leaf module:
+- `flux2_vae.py` is a large (~2300-line) HuggingFace-derived diffusion backbone providing `ResnetBlock2D`, `Downsample2D`, `Upsample2D`, and a fully configurable `Attention` class that swaps processors (AttnProcessor2_0, XFormers, NPU, XLA, IP-Adapter, etc.) via `set_processor`/`set_use_*_flash_attention`. It exposes activation selection through an `ACT2CLS` registry and uses `einops.rearrange` for tensor reshaping.
+- `ernie_image_dit.py` defines `ErnieImageDiT`, a single-stream DiT built from `ErnieImageSharedAdaLNBlock` layers with RoPE 3D positional embeddings (`ErnieImageEmbedND3`) and a custom `ErnieImageSingleStreamAttnProcessor` that calls the shared `attention_forward` from `..core.attention`. Time conditioning flows through `Timesteps`/`TimestepEmbedding` imported from `flux2_dit`.
+- `ernie_image_text_encoder.py` wraps `transformers.Ministral3Model` behind a thin `torch.nn.Module` with a lazy import and a hard-coded config dict, returning only hidden states.
+
+Dependency direction: both DiT and text encoder depend on external core utilities (`..core.attention`, `..core.gradient`) and on `flux2_dit` for time embedding; the VAE file is self-contained and does not import the other two modules. There is no shared base class — each file exports its own top-level `nn.Module` classes.

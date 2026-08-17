@@ -1,0 +1,5 @@
+- Each major component is a `torch.nn.Module` subclass whose `forward` accepts keyword arguments like `tiled`, `tile_size`, `tile_stride` to optionally dispatch to a `tiled_forward` method that delegates to `TileWorker.tiled_forward`.
+- Self-attention layers follow a uniform pattern: project q/k/v with separate linear/conv layers, reshape to `(B, num_heads, seq_len, head_dim)`, apply `scaled_dot_product_attention`, then reshape back and pass through an output projection.
+- Positional or rotary embeddings are applied by converting q/k to `(..., head_dim, 1, 2)` complex form, multiplying by precomputed `freqs_cis`, and reshaping back to the original dtype before attention.
+- Conditioning signals (time, guidance, text) are injected through AdaLN-style modules that produce shift/scale/gate parameters via a SiLU + Linear layer, which modulate normalized activations elementwise.
+- Multi-block networks are assembled as `torch.nn.ModuleList` of repeated block types (e.g., `FluxJointTransformerBlock`, `ResnetBlock`) and iterated sequentially in `forward`, passing along shared `time_emb`, `text_emb`, and `res_stack` tuples.
