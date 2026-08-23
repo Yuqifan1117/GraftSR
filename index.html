@@ -1,0 +1,2715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>GraftSR: Grafting Authentic Textures for Real-World Image Super-Resolution</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --text: #171717;
+      --muted: #6f6f72;
+      --line: rgba(20, 20, 20, 0.12);
+      --accent-purple: #7758ff;
+      --accent-blue: #2d8cff;
+      --accent-cyan: #22c9c3;
+      --card: rgba(255, 255, 255, 0.78);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at 12% 7%,
+          rgba(119, 88, 255, 0.12),
+          transparent 26rem
+        ),
+        radial-gradient(
+          circle at 88% 18%,
+          rgba(34, 201, 195, 0.12),
+          transparent 28rem
+        ),
+        var(--bg);
+      font-family: "Inter", Arial, sans-serif;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       Header
+    ========================== */
+
+    .site-header {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      color: #555;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-purple);
+    }
+
+    /* =========================
+       Hero
+    ========================== */
+
+    .hero {
+      position: relative;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 60px 0 50px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      z-index: -1;
+      width: 480px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(119, 88, 255, 0.14);
+      filter: blur(80px);
+      transform: translateX(-50%);
+    }
+
+    .art-title {
+      position: relative;
+      display: inline-block;
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(64px, 9vw, 120px);
+      font-style: italic;
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      color: transparent;
+      background:
+        linear-gradient(
+          110deg,
+          #2c1b73 5%,
+          #7458ef 33%,
+          #258ccd 62%,
+          #12a99f 95%
+        );
+      background-clip: text;
+      -webkit-background-clip: text;
+      filter: drop-shadow(0 16px 30px rgba(75, 70, 170, 0.16));
+    }
+
+    .art-title::after {
+      content: "GraftSR";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      color: rgba(100, 80, 220, 0.08);
+      transform: translate(6px, 10px);
+      filter: blur(5px);
+    }
+
+    .paper-title {
+      max-width: 950px;
+      margin: 34px auto 0;
+      font-size: clamp(23px, 3.1vw, 42px);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.045em;
+    }
+
+    .paper-title .highlight {
+      color: #6450c8;
+    }
+
+    .authors {
+      margin: 24px auto 0;
+      color: #555;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .authors sup {
+      margin-left: 1px;
+      color: #858589;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 0;
+    }
+
+    .authors a {
+      color: #4d43aa;
+      font-weight: 600;
+    }
+
+    .affiliation {
+      display: block;
+      margin-top: 4px;
+      color: #858589;
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid rgba(20, 20, 20, 0.13);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      color: #242424;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(14px);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .hero-button:hover {
+      transform: translateY(-2px);
+      background: white;
+      box-shadow: 0 10px 28px rgba(58, 45, 120, 0.12);
+    }
+
+    .hero-button.primary {
+      border-color: transparent;
+      color: white;
+      background: linear-gradient(
+        120deg,
+        var(--accent-purple),
+        var(--accent-blue)
+      );
+    }
+
+    .button-icon {
+      font-size: 17px;
+    }
+
+    /* =========================
+       Comparison Section
+    ========================== */
+
+    .comparison-section {
+      width: min(1280px, calc(100% - 32px));
+      margin: 28px auto 0;
+    }
+
+    .comparison-header {
+      width: min(900px, 100%);
+      margin: 0 auto 22px;
+      text-align: center;
+    }
+
+    .comparison-header h2 {
+      margin: 0;
+      font-size: clamp(25px, 3vw, 38px);
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+    }
+
+    .comparison-header p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .comparison-shell {
+      padding: 10px;
+      border: 1px solid rgba(20, 20, 20, 0.1);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow:
+        0 30px 80px rgba(42, 37, 73, 0.14),
+        0 5px 20px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(18px);
+    }
+
+    .comparison {
+      --split: 50%;
+      --top-split: 54%;
+      --bottom-split: 46%;
+
+      position: relative;
+      width: 100%;
+      /*
+       * 宽高比与像素尺寸由 JS 按每组图片的实际比例动态计算，
+       * 容器始终与图片同比例，因此不会出现黑边。
+       */
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #111;
+      cursor: ew-resize;
+      touch-action: none;
+      user-select: none;
+      isolation: isolate;
+    }
+
+    .comparison-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      /*
+       * contain 完整展示图像，不裁切。
+       * 容器宽高比会由 JS 按每组图片的实际比例动态设置，
+       * 因此不会出现黑边。
+       */
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* 左图：低分辨率图，始终铺满底层 */
+    .comparison-before {
+      z-index: 1;
+    }
+
+    /* 右图：修复图，通过倾斜多边形裁剪 */
+    .comparison-after {
+      z-index: 2;
+      clip-path: polygon(
+        var(--top-split) 0,
+        100% 0,
+        100% 100%,
+        var(--bottom-split) 100%
+      );
+      will-change: clip-path;
+    }
+
+    /* 图像顶部的说明标签 */
+    .image-label {
+      position: absolute;
+      top: 20px;
+      z-index: 5;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 999px;
+      color: white;
+      background: rgba(0, 0, 0, 0.46);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+      backdrop-filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .label-before {
+      left: 20px;
+    }
+
+    .label-after {
+      right: 20px;
+    }
+
+    /* 倾斜分割线 */
+    .separator-line {
+      position: absolute;
+      top: 50%;
+      left: var(--split);
+      z-index: 3;
+      width: 3px;
+      height: 116%;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 0 18px rgba(0, 0, 0, 0.35);
+      transform: translate(-50%, -50%) rotate(5deg);
+      transform-origin: center;
+      pointer-events: none;
+      will-change: left;
+    }
+
+    /* 中间拖动按钮 */
+    .comparison-handle {
+      position: absolute;
+      top: 50%;
+      left: var(--split);
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 62px;
+      height: 62px;
+      padding: 0;
+      border: 3px solid rgba(255, 255, 255, 0.94);
+      border-radius: 50%;
+      color: #28213f;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(234, 232, 255, 0.96)
+        );
+      box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(30, 20, 70, 0.08);
+      transform: translate(-50%, -50%);
+      cursor: grab;
+      outline: none;
+      transition:
+        width 0.2s ease,
+        height 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+      touch-action: none;
+    }
+
+    .comparison-handle:hover,
+    .comparison-handle:focus-visible {
+      width: 68px;
+      height: 68px;
+      background: white;
+      box-shadow:
+        0 16px 38px rgba(0, 0, 0, 0.3),
+        0 0 0 5px rgba(119, 88, 255, 0.22);
+    }
+
+    .comparison.is-dragging .comparison-handle {
+      cursor: grabbing;
+      box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.32),
+        0 0 0 6px rgba(119, 88, 255, 0.25);
+    }
+
+    .handle-arrows {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .handle-arrows span:first-child {
+      transform: translateX(-1px);
+    }
+
+    .handle-arrows span:last-child {
+      transform: translateX(1px);
+    }
+
+    .drag-tip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 15px 0 0;
+      color: #858589;
+      font-size: 13px;
+    }
+
+    .drag-tip svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    /* =========================
+       Carousel (multi-example)
+    ========================== */
+
+    .comparison-carousel {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .comparison-carousel .comparison-shell {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .carousel-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 54px;
+      height: 54px;
+      padding: 0;
+      border: 1px solid rgba(20, 20, 20, 0.13);
+      border-radius: 50%;
+      color: #28213f;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 8px 24px rgba(42, 37, 73, 0.12);
+      backdrop-filter: blur(14px);
+      cursor: pointer;
+      outline: none;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .carousel-button svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .carousel-button:hover,
+    .carousel-button:focus-visible {
+      color: var(--accent-purple);
+      background: white;
+      transform: translateY(-2px);
+      box-shadow:
+        0 12px 30px rgba(58, 45, 120, 0.18),
+        0 0 0 4px rgba(119, 88, 255, 0.14);
+    }
+
+    .carousel-button:active {
+      transform: translateY(0);
+    }
+
+    /* 当前组图名称标签 */
+    .comparison-example-name {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      z-index: 5;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.94);
+      background: rgba(0, 0, 0, 0.46);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      transform: translateX(-50%);
+      backdrop-filter: blur(12px);
+      pointer-events: none;
+    }
+
+    /* 底部圆点与计数器 */
+    .comparison-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .comparison-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .comparison-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: none;
+      border-radius: 999px;
+      background: rgba(20, 20, 20, 0.18);
+      cursor: pointer;
+      transition:
+        width 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .comparison-dot:hover {
+      background: rgba(20, 20, 20, 0.35);
+    }
+
+    .comparison-dot.is-active {
+      width: 26px;
+      background: linear-gradient(
+        120deg,
+        var(--accent-purple),
+        var(--accent-blue)
+      );
+    }
+
+    .comparison-counter {
+      min-width: 58px;
+      color: #858589;
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.08em;
+    }
+
+    /* 图片切换时的加载遮罩 */
+    .comparison-loading {
+      position: absolute;
+      inset: 0;
+      z-index: 7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 10, 14, 0.45);
+      opacity: 0;
+      visibility: hidden;
+      backdrop-filter: blur(4px);
+      transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+      pointer-events: none;
+    }
+
+    .comparison-loading.is-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .loading-spinner {
+      width: 38px;
+      height: 38px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spinner-rotate 0.8s linear infinite;
+    }
+
+    @keyframes spinner-rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       Project information
+    ========================== */
+
+    .content-section {
+      width: min(1020px, calc(100% - 40px));
+      margin: 110px auto 0;
+    }
+
+    .section-heading {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 10px;
+      color: #6950d2;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -0.045em;
+    }
+
+    .abstract-card {
+      padding: clamp(24px, 5vw, 55px);
+      border: 1px solid rgba(20, 20, 20, 0.1);
+      border-radius: 28px;
+      background: var(--card);
+      box-shadow: 0 24px 70px rgba(42, 37, 73, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .abstract-card p {
+      margin: 0;
+      color: #4e4e52;
+      font-size: 16px;
+      line-height: 1.9;
+      text-align: justify;
+    }
+
+    .abstract-card strong {
+      color: #4f3db0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .feature-item {
+      padding: 25px;
+      border: 1px solid rgba(20, 20, 20, 0.09);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.68);
+    }
+
+    .feature-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 18px;
+      border-radius: 12px;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--accent-purple),
+        var(--accent-blue)
+      );
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .feature-item h3 {
+      margin: 0 0 9px;
+      font-size: 17px;
+      letter-spacing: -0.025em;
+    }
+
+    .feature-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       Teaser figure (SVG)
+    ========================== */
+
+    .teaser-card {
+      margin-top: 24px;
+      padding: 14px;
+      border: 1px solid rgba(20, 20, 20, 0.1);
+      border-radius: 28px;
+      background: white;
+      box-shadow: 0 24px 70px rgba(42, 37, 73, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .teaser-figure {
+      display: block;
+      /*
+       * SVG 为矢量图，按真实宽高比（约 4.3 : 1）自适应缩放，
+       * 任意屏幕宽度下均保持清晰。
+       */
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      background: white;
+    }
+
+    /* =========================
+       Method section
+    ========================== */
+
+    .method-part {
+      margin-top: 48px;
+    }
+
+    .method-part:first-of-type {
+      margin-top: 0;
+    }
+
+    .method-part-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .method-part-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--accent-purple),
+        var(--accent-blue)
+      );
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .method-part-header h3 {
+      margin: 0;
+      font-size: clamp(19px, 2.4vw, 24px);
+      letter-spacing: -0.03em;
+    }
+
+    .method-intro {
+      margin: 0 0 20px;
+      color: #4e4e52;
+      font-size: 15px;
+      line-height: 1.85;
+      text-align: justify;
+    }
+
+    /* 方法要点：两列网格，复用 feature-item 卡片 */
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    /* 行内公式样式 */
+    .method-formula {
+      display: block;
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(119, 88, 255, 0.06);
+      color: #3c2f85;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 16px;
+      font-style: italic;
+      text-align: center;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .method-formula sub {
+      font-size: 11px;
+    }
+
+    /* =========================
+       Experiment tables
+    ========================== */
+
+    .results-card {
+      padding: clamp(16px, 3vw, 30px);
+      border: 1px solid rgba(20, 20, 20, 0.1);
+      border-radius: 24px;
+      background: var(--card);
+      box-shadow: 0 24px 70px rgba(42, 37, 73, 0.08);
+      backdrop-filter: blur(18px);
+      overflow-x: auto;
+    }
+
+    .results-card + .results-card {
+      margin-top: 24px;
+    }
+
+    /* 通用实验：RealSR / DRealSR 两栏并排 */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .results-grid .results-card {
+      margin-top: 0;
+    }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result-table th,
+    .result-table td {
+      padding: 8px 12px;
+      text-align: center;
+      border-bottom: 1px solid rgba(20, 20, 20, 0.08);
+    }
+
+    .result-table thead th {
+      border-bottom: 2px solid rgba(20, 20, 20, 0.28);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .result-table .group-header {
+      border-bottom: 1px solid rgba(20, 20, 20, 0.28);
+    }
+
+    .result-table th[scope="row"],
+    .result-table .group-cell {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .result-table .group-cell {
+      color: #555;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      border-right: 1px solid rgba(20, 20, 20, 0.08);
+      vertical-align: middle;
+    }
+
+    /* 分组之间的分隔线 */
+    .result-table .section-start td {
+      border-top: 1px solid rgba(20, 20, 20, 0.22);
+    }
+
+    /* GraftSR 行高亮 */
+    .result-table .ours-row td {
+      background: rgba(119, 88, 255, 0.07);
+      border-top: 1px solid rgba(20, 20, 20, 0.22);
+      font-weight: 600;
+    }
+
+    /* 最优：红色加粗；次优：蓝色下划线 */
+    .result-table .best {
+      color: #cc0000;
+      font-weight: 700;
+    }
+
+    .result-table .second {
+      color: #0000cc;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .table-caption {
+      margin: 16px 4px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .table-caption strong {
+      color: var(--text);
+    }
+
+    footer {
+      width: min(1020px, calc(100% - 40px));
+      margin: 100px auto 0;
+      padding: 30px 0 45px;
+      border-top: 1px solid var(--line);
+      color: #8a8a8e;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* =========================
+       Responsive
+    ========================== */
+
+    @media (max-width: 800px) {
+      .site-header {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
+      .hero {
+        width: min(100% - 28px, 1180px);
+        padding-top: 38px;
+      }
+
+      .art-title {
+        font-size: clamp(60px, 20vw, 110px);
+      }
+
+      .paper-title {
+        margin-top: 26px;
+      }
+
+      .comparison-section {
+        width: min(100% - 18px, 1280px);
+      }
+
+      .comparison-shell {
+        padding: 6px;
+        border-radius: 20px;
+      }
+
+      .comparison {
+        border-radius: 15px;
+      }
+
+      .comparison-handle {
+        width: 52px;
+        height: 52px;
+      }
+
+      .comparison-handle:hover,
+      .comparison-handle:focus-visible {
+        width: 56px;
+        height: 56px;
+      }
+
+      .image-label {
+        top: 12px;
+        padding: 7px 10px;
+        font-size: 10px;
+      }
+
+      .label-before {
+        left: 12px;
+      }
+
+      .label-after {
+        right: 12px;
+      }
+
+      .comparison-carousel {
+        position: relative;
+        gap: 0;
+      }
+
+      .carousel-button {
+        position: absolute;
+        top: 50%;
+        z-index: 8;
+        width: 44px;
+        height: 44px;
+        transform: translateY(-50%);
+      }
+
+      .carousel-button:hover,
+      .carousel-button:focus-visible {
+        transform: translateY(calc(-50% - 2px));
+      }
+
+      .carousel-button-prev {
+        left: -8px;
+      }
+
+      .carousel-button-next {
+        right: -8px;
+      }
+
+      .comparison-example-name {
+        bottom: 12px;
+        padding: 6px 12px;
+        font-size: 10px;
+      }
+
+      .content-section {
+        width: min(100% - 28px, 1020px);
+        margin-top: 75px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .method-part {
+        margin-top: 38px;
+      }
+
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .teaser-card {
+        padding: 8px;
+        border-radius: 18px;
+      }
+
+      .teaser-figure {
+        border-radius: 12px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .brand {
+        font-size: 16px;
+      }
+
+      .nav-links a:not(:last-child) {
+        display: none;
+      }
+
+      .hero {
+        padding-bottom: 34px;
+      }
+
+      .authors {
+        font-size: 14px;
+      }
+
+      .comparison-header p {
+        font-size: 13px;
+      }
+
+      .handle-arrows {
+        gap: 4px;
+        font-size: 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       Navigation
+  ========================== -->
+  <header class="site-header">
+    <a class="brand" href="#top">GraftSR</a>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#comparison">Results</a>
+      <a href="#abstract">Abstract</a>
+      <a href="#method">Method</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#qualitative">Visualizations</a>
+      <a href="https://arxiv.org/" target="_blank" rel="noopener noreferrer">
+        Paper
+      </a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- =========================
+         Hero
+    ========================== -->
+    <section class="hero">
+      <h1 class="art-title">GraftSR</h1>
+
+      <h2 class="paper-title">
+        Grafting Authentic Textures for Real-World Image
+        Super-Resolution
+        <span class="highlight">via Identical-Instance Guidance</span>
+      </h2>
+
+      <div class="authors">
+        <a href="#">Qifan Yu</a><sup>1</sup>,
+        <a href="#">Haoran Bai</a><sup>1</sup>,
+        <a href="#">Zongyao He</a><sup>1</sup>,
+        <a href="#">Weijie He</a><sup>1</sup>,
+        <a href="#">Sibin Deng</a><sup>1</sup>,
+        <a href="#">Honggang Qi</a><sup>2</sup>,
+        <a href="#">Ying Chen</a><sup>1,*</sup>
+
+        <span class="affiliation">
+          <sup>1</sup>Taobao &amp; Tmall Group of Alibaba &nbsp;&nbsp;
+          <sup>2</sup>University of Chinese Academy of Sciences
+        </span>
+
+        <span class="affiliation">
+          {yuqifan.yqf, baihaoran.bhr}@taobao.com &nbsp;·&nbsp;
+          <sup>*</sup>Corresponding author
+        </span>
+      </div>
+
+      <div class="hero-actions">
+        <!-- 替换下面的链接 -->
+        <a
+          class="hero-button primary"
+          href="https://arxiv.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="button-icon">📄</span>
+          Paper
+        </a>
+
+        <a
+          class="hero-button"
+          href="https://github.com/Yuqifan1117/GraftSR"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="button-icon">⌘</span>
+          Code
+        </a>
+
+        <a
+          class="hero-button"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="button-icon">◫</span>
+          Dataset
+        </a>
+
+        <a class="hero-button" href="#comparison">
+          <span class="button-icon">↕</span>
+          Results
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================
+         Interactive Comparison
+    ========================== -->
+    <section
+      id="comparison"
+      class="comparison-section"
+      aria-labelledby="comparison-title"
+    >
+      <div class="comparison-header">
+        <h2 id="comparison-title">Authentic Texture Restoration</h2>
+        <p>
+          Drag the slider to compare the low-resolution input with the
+          high-resolution result restored by GraftSR.
+        </p>
+      </div>
+
+      <div class="comparison-carousel">
+      <!-- 上一组 -->
+      <button
+        class="carousel-button carousel-button-prev"
+        id="previousComparison"
+        type="button"
+        aria-label="Show previous comparison"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M15 5L8 12l7 7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+
+      <div class="comparison-shell">
+        <div
+          class="comparison"
+          id="imageComparison"
+          role="group"
+          aria-label="Low-resolution and GraftSR result comparison"
+        >
+          <!-- 左侧：低分辨率图 -->
+          <img
+            class="comparison-image comparison-before"
+            id="comparisonBefore"
+            src="assets/comparison_lq_1.png"
+            alt="Low-resolution input"
+            draggable="false"
+          >
+
+          <!-- 右侧：GraftSR 修复图 -->
+          <img
+            class="comparison-image comparison-after"
+            id="comparisonAfter"
+            src="assets/comparison_graftsr_1.png"
+            alt="GraftSR restoration result"
+            draggable="false"
+          >
+
+          <div class="image-label label-before">
+            Low Resolution
+          </div>
+
+          <div class="image-label label-after">
+            GraftSR
+          </div>
+
+          <!-- 图片组标题 -->
+          <div class="comparison-example-name" id="comparisonName">
+            Example 01
+          </div>
+
+          <!-- 倾斜分割线 -->
+          <div class="separator-line" aria-hidden="true"></div>
+
+          <!-- 拖动按钮 -->
+          <button
+            class="comparison-handle"
+            id="comparisonHandle"
+            type="button"
+            role="slider"
+            aria-label="Image comparison slider"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="50"
+            aria-valuetext="50 percent GraftSR result"
+          >
+            <span class="handle-arrows" aria-hidden="true">
+              <span>‹</span>
+              <span>›</span>
+            </span>
+          </button>
+
+          <!-- 图片加载遮罩 -->
+          <div
+            class="comparison-loading"
+            id="comparisonLoading"
+            aria-hidden="true"
+          >
+            <span class="loading-spinner"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 下一组 -->
+      <button
+        class="carousel-button carousel-button-next"
+        id="nextComparison"
+        type="button"
+        aria-label="Show next comparison"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M9 5l7 7-7 7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- 底部导航 -->
+    <div class="comparison-navigation">
+      <div
+        class="comparison-dots"
+        id="comparisonDots"
+        aria-label="Choose comparison example"
+      ></div>
+
+      <div
+        class="comparison-counter"
+        id="comparisonCounter"
+        aria-live="polite"
+      >
+        01 / 04
+      </div>
+    </div>
+
+    <p class="drag-tip">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M8 12H3m0 0 3-3m-3 3 3 3M16 12h5m0 0-3-3m3 3-3 3"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      Drag horizontally to compare · Use side buttons to switch examples
+    </p>
+
+    </section>
+
+    <!-- =========================
+         Abstract
+    ========================== -->
+    <section
+      id="abstract"
+      class="content-section"
+      aria-labelledby="abstract-title"
+    >
+      <div class="section-heading">
+        <span class="section-kicker">About the project</span>
+        <h2 id="abstract-title">Abstract</h2>
+      </div>
+
+      <div class="abstract-card">
+        <p>
+          Diffusion-based real-world image super-resolution (SR) achieves
+          impressive perceptual quality but inherently suffers from severe
+          texture hallucination. To overcome this limitation, we propose
+          <strong>GraftSR</strong>, a texture-reference-guided generative SR
+          framework that leverages reference images of the identical instance
+          to anchor the restoration of authentic textures. However, severe
+          spatial misalignment between low-quality inputs and their references
+          poses significant challenges, often leading to ambiguous transfer
+          targets and background feature leakage. To address these issues,
+          GraftSR employs a novel <strong>dual-mask reference guidance</strong>
+          mechanism that systematically decouples the cross-view texture
+          injection process. By explicitly isolating <strong>what</strong>
+          authentic textures to extract from the reference and precisely
+          localizing <strong>where</strong> to apply them within the target,
+          GraftSR achieves robust texture transfer without relying on brittle
+          spatial alignment. Furthermore, to bridge the critical gap in
+          appropriate training data, we construct
+          <strong>TexRefSR-141K</strong>, the first large-scale dataset
+          providing high-quality reference tuples equipped with complementary
+          spatial masks. Extensive experiments on our newly established
+          benchmark, <strong>TexRefSR-Eval</strong>, demonstrate that GraftSR
+          sets a new state-of-the-art. Notably, it reduces LPIPS by 20.2%
+          over top-performing baselines, achieving superior
+          reference-faithful restoration.
+        </p>
+      </div>
+
+      <!-- 方法对比矢量图 -->
+      <div class="teaser-card">
+        <img
+          class="teaser-figure"
+          src="assets/teaser.svg"
+          alt="Figure comparing GraftSR with existing super-resolution methods"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-item">
+          <div class="feature-number">01</div>
+          <h3>Texture-Reference-Guided SR</h3>
+          <p>
+            We propose <em>GraftSR</em>, a novel texture-reference-guided
+            generative SR framework that suppresses generative hallucinations
+            and achieves highly faithful texture transfer from cross-view
+            identical-instance references.
+          </p>
+        </article>
+
+        <article class="feature-item">
+          <div class="feature-number">02</div>
+          <h3>TexRefSR-141K &amp; Benchmark</h3>
+          <p>
+            We construct <em>TexRefSR-141K</em> and <em>TexRefSR-Eval</em>,
+            the first large-scale dataset and benchmark suite providing
+            high-quality identical-instance tuples equipped with
+            complementary spatial masks.
+          </p>
+        </article>
+
+        <article class="feature-item">
+          <div class="feature-number">03</div>
+          <h3>State-of-the-Art Results</h3>
+          <p>
+            Extensive experiments demonstrate that GraftSR establishes a new
+            state-of-the-art in reference-guided SR, bridging the gap between
+            perceptual quality and texture fidelity for faithful texture
+            restoration.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================
+         Method
+    ========================== -->
+    <section
+      id="method"
+      class="content-section"
+      aria-labelledby="method-title"
+    >
+      <div class="section-heading">
+        <span class="section-kicker">Method</span>
+        <h2 id="method-title">Method Overview</h2>
+      </div>
+
+      <!-- Part 1: Model architecture -->
+      <div class="method-part">
+        <div class="method-part-header">
+          <div class="method-part-number">01</div>
+          <h3>Dual-Mask Reference-Guided Architecture</h3>
+        </div>
+
+        <p class="method-intro">
+          Built upon an MMDiT backbone, GraftSR introduces a novel
+          dual-mask reference guidance mechanism that decouples cross-view
+          texture injection into two explicit questions —
+          <strong>what to reference</strong> and
+          <strong>where to transfer</strong> — eliminating the reliance on
+          brittle spatial alignment between the low-quality input and the
+          identical-instance reference.
+        </p>
+
+        <div class="results-card">
+          <img
+            class="teaser-figure"
+            src="assets/model_pipeline_3.svg"
+            alt="Overall architecture of GraftSR with dual-mask reference guidance"
+            loading="lazy"
+          >
+          <p class="table-caption">
+            Overall architecture of GraftSR. Mask-modulated reference tokens
+            and region-aware semantic tokens jointly condition cascaded MMDiT
+            blocks to denoise the dual-noise latent, which is distilled into
+            an efficient one-step SR model.
+          </p>
+        </div>
+
+        <div class="method-grid">
+          <article class="feature-item">
+            <h3>Semantic &amp; Spatial Condition Extraction</h3>
+            <p>
+              A vision-language model jointly analyzes
+              <em>I</em><sub>LQ</sub> and <em>I</em><sub>REF</sub> to
+              identify the shared instance and generate a unified caption
+              <em>T</em>. SAM3 then performs zero-shot segmentation to obtain
+              the target mask <em>M</em><sub>TGT</sub> and the reference
+              mask <em>M</em><sub>REF</sub>, explicitly localizing the
+              identical instance across both views.
+            </p>
+          </article>
+
+          <article class="feature-item">
+            <h3>Mask-Modulated Reference Tokens · What</h3>
+            <p>
+              <em>I</em><sub>REF</sub> is encoded by a frozen VAE, and its
+              latent is additively modulated by the downsampled reference
+              mask. This soft intervention isolates authentic texture-bearing
+              regions from irrelevant backgrounds without disrupting the
+              continuous latent space.
+              <span class="method-formula">
+                z<sub>ref</sub> = E<sub>VAE</sub>(I<sub>REF</sub>) +
+                φ(D(M<sub>REF</sub>))
+              </span>
+            </p>
+          </article>
+
+          <article class="feature-item">
+            <h3>Region-Aware Semantic Tokens · Where</h3>
+            <p>
+              A frozen Qwen2.5-VL encoder jointly embeds the low-quality
+              input, the target mask, the reference, and the caption into
+              region-aware semantic tokens that designate precisely where the
+              extracted textures should be applied.
+              <span class="method-formula">
+                z<sub>sem</sub> =
+                E<sub>VLM</sub>(I<sub>LQ</sub>, M<sub>TGT</sub>,
+                I<sub>REF</sub>, T)
+              </span>
+            </p>
+          </article>
+
+          <article class="feature-item">
+            <h3>One-Step Adversarial Distillation</h3>
+            <p>
+              A dual-noise strategy balances perceptual quality and texture
+              fidelity. The noisy target tokens are concatenated with the
+              extracted conditions along the sequence dimension, and the
+              model is trained as a one-step SR network optimized with MSE,
+              DISTS, and a relativistic GAN loss driven by a Wan2.1-1.3B
+              discriminator.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Part 2: Dataset construction -->
+      <div class="method-part">
+        <div class="method-part-header">
+          <div class="method-part-number">02</div>
+          <h3>Identical-Instance Dataset Construction</h3>
+        </div>
+
+        <p class="method-intro">
+          Prevailing reference-based SR datasets merely pair semantically
+          approximate images. We instead exploit large-scale e-commerce
+          multi-view galleries, which uniquely capture strictly identical
+          instances across diverse viewpoints, and build
+          <strong>TexRefSR-141K</strong> through an automated VLM-driven
+          curation pipeline.
+        </p>
+
+        <div class="results-card">
+          <img
+            class="teaser-figure"
+            src="assets/data_pipeline_2.svg"
+            alt="VLM-driven data curation pipeline for TexRefSR-141K"
+            loading="lazy"
+          >
+          <p class="table-caption">
+            The proposed VLM-driven data curation pipeline. It retrieves
+            identical-instance triplets from multi-view galleries and
+            extracts the complementary masks and unified caption to support
+            authentic texture transfer.
+          </p>
+        </div>
+
+        <div class="method-grid">
+          <article class="feature-item">
+            <h3>Identical-Instance Triplet</h3>
+            <p>
+              Anchored on a quality-filtered HQ reference
+              <em>I</em><sub>REF</sub>, the pipeline retrieves a multi-view
+              HQ ground truth <em>I</em><sub>HQ</sub> of the same instance
+              and synthesizes <em>I</em><sub>LQ</sub> via a high-order
+              degradation model — forming the core
+              {<em>I</em><sub>REF</sub>, <em>I</em><sub>HQ</sub>,
+              <em>I</em><sub>LQ</sub>} triplet with genuine texture
+              correspondence rather than mere semantic resemblance.
+            </p>
+          </article>
+
+          <article class="feature-item">
+            <h3>Caption &amp; Complementary Masks</h3>
+            <p>
+              The same condition extraction annotates each triplet with a
+              unified caption <em>T</em> and the complementary mask pair
+              {<em>M</em><sub>REF</sub>, <em>M</em><sub>TGT</sub>}. Both are
+              derived from the clearer <em>I</em><sub>HQ</sub>, and random
+              morphological dilation keeps delicate boundaries
+              (<em>e.g.</em>, lace and decorative edges) robust.
+            </p>
+          </article>
+
+          <article class="feature-item">
+            <h3>Rigorous Quality Assessment</h3>
+            <p>
+              Candidates are filtered before masking: embedding similarity
+              discards mismatched pairs, a quality predictor eliminates
+              degraded samples, and extreme close-ups that lose recognizable
+              instance identity are rejected — yielding over
+              <strong>141K</strong> high-quality tuples across
+              <strong>61K</strong> diverse fashion products.
+            </p>
+          </article>
+
+          <article class="feature-item">
+            <h3>1-to-N Mapping &amp; TexRefSR-Eval</h3>
+            <p>
+              Each reference maps to multiple target ground truths, yielding
+              rich cross-view texture correspondences. We further curate
+              <strong>TexRefSR-Eval</strong> with 300 manually verified
+              cases: 250 synthesized samples for full-reference evaluation
+              and 50 naturally degraded real-world samples.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         Quantitative Results
+    ========================== -->
+    <section
+      id="experiments"
+      class="content-section"
+      aria-labelledby="experiments-title"
+    >
+      <div class="section-heading">
+        <span class="section-kicker">Evaluation</span>
+        <h2 id="experiments-title">Quantitative Results</h2>
+      </div>
+
+      <!-- Table 1: TexRefSR-Eval-Syn -->
+      <div class="results-card">
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Type</th>
+              <th rowspan="2">Method</th>
+              <th colspan="4" class="group-header">Full-Reference</th>
+              <th colspan="4" class="group-header">No-Reference</th>
+            </tr>
+            <tr>
+              <th>LPIPS ↓</th>
+              <th>DISTS ↓</th>
+              <th>PSNR ↑</th>
+              <th>SSIM ↑</th>
+              <th>MUSIQ ↑</th>
+              <th>NIQE ↓</th>
+              <th>CLIPIQA ↑</th>
+              <th>MANIQA ↑</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="section-start">
+              <td class="group-cell" rowspan="6">
+                Open-source<br>Generative SR
+              </td>
+              <th scope="row">OSEDiff</th>
+              <td class="second">0.2326</td>
+              <td>0.1444</td>
+              <td class="second">28.3752</td>
+              <td class="second">0.8471</td>
+              <td>65.2201</td>
+              <td>4.8256</td>
+              <td>0.6631</td>
+              <td>0.5250</td>
+            </tr>
+            <tr>
+              <th scope="row">SUPIR</th>
+              <td>0.2208</td>
+              <td>0.1321</td>
+              <td>29.3151</td>
+              <td>0.8382</td>
+              <td>61.5577</td>
+              <td>5.2317</td>
+              <td>0.5922</td>
+              <td>0.5225</td>
+            </tr>
+            <tr>
+              <th scope="row">DiT4SR</th>
+              <td>0.3816</td>
+              <td>0.2147</td>
+              <td>25.6121</td>
+              <td>0.8071</td>
+              <td>33.1845</td>
+              <td>7.3649</td>
+              <td>0.5769</td>
+              <td>0.4253</td>
+            </tr>
+            <tr>
+              <th scope="row">ODTSR</th>
+              <td>0.1983</td>
+              <td class="second">0.1048</td>
+              <td>29.5098</td>
+              <td>0.8431</td>
+              <td>69.2601</td>
+              <td class="second">4.7789</td>
+              <td>0.6176</td>
+              <td>0.5129</td>
+            </tr>
+            <tr>
+              <th scope="row">PiSA-SR</th>
+              <td>0.2247</td>
+              <td>0.1343</td>
+              <td>28.5478</td>
+              <td>0.8458</td>
+              <td>66.7754</td>
+              <td class="best">4.6765</td>
+              <td class="second">0.6831</td>
+              <td>0.5338</td>
+            </tr>
+            <tr>
+              <th scope="row">VOSR-1.4b</th>
+              <td>0.2349</td>
+              <td>0.1247</td>
+              <td>28.3661</td>
+              <td>0.8290</td>
+              <td class="best">71.1585</td>
+              <td>4.3381</td>
+              <td>0.6873</td>
+              <td class="best">0.5523</td>
+            </tr>
+            <tr class="section-start">
+              <td class="group-cell" rowspan="3">
+                Open-source<br>Reference-based SR
+              </td>
+              <th scope="row">RefSR</th>
+              <td>0.4384</td>
+              <td>0.2685</td>
+              <td>28.6190</td>
+              <td>0.8297</td>
+              <td>24.0680</td>
+              <td>8.1108</td>
+              <td>0.4106</td>
+              <td>0.3259</td>
+            </tr>
+            <tr>
+              <th scope="row">AdaRefSR</th>
+              <td>0.6071</td>
+              <td>0.2785</td>
+              <td>16.2155</td>
+              <td>0.7154</td>
+              <td>32.1215</td>
+              <td>7.7052</td>
+              <td>0.5645</td>
+              <td>0.4367</td>
+            </tr>
+            <tr>
+              <th scope="row">GarmentZoom</th>
+              <td>0.4156</td>
+              <td>0.2643</td>
+              <td>25.8811</td>
+              <td>0.7255</td>
+              <td>34.1616</td>
+              <td>6.1379</td>
+              <td>0.4360</td>
+              <td>0.4160</td>
+            </tr>
+            <tr class="section-start">
+              <td class="group-cell" rowspan="2">
+                Commercial<br>Editing Models
+              </td>
+              <th scope="row">GPT-Image-2</th>
+              <td>0.4474</td>
+              <td>0.2154</td>
+              <td>18.3255</td>
+              <td>0.7665</td>
+              <td>34.4500</td>
+              <td>7.4755</td>
+              <td>0.5781</td>
+              <td>0.4355</td>
+            </tr>
+            <tr>
+              <th scope="row">Gemini-3-Pro</th>
+              <td>0.2065</td>
+              <td>0.1034</td>
+              <td>26.7874</td>
+              <td>0.8222</td>
+              <td>64.9845</td>
+              <td>4.9920</td>
+              <td>0.6216</td>
+              <td>0.5048</td>
+            </tr>
+            <tr class="ours-row">
+              <td class="group-cell"></td>
+              <th scope="row">Graft (Ours)</th>
+              <td class="best">0.1583</td>
+              <td class="best">0.0986</td>
+              <td class="best">30.1060</td>
+              <td class="best">0.8494</td>
+              <td class="second">69.8535</td>
+              <td>4.9346</td>
+              <td class="best">0.7275</td>
+              <td class="second">0.5270</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-caption">
+          Quantitative comparison on the <strong>TexRefSR-Eval-Syn</strong>
+          benchmark, where ground-truth references are available. Both
+          full-reference and no-reference metrics are reported.
+          <span class="best">Red bold</span> and
+          <span class="second">blue underline</span> denote the best and the
+          second-best results.
+        </p>
+      </div>
+
+      <!-- Table 2: TexRefSR-Eval-Real -->
+      <div class="results-card">
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Type</th>
+              <th rowspan="2">Method</th>
+              <th colspan="4" class="group-header">No-Reference</th>
+              <th colspan="3" class="group-header">
+                VLM Evaluation (GPT-4.1-global)
+              </th>
+            </tr>
+            <tr>
+              <th>NIQE ↓</th>
+              <th>MUSIQ ↑</th>
+              <th>CLIPIQA ↑</th>
+              <th>MANIQA ↑</th>
+              <th>PQ ↑</th>
+              <th>TC ↑</th>
+              <th>Overall ↑</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="section-start">
+              <td class="group-cell" rowspan="6">
+                Open-source<br>Generative SR
+              </td>
+              <th scope="row">OSEDiff</th>
+              <td>3.9329</td>
+              <td>70.5668</td>
+              <td>0.6395</td>
+              <td>0.6292</td>
+              <td>3.320</td>
+              <td>1.740</td>
+              <td>2.530</td>
+            </tr>
+            <tr>
+              <th scope="row">SUPIR</th>
+              <td>4.2105</td>
+              <td>59.6691</td>
+              <td>0.4778</td>
+              <td>0.5741</td>
+              <td>3.380</td>
+              <td>1.960</td>
+              <td>2.670</td>
+            </tr>
+            <tr>
+              <th scope="row">DiT4SR</th>
+              <td class="best">3.7190</td>
+              <td>72.5782</td>
+              <td class="best">0.6428</td>
+              <td>0.6485</td>
+              <td>3.720</td>
+              <td>2.040</td>
+              <td>2.880</td>
+            </tr>
+            <tr>
+              <th scope="row">ODTSR</th>
+              <td>4.2809</td>
+              <td class="second">71.5261</td>
+              <td>0.6140</td>
+              <td class="best">0.6580</td>
+              <td>2.760</td>
+              <td>1.560</td>
+              <td>2.160</td>
+            </tr>
+            <tr>
+              <th scope="row">PiSA-SR</th>
+              <td>4.2523</td>
+              <td>65.5855</td>
+              <td>0.4913</td>
+              <td>0.5789</td>
+              <td>2.840</td>
+              <td>1.660</td>
+              <td>2.250</td>
+            </tr>
+            <tr>
+              <th scope="row">VOSR-1.4b</th>
+              <td class="second">3.8273</td>
+              <td>69.7636</td>
+              <td>0.6227</td>
+              <td>0.6399</td>
+              <td class="second">3.880</td>
+              <td>2.380</td>
+              <td>3.130</td>
+            </tr>
+            <tr class="section-start">
+              <td class="group-cell" rowspan="3">
+                Open-source<br>Reference-based SR
+              </td>
+              <th scope="row">RefSR</th>
+              <td>5.0782</td>
+              <td>53.8617</td>
+              <td>0.3251</td>
+              <td>0.5030</td>
+              <td>2.200</td>
+              <td>1.280</td>
+              <td>1.740</td>
+            </tr>
+            <tr>
+              <th scope="row">AdaRefSR</th>
+              <td>5.7189</td>
+              <td>46.2674</td>
+              <td>0.3625</td>
+              <td>0.5087</td>
+              <td>2.580</td>
+              <td>1.560</td>
+              <td>2.070</td>
+            </tr>
+            <tr>
+              <th scope="row">GarmentZoom</th>
+              <td>5.6298</td>
+              <td>31.4101</td>
+              <td>0.3625</td>
+              <td>0.4417</td>
+              <td>2.380</td>
+              <td>1.840</td>
+              <td>2.110</td>
+            </tr>
+            <tr class="section-start">
+              <td class="group-cell" rowspan="2">
+                Commercial<br>Editing Models
+              </td>
+              <th scope="row">GPT-Image-2</th>
+              <td>4.9825</td>
+              <td>65.9262</td>
+              <td>0.5667</td>
+              <td>0.6159</td>
+              <td>3.020</td>
+              <td>2.100</td>
+              <td>2.560</td>
+            </tr>
+            <tr>
+              <th scope="row">Gemini-3-Pro</th>
+              <td>5.1077</td>
+              <td>56.5937</td>
+              <td>0.4633</td>
+              <td>0.5277</td>
+              <td class="second">3.880</td>
+              <td class="second">2.700</td>
+              <td class="second">3.290</td>
+            </tr>
+            <tr class="ours-row">
+              <td class="group-cell"></td>
+              <th scope="row">GraftSR (Ours)</th>
+              <td>3.9881</td>
+              <td class="best">73.0045</td>
+              <td class="second">0.6409</td>
+              <td class="second">0.6507</td>
+              <td class="best">3.980</td>
+              <td class="best">2.840</td>
+              <td class="best">3.410</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-caption">
+          Quantitative comparison on the
+          <strong>TexRefSR-Eval-Real</strong> benchmark with no-reference
+          metrics and VLM-based metrics.
+        </p>
+      </div>
+
+      <!-- Table 3: General real-world SR（RealSR / DRealSR 两栏并排） -->
+      <div class="results-grid">
+        <div class="results-card">
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>PSNR ↑</th>
+                <th>SSIM ↑</th>
+                <th>LPIPS ↓</th>
+                <th>MUSIQ ↑</th>
+                <th>MANIQA ↑</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">SUPIR</th>
+                <td>23.65</td>
+                <td>0.6620</td>
+                <td>0.3541</td>
+                <td>62.09</td>
+                <td>0.5780</td>
+              </tr>
+              <tr>
+                <th scope="row">DiT4SR</th>
+                <td>23.50</td>
+                <td>0.6657</td>
+                <td>0.3215</td>
+                <td>67.76</td>
+                <td>0.6564</td>
+              </tr>
+              <tr>
+                <th scope="row">OSEDiff</th>
+                <td>25.15</td>
+                <td>0.7341</td>
+                <td>0.2920</td>
+                <td>69.08</td>
+                <td>0.6335</td>
+              </tr>
+              <tr>
+                <th scope="row">PiSA-SR</th>
+                <td class="second">25.40</td>
+                <td class="second">0.7418</td>
+                <td>0.2672</td>
+                <td>70.14</td>
+                <td>0.6551</td>
+              </tr>
+              <tr>
+                <th scope="row">VOSR-1.4B</th>
+                <td>25.23</td>
+                <td>0.7175</td>
+                <td>0.2732</td>
+                <td class="best">70.58</td>
+                <td>0.6443</td>
+              </tr>
+              <tr>
+                <th scope="row">ODTSR</th>
+                <td>25.07</td>
+                <td>0.7361</td>
+                <td class="best">0.2398</td>
+                <td>68.29</td>
+                <td class="second">0.6622</td>
+              </tr>
+              <tr class="ours-row">
+                <th scope="row">GraftSR (Ours)</th>
+                <td class="best">25.51</td>
+                <td class="best">0.7512</td>
+                <td class="second">0.2559</td>
+                <td class="second">70.37</td>
+                <td class="best">0.6676</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="table-caption">
+            <strong>RealSR</strong>
+          </p>
+        </div>
+
+        <div class="results-card">
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>PSNR ↑</th>
+                <th>SSIM ↑</th>
+                <th>LPIPS ↓</th>
+                <th>MUSIQ ↑</th>
+                <th>MANIQA ↑</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">SUPIR</th>
+                <td>25.09</td>
+                <td>0.6460</td>
+                <td>0.4243</td>
+                <td>58.79</td>
+                <td>0.5471</td>
+              </tr>
+              <tr>
+                <th scope="row">DiT4SR</th>
+                <td>25.40</td>
+                <td>0.6657</td>
+                <td>0.3869</td>
+                <td>65.75</td>
+                <td class="second">0.6287</td>
+              </tr>
+              <tr>
+                <th scope="row">OSEDiff</th>
+                <td>27.92</td>
+                <td class="second">0.7835</td>
+                <td>0.2968</td>
+                <td>64.65</td>
+                <td>0.5895</td>
+              </tr>
+              <tr>
+                <th scope="row">PiSA-SR</th>
+                <td class="second">28.32</td>
+                <td>0.7804</td>
+                <td>0.2960</td>
+                <td class="second">66.11</td>
+                <td>0.6146</td>
+              </tr>
+              <tr>
+                <th scope="row">VOSR-1.4B</th>
+                <td>27.88</td>
+                <td>0.7413</td>
+                <td>0.3260</td>
+                <td>66.04</td>
+                <td>0.6053</td>
+              </tr>
+              <tr>
+                <th scope="row">ODTSR</th>
+                <td>28.14</td>
+                <td>0.7736</td>
+                <td class="best">0.2592</td>
+                <td>62.86</td>
+                <td>0.6227</td>
+              </tr>
+              <tr class="ours-row">
+                <th scope="row">GraftSR (Ours)</th>
+                <td class="best">29.04</td>
+                <td class="best">0.8052</td>
+                <td class="second">0.2858</td>
+                <td class="best">66.73</td>
+                <td class="best">0.6376</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="table-caption">
+            <strong>DRealSR</strong>
+          </p>
+        </div>
+      </div>
+
+      <p class="table-caption">
+        Quantitative comparison on general real-world SR. Our GraftSR still
+        achieves strong generalization in both fidelity and perceptual
+        quality even without reference images.
+      </p>
+    </section>
+
+    <!-- =========================
+         Qualitative Results
+    ========================== -->
+    <section
+      id="qualitative"
+      class="content-section"
+      aria-labelledby="qualitative-title"
+    >
+      <div class="section-heading">
+        <span class="section-kicker">Visualizations</span>
+        <h2 id="qualitative-title">More Qualitative Results</h2>
+      </div>
+
+      <div class="results-card">
+        <img
+          class="teaser-figure"
+          src="assets/synthetic_appendix.svg"
+          alt="Qualitative comparisons on the TexRefSR-Eval-Syn dataset"
+          loading="lazy"
+        >
+        <p class="table-caption">
+          More qualitative comparisons on the
+          <strong>TexRefSR-Eval-Syn</strong> dataset, where low-quality
+          inputs are produced by the synthetic degradation model. Guided by
+          the reference, our method restores textures that are more faithful
+          to the ground truth, recovering fine patterns and structural
+          details that other methods either over-smooth or hallucinate
+          incorrectly.
+        </p>
+      </div>
+
+      <div class="results-card">
+        <img
+          class="teaser-figure"
+          src="assets/realworld_appendix.svg"
+          alt="Qualitative comparisons on the TexRefSR-Eval-Real dataset"
+          loading="lazy"
+        >
+        <p class="table-caption">
+          More qualitative comparisons on the
+          <strong>TexRefSR-Eval-Real</strong> dataset, which contains
+          real-world low-quality images without ground truth. Our method
+          produces perceptually sharper results whose textures remain
+          consistent with the reference, whereas other methods tend to yield
+          blurry or unfaithful reconstructions.
+        </p>
+      </div>
+
+      <div class="results-card">
+        <img
+          class="teaser-figure"
+          src="assets/realsr_appendix.svg"
+          alt="Qualitative comparisons on general real-world SR benchmarks"
+          loading="lazy"
+        >
+        <p class="table-caption">
+          More qualitative comparisons on general real-world SR benchmarks
+          (RealSR and DRealSR). Although no reference is available in this
+          setting, our method still generalizes well to natural scenes and
+          recovers clean, realistic details that are competitive with or
+          superior to state-of-the-art general SR methods.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    GraftSR Project Page
+  </footer>
+
+  <script>
+    (() => {
+      const comparison = document.getElementById("imageComparison");
+      const handle = document.getElementById("comparisonHandle");
+
+      if (!comparison || !handle) {
+        return;
+      }
+
+      let isDragging = false;
+      let currentValue = 50;
+
+      /*
+       * 控制斜线的倾斜程度。
+       * 数值越大，斜线越倾斜。
+       */
+      
+       const diagonalOffset = 4;
+
+      /**
+       * 更新滑块位置以及右侧高清图的裁剪区域。
+       *
+       * value:
+       *   0   表示几乎完全展示 GraftSR 图像；
+       *   100 表示几乎完全展示低分辨率图像。
+       */
+      function updateComparison(value) {
+        currentValue = Math.max(0, Math.min(100, value));
+
+        const topSplit = Math.max(
+          0,
+          Math.min(100, currentValue + diagonalOffset)
+        );
+
+        const bottomSplit = Math.max(
+          0,
+          Math.min(100, currentValue - diagonalOffset)
+        );
+
+        comparison.style.setProperty(
+          "--split",
+          `${currentValue}%`
+        );
+
+        comparison.style.setProperty(
+          "--top-split",
+          `${topSplit}%`
+        );
+
+        comparison.style.setProperty(
+          "--bottom-split",
+          `${bottomSplit}%`
+        );
+
+        const roundedValue = Math.round(currentValue);
+        const graftSRPercentage = 100 - roundedValue;
+
+        handle.setAttribute("aria-valuenow", roundedValue);
+        handle.setAttribute(
+          "aria-valuetext",
+          `${graftSRPercentage} percent GraftSR result`
+        );
+      }
+
+      /**
+       * 根据鼠标或触摸点的横坐标计算百分比。
+       */
+      function updateFromClientX(clientX) {
+        const rect = comparison.getBoundingClientRect();
+
+        if (rect.width === 0) {
+          return;
+        }
+
+        const relativeX = clientX - rect.left;
+        const percentage = (relativeX / rect.width) * 100;
+
+        updateComparison(percentage);
+      }
+
+      /**
+       * 开始拖动。
+       */
+      function startDragging(event) {
+        isDragging = true;
+        comparison.classList.add("is-dragging");
+
+        /*
+         * 捕获 pointer，确保光标移出图片后依然能够继续拖动。
+         */
+        if (
+          event.pointerId !== undefined &&
+          comparison.setPointerCapture
+        ) {
+          try {
+            comparison.setPointerCapture(event.pointerId);
+          } catch (error) {
+            // 某些浏览器可能不支持当前 pointer 的捕获，可安全忽略。
+          }
+        }
+
+        updateFromClientX(event.clientX);
+        event.preventDefault();
+      }
+
+      /**
+       * 拖动过程中更新位置。
+       */
+      function moveDragging(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        updateFromClientX(event.clientX);
+        event.preventDefault();
+      }
+
+      /**
+       * 结束拖动。
+       */
+      function stopDragging(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        isDragging = false;
+        comparison.classList.remove("is-dragging");
+
+        if (
+          event.pointerId !== undefined &&
+          comparison.releasePointerCapture
+        ) {
+          try {
+            comparison.releasePointerCapture(event.pointerId);
+          } catch (error) {
+            // Pointer 可能已经自动释放，可安全忽略。
+          }
+        }
+      }
+
+      /*
+       * Pointer Events 同时支持鼠标、触摸屏和触控笔。
+       */
+      comparison.addEventListener(
+        "pointerdown",
+        startDragging
+      );
+
+      comparison.addEventListener(
+        "pointermove",
+        moveDragging
+      );
+
+      comparison.addEventListener(
+        "pointerup",
+        stopDragging
+      );
+
+      comparison.addEventListener(
+        "pointercancel",
+        stopDragging
+      );
+
+      comparison.addEventListener(
+        "lostpointercapture",
+        () => {
+          isDragging = false;
+          comparison.classList.remove("is-dragging");
+        }
+      );
+
+      /*
+       * 键盘无障碍操作：
+       * 左右方向键每次移动 2%；
+       * Shift + 左右方向键每次移动 10%；
+       * Home 和 End 分别移动到两端。
+       */
+      handle.addEventListener("keydown", (event) => {
+        const smallStep = 2;
+        const largeStep = 10;
+        const step = event.shiftKey ? largeStep : smallStep;
+
+        switch (event.key) {
+          case "ArrowLeft":
+            updateComparison(currentValue - step);
+            event.preventDefault();
+            break;
+
+          case "ArrowRight":
+            updateComparison(currentValue + step);
+            event.preventDefault();
+            break;
+
+          case "Home":
+            updateComparison(0);
+            event.preventDefault();
+            break;
+
+          case "End":
+            updateComparison(100);
+            event.preventDefault();
+            break;
+
+          default:
+            break;
+        }
+      });
+
+      /*
+       * 防止图片被浏览器原生拖拽。
+       */
+      comparison
+        .querySelectorAll("img")
+        .forEach((image) => {
+          image.addEventListener(
+            "dragstart",
+            (event) => event.preventDefault()
+          );
+        });
+
+      /*
+       * =========================
+       * 组图切换（Carousel）
+       * =========================
+       *
+       * 在下方数组中按格式添加更多组图即可扩展：
+       *   lq      低分辨率图路径
+       *   graftsr GraftSR 修复图路径
+       *   name    展示在图片底部的组图名称
+       */
+      const examples = [
+        {
+          lq: "assets/comparison_lq_1.png",
+          graftsr: "assets/comparison_graftsr_1.png",
+          name: "Example 01",
+        },
+        {
+          lq: "assets/comparison_lq_2.jpg",
+          graftsr: "assets/comparison_graftsr_2.png",
+          name: "Example 02",
+        },
+        {
+          lq: "assets/comparison_lq_3.jpg",
+          graftsr: "assets/comparison_graftsr_3.png",
+          name: "Example 03",
+        },
+        {
+          lq: "assets/comparison_lq_4.jpg",
+          graftsr: "assets/comparison_graftsr_4.png",
+          name: "Example 04",
+        },
+        {
+          lq: "assets/comparison_lq_5.jpg",
+          graftsr: "assets/comparison_graftsr_5.png",
+          name: "Example 05",
+        },
+      ];
+
+      const beforeImage = document.getElementById("comparisonBefore");
+      const afterImage = document.getElementById("comparisonAfter");
+      const exampleName = document.getElementById("comparisonName");
+      const previousButton = document.getElementById("previousComparison");
+      const nextButton = document.getElementById("nextComparison");
+      const dotsContainer = document.getElementById("comparisonDots");
+      const counter = document.getElementById("comparisonCounter");
+      const loadingOverlay = document.getElementById("comparisonLoading");
+
+      let currentIndex = 0;
+      let switchToken = 0;
+      let currentRatio = 1;
+
+      /**
+       * 根据当前组图宽高比计算容器尺寸：
+       * 高度不超过视口的 75%，宽度不超过外层 shell 的内容宽度，
+       * 保证容器与图片同比例，两侧不留黑边。
+       */
+      function applyContainerSize() {
+        const shell = comparison.parentElement;
+        const shellStyles = window.getComputedStyle(shell);
+        const availableWidth =
+          shell.clientWidth -
+          parseFloat(shellStyles.paddingLeft) -
+          parseFloat(shellStyles.paddingRight);
+        const maxHeight = window.innerHeight * 0.75;
+
+        let height = maxHeight;
+        let width = height * currentRatio;
+
+        if (width > availableWidth) {
+          width = availableWidth;
+          height = width / currentRatio;
+        }
+
+        comparison.style.width = `${Math.round(width)}px`;
+        comparison.style.height = `${Math.round(height)}px`;
+      }
+
+      window.addEventListener("resize", applyContainerSize);
+
+      /**
+       * 预加载一组图片，两张都加载完成后 resolve。
+       * resolve 的值为加载完成的 Image 元素，可读取真实尺寸。
+       */
+      function preloadExample(example) {
+        const load = (src) =>
+          new Promise((resolve, reject) => {
+            const image = new Image();
+            image.onload = () => resolve(image);
+            image.onerror = () =>
+              reject(new Error(`Failed to load ${src}`));
+            image.src = src;
+          });
+
+        return Promise.all([
+          load(example.lq),
+          load(example.graftsr),
+        ]);
+      }
+
+      /**
+       * 渲染底部圆点导航。
+       */
+      function renderDots() {
+        if (!dotsContainer) {
+          return;
+        }
+
+        dotsContainer.innerHTML = "";
+
+        examples.forEach((example, index) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "comparison-dot";
+          dot.setAttribute(
+            "aria-label",
+            `Show ${example.name}`
+          );
+          dot.addEventListener("click", () => showExample(index));
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      /**
+       * 同步圆点高亮与计数器文本。
+       */
+      function updateNavigationState() {
+        if (dotsContainer) {
+          Array.from(dotsContainer.children).forEach(
+            (dot, index) => {
+              dot.classList.toggle(
+                "is-active",
+                index === currentIndex
+              );
+            }
+          );
+        }
+
+        if (counter) {
+          const pad = (value) =>
+            String(value).padStart(2, "0");
+
+          counter.textContent =
+            `${pad(currentIndex + 1)} / ${pad(examples.length)}`;
+        }
+      }
+
+      /**
+       * 切换到指定组图（支持首尾循环）。
+       */
+      function showExample(index) {
+        const total = examples.length;
+        const targetIndex = ((index % total) + total) % total;
+        const example = examples[targetIndex];
+        const token = ++switchToken;
+
+        if (loadingOverlay) {
+          loadingOverlay.classList.add("is-visible");
+        }
+
+        preloadExample(example)
+          .catch(() => {
+            /* 图片加载失败时仍然继续切换，交由浏览器显示占位。 */
+          })
+          .then((loadedImages) => {
+            /* 忽略过期的切换请求（用户快速连点时只保留最后一次）。 */
+            if (token !== switchToken) {
+              return;
+            }
+
+            currentIndex = targetIndex;
+
+            beforeImage.src = example.lq;
+            beforeImage.alt =
+              `Low-resolution input for ${example.name}`;
+
+            afterImage.src = example.graftsr;
+            afterImage.alt =
+              `GraftSR restoration result for ${example.name}`;
+
+            /*
+             * 按修复图的实际宽高比调整容器，
+             * 确保图像完整显示、不被裁切。
+             */
+            if (Array.isArray(loadedImages)) {
+              const reference = loadedImages[1];
+              const source =
+                reference.naturalWidth > 0
+                  ? reference
+                  : loadedImages[0];
+
+              if (
+                source &&
+                source.naturalWidth > 0 &&
+                source.naturalHeight > 0
+              ) {
+                currentRatio =
+                  source.naturalWidth / source.naturalHeight;
+
+                comparison.style.aspectRatio =
+                  `${source.naturalWidth} / ${source.naturalHeight}`;
+              }
+            }
+
+            applyContainerSize();
+
+            if (exampleName) {
+              exampleName.textContent = example.name;
+            }
+
+            updateNavigationState();
+            updateComparison(50);
+
+            if (loadingOverlay) {
+              loadingOverlay.classList.remove("is-visible");
+            }
+          });
+      }
+
+      if (previousButton) {
+        previousButton.addEventListener("click", () => {
+          showExample(currentIndex - 1);
+        });
+      }
+
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          showExample(currentIndex + 1);
+        });
+      }
+
+      /*
+       * 页面初始化。
+       */
+      renderDots();
+      updateNavigationState();
+      applyContainerSize();
+      showExample(0);
+    })();
+  </script>
+</body>
+</html>
+
+     
+
