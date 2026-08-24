@@ -9,6 +9,7 @@
 ## ✅ TODO
 
 - [ ] Upload the inference weights.
+- [ ] Upload the dataset and benchmark.
 
 ## ⚙ Dependencies and Installation
 
